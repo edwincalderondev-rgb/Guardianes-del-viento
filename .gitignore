@@ -1,0 +1,6 @@
+# Páginas de prueba y restos del sistema: nunca se publican
+_prueba-*.html
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log

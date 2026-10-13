@@ -1,0 +1,9 @@
+# Finales de línea uniformes en el repositorio, sea cual sea el equipo
+* text=auto eol=lf
+*.woff2 binary
+*.webp binary
+*.jpg binary
+*.png binary
+*.ico binary
+*.m4a binary
+*.mp4 binary

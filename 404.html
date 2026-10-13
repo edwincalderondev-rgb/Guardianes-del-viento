@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Página no encontrada · Guardianes del Viento</title>
+<meta name="theme-color" content="#0a1915">
+<!-- GitHub Pages sirve esta página en cualquier profundidad: por eso no carga
+     hojas ni fuentes del sitio y lleva sus estilos aquí mismo. -->
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; }
+  html { color-scheme: dark; }
+  body {
+    min-height: 100svh;
+    display: grid;
+    place-items: center;
+    padding: 2rem;
+    background:
+      radial-gradient(120% 80% at 88% -10%, rgba(229, 174, 66, 0.14), transparent 58%),
+      #0a1915;
+    color: #f3ead9;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.6;
+  }
+  main { max-width: 34rem; display: grid; gap: 1.25rem; justify-items: start; }
+  svg { width: 44px; height: 44px; color: #e5ae42; }
+  .code { font: 500 0.78rem ui-monospace, Consolas, monospace; letter-spacing: 0.14em; text-transform: uppercase; color: #f0c765; }
+  h1 { font: 400 clamp(2.2rem, 1.4rem + 4vw, 3.6rem)/1.02 "Iowan Old Style", "Palatino Linotype", Georgia, serif; letter-spacing: -0.025em; text-wrap: balance; }
+  h1 em { color: #e5ae42; }
+  p { color: #c9cbbd; }
+  a {
+    display: inline-flex; align-items: center; min-height: 50px; padding: 0 1.45rem; margin-top: 0.5rem;
+    border-radius: 999px; background: #e5ae42; color: #1b1403; font-weight: 600; text-decoration: none;
+  }
+  a:hover { background: #f0c765; }
+  a:focus-visible { outline: 2px solid #f6dc9b; outline-offset: 3px; }
+</style>
+</head>
+<body>
+<main>
+  <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M3 8.5c8.5 0 9.5 7.5 18 7.5h8M3 16h26M3 23.5c8.5 0 9.5-7.5 18-7.5" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg>
+  <p class="code">Error 404</p>
+  <h1>Aquí el viento no trajo <em>nada.</em></h1>
+  <p>La página que busca no existe o cambió de lugar. El tráiler, el informe del proyecto y el asistente de preguntas están en el inicio.</p>
+  <a id="home" href="./">Volver a Guardianes del Viento</a>
+</main>
+<script>
+  // En GitHub Pages el sitio vive en una subcarpeta con el nombre del repositorio
+  (function () {
+    var first = location.pathname.split('/')[1];
+    var base = /\.github\.io$/.test(location.hostname) && first ? '/' + first + '/' : '/';
+    document.getElementById('home').setAttribute('href', base);
+  })();
+</script>
+</body>
+</html>

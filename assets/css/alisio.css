@@ -1,0 +1,805 @@
+/* ==========================================================================
+   ALISIO — asistente de preguntas (estilos)
+   El marcado lo construye assets/js/alisio.js y lo cuelga de <body> dentro de
+   #alisio. Todo va bajo ese id y con prefijo .al-: nada de aquí toca la página.
+   El avatar es un aerogenerador: cielo, torre y el rotor real, recortado de
+   una foto de campo, que gira despacio y acelera mientras Alisio «escribe».
+   ========================================================================== */
+
+#alisio {
+  /* Cielo de atardecer, el de la portada del tráiler: el rotor blanco se lee
+     mejor y el asistente no rompe la paleta de la página */
+  --al-sky-1: #0f2f29;
+  --al-sky-2: #3f7c69;
+  --al-gap: max(1rem, env(safe-area-inset-right, 0px));
+
+  position: fixed;
+  right: var(--al-gap);
+  bottom: max(1rem, env(safe-area-inset-bottom, 0px));
+  z-index: var(--z-chat);
+  font-family: var(--font-text);
+  font-size: 0.93rem;
+  line-height: 1.55;
+  color: var(--text);
+  /* El contenedor no intercepta clics: solo el lanzador y el panel */
+  pointer-events: none;
+}
+
+#alisio *,
+#alisio *::before,
+#alisio *::after {
+  box-sizing: border-box;
+}
+
+/* En modo cine manda el tráiler */
+html.is-cinema #alisio {
+  display: none;
+}
+
+.al-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.al-ico {
+  flex: none;
+  display: block;
+}
+
+/* --- Avatar ----------------------------------------------------------------- */
+.al-avatar {
+  --size: 44px;
+  position: relative;
+  flex: none;
+  display: block;
+  width: var(--size);
+  height: var(--size);
+  overflow: hidden;
+  border-radius: 50%;
+  background:
+    radial-gradient(120% 85% at 50% 118%, #f0c765 0%, rgba(229, 174, 66, 0.55) 28%, rgba(229, 174, 66, 0) 62%),
+    linear-gradient(180deg, var(--al-sky-1) 0%, #1f5548 58%, var(--al-sky-2) 100%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.16);
+}
+
+.al-avatar--lg {
+  --size: 60px;
+}
+
+.al-tower {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  bottom: -2%;
+  width: 5.5%;
+  min-width: 2px;
+  background: linear-gradient(90deg, #dfe9ef, #f7fbfc 45%, #c9d9e2);
+  clip-path: polygon(22% 0, 78% 0, 100% 100%, 0 100%);
+  transform: translateX(-50%);
+}
+
+.al-rotor,
+.al-rotor-boost {
+  position: absolute;
+  inset: 0;
+}
+
+.al-rotor {
+  inset: 3%;
+  animation: al-spin 16s linear infinite;
+}
+
+/* Segunda vuelta, en pausa: al correr se suma a la primera y, al detenerse,
+   se queda donde esté. Así el giro acelera y frena sin que el ángulo salte. */
+.al-rotor-boost {
+  animation: al-spin 1.5s linear infinite;
+  animation-play-state: paused;
+}
+
+#alisio.al-busy .al-rotor-boost {
+  animation-play-state: running;
+}
+
+.al-rotor-draw,
+.al-rotor-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+}
+
+.al-rotor-draw {
+  fill: #f4f8fa;
+}
+
+.al-rotor-img {
+  opacity: 0;
+}
+
+/* La foto solo reemplaza al dibujo cuando de verdad cargó */
+#alisio.al-has-rotor .al-rotor-img {
+  opacity: 1;
+}
+
+#alisio.al-has-rotor .al-rotor-draw {
+  opacity: 0;
+}
+
+@keyframes al-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* --- Lanzador ---------------------------------------------------------------- */
+.al-launcher {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  pointer-events: auto;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.al-face {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 2px var(--green-950),
+    0 0 0 3px rgba(229, 174, 66, 0.55),
+    0 16px 36px -12px rgba(0, 0, 0, 0.75);
+  transition:
+    transform var(--dur-2) var(--ease-out),
+    box-shadow var(--dur-2) ease;
+}
+
+.al-launcher:hover .al-face {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow:
+    0 0 0 2px var(--green-950),
+    0 0 0 3px var(--gold-300),
+    0 22px 44px -14px rgba(0, 0, 0, 0.8);
+}
+
+.al-launcher:focus-visible {
+  outline: none;
+}
+
+.al-launcher:focus-visible .al-face {
+  outline: 2px solid var(--gold-200);
+  outline-offset: 5px;
+}
+
+.al-face .al-avatar {
+  transition:
+    opacity var(--dur-2) ease,
+    transform var(--dur-3) var(--ease-out);
+}
+
+.al-face-close {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--green-800);
+  color: var(--text);
+  opacity: 0;
+  transform: scale(0.6) rotate(-45deg);
+  transition:
+    opacity var(--dur-2) ease,
+    transform var(--dur-3) var(--ease-out);
+}
+
+#alisio.al-open .al-face .al-avatar {
+  opacity: 0;
+  transform: scale(0.6);
+}
+
+#alisio.al-open .al-face-close {
+  opacity: 1;
+  transform: none;
+}
+
+/* La pastilla invita una vez y se recoge */
+.al-pill {
+  display: grid;
+  grid-template-columns: 0fr;
+  margin-right: -1.6rem;
+  opacity: 0;
+  transition:
+    grid-template-columns var(--dur-3) var(--ease-out),
+    opacity var(--dur-2) ease;
+}
+
+.al-pill > span {
+  min-width: 0;
+  overflow: hidden;
+  padding: 0.62rem 2.4rem 0.62rem 1.05rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--line-strong);
+  background: rgba(15, 36, 30, 0.94);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  font-size: 0.86rem;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 14px 30px -14px rgba(0, 0, 0, 0.7);
+}
+
+.al-launcher.al-hint .al-pill,
+#alisio:not(.al-open) .al-launcher:hover .al-pill,
+#alisio:not(.al-open) .al-launcher:focus-visible .al-pill {
+  grid-template-columns: 1fr;
+  opacity: 1;
+}
+
+/* --- Panel -------------------------------------------------------------------- */
+.al-panel {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 0.85rem);
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto auto auto;
+  width: min(25.5rem, calc(100vw - var(--al-gap) * 2));
+  height: min(41.5rem, calc(100dvh - 7.5rem));
+  overflow: hidden;
+  border-radius: var(--radius-3);
+  border: 1px solid var(--line-strong);
+  background:
+    radial-gradient(120% 60% at 100% 0%, rgba(229, 174, 66, 0.1), transparent 62%),
+    var(--green-900);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.3),
+    0 40px 90px -30px rgba(0, 0, 0, 0.9);
+  pointer-events: auto;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(14px) scale(0.96);
+  transform-origin: 100% 100%;
+  transition:
+    opacity var(--dur-2) ease,
+    transform var(--dur-3) var(--ease-out),
+    visibility 0s linear var(--dur-3);
+}
+
+#alisio.al-open .al-panel {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition-delay: 0s;
+}
+
+.al-panel:focus {
+  outline: none;
+}
+
+.al-head {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.85rem 0.7rem 0.85rem 1rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.al-id {
+  flex: 1;
+  min-width: 0;
+}
+
+.al-name {
+  font-family: var(--font-display);
+  font-size: 1.32rem;
+  font-weight: 440;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.al-role {
+  margin-top: 0.1rem;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+}
+
+.al-btn {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: var(--text-soft);
+  cursor: pointer;
+  transition:
+    background-color var(--dur-1) ease,
+    color var(--dur-1) ease;
+}
+
+.al-btn:hover {
+  background: rgba(243, 234, 217, 0.09);
+  color: var(--text);
+}
+
+#alisio :focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* --- Conversación -------------------------------------------------------------
+   position: relative es obligatorio: alisio.js ancla el scroll con offsetTop. */
+.al-log {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem 1rem 0.75rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(243, 234, 217, 0.22) transparent;
+}
+
+.al-log:focus-visible {
+  outline-offset: -3px;
+}
+
+.al-log::-webkit-scrollbar {
+  width: 8px;
+}
+
+.al-log::-webkit-scrollbar-thumb {
+  border: 2px solid transparent;
+  border-radius: 8px;
+  background: rgba(243, 234, 217, 0.22);
+  background-clip: padding-box;
+}
+
+.al-msg {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.al-new {
+  animation: al-in 0.45s var(--ease-out) both;
+}
+
+@keyframes al-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.al-msg--user {
+  align-self: flex-end;
+  max-width: 86%;
+  padding: 0.55rem 0.9rem;
+  border-radius: 16px 16px 4px 16px;
+  border: 1px solid rgba(229, 174, 66, 0.32);
+  background: var(--accent-soft);
+  font-weight: 500;
+}
+
+.al-msg--bot {
+  padding: 0.95rem 1rem 1rem;
+  border-radius: 4px 16px 16px 16px;
+  border: 1px solid var(--line);
+  background: var(--green-800);
+}
+
+.al-msg--typing {
+  align-self: flex-start;
+  padding: 0.8rem 0.95rem;
+  border-radius: 4px 16px 16px 16px;
+  background: var(--green-800);
+}
+
+.al-dots {
+  display: flex;
+  gap: 5px;
+}
+
+.al-dots i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold-300);
+  animation: al-dot 1.1s ease-in-out infinite;
+}
+
+.al-dots i:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.al-dots i:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes al-dot {
+  0%,
+  60%,
+  100% {
+    opacity: 0.3;
+    transform: translateY(0);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(-4px);
+  }
+}
+
+.al-hedge {
+  margin-bottom: 0.65rem;
+  font-size: 0.86rem;
+  font-style: italic;
+  color: var(--text-mute);
+}
+
+.al-eyebrow {
+  margin-bottom: 0.3rem;
+  font-family: var(--font-mono);
+  font-size: 0.63rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.al-title {
+  margin-bottom: 0.55rem;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 460;
+  line-height: 1.2;
+  letter-spacing: -0.008em;
+}
+
+.al-body {
+  color: var(--text-soft);
+}
+
+.al-body > * + * {
+  margin-top: 0.65em;
+}
+
+.al-body strong {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.al-body ul,
+.al-body ol {
+  display: grid;
+  gap: 0.35em;
+  padding-left: 1.15rem;
+}
+
+.al-body li::marker {
+  color: var(--accent);
+}
+
+.al-kv {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+
+.al-kv > div {
+  display: grid;
+  gap: 0.1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.al-kv dt {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.al-kv dd {
+  font-size: 0.88rem;
+}
+
+.al-kv--fig dt {
+  font-size: 1.08rem;
+  letter-spacing: -0.012em;
+  color: var(--gold-300);
+}
+
+.al-note {
+  padding-left: 0.7rem;
+  border-left: 2px solid var(--accent);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--text-mute);
+}
+
+.al-msg--bot > .al-note {
+  margin-top: 0.75rem;
+}
+
+.al-see,
+.al-list {
+  margin-top: 0.9rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--line);
+}
+
+.al-label {
+  margin-bottom: 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+}
+
+.al-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.al-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.32rem 0.7rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--line-strong);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text);
+  text-decoration: none;
+  transition:
+    border-color var(--dur-1) ease,
+    color var(--dur-1) ease;
+}
+
+.al-link:hover {
+  border-color: var(--accent);
+  color: var(--gold-200);
+}
+
+.al-sug {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+  margin-top: 0.35rem;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(243, 234, 217, 0.035);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.86rem;
+  line-height: 1.35;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color var(--dur-1) ease,
+    background-color var(--dur-1) ease;
+}
+
+.al-sug .al-ico {
+  color: var(--accent);
+  transition: transform var(--dur-2) var(--ease-out);
+}
+
+.al-sug:hover {
+  border-color: rgba(229, 174, 66, 0.6);
+  background: rgba(229, 174, 66, 0.08);
+}
+
+.al-sug:hover .al-ico {
+  transform: translateX(3px);
+}
+
+.al-more {
+  margin-top: 0.55rem;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  background: none;
+  color: var(--accent);
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* --- Temas, campo y pie -------------------------------------------------------- */
+.al-topics {
+  display: flex;
+  gap: 0.4rem;
+  padding: 0.6rem 1rem;
+  overflow-x: auto;
+  border-top: 1px solid var(--line);
+  scrollbar-width: none;
+  -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 2.5rem), transparent);
+  mask-image: linear-gradient(90deg, #000 calc(100% - 2.5rem), transparent);
+}
+
+.al-topics::-webkit-scrollbar {
+  display: none;
+}
+
+.al-chip {
+  flex: none;
+  padding: 0.38rem 0.78rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--line-strong);
+  background: none;
+  color: var(--text-soft);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    border-color var(--dur-1) ease,
+    color var(--dur-1) ease,
+    background-color var(--dur-1) ease;
+}
+
+.al-chip:hover {
+  border-color: var(--text);
+  color: var(--text);
+}
+
+.al-chip--key {
+  border-color: rgba(229, 174, 66, 0.6);
+  color: var(--gold-300);
+}
+
+.al-chip--key:hover {
+  border-color: var(--gold-300);
+  background: rgba(229, 174, 66, 0.1);
+  color: var(--gold-200);
+}
+
+.al-form {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.1rem 1rem 0.6rem;
+}
+
+.al-input {
+  flex: 1;
+  min-width: 0;
+  height: 46px;
+  padding: 0 1.05rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--line-strong);
+  background: rgba(6, 15, 12, 0.55);
+  color: var(--text);
+  font: inherit;
+  /* 16 px: por debajo, iOS amplía la página al enfocar el campo */
+  font-size: 1rem;
+  transition: border-color var(--dur-1) ease;
+}
+
+.al-input::placeholder {
+  color: var(--text-mute);
+  opacity: 1;
+}
+
+#alisio .al-input:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(229, 174, 66, 0.22);
+}
+
+.al-send {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--gold-400);
+  color: var(--accent-ink);
+  cursor: pointer;
+  transition:
+    background-color var(--dur-1) ease,
+    transform var(--dur-2) var(--ease-out),
+    opacity var(--dur-1) ease;
+}
+
+.al-send:hover {
+  background: var(--gold-300);
+  transform: translateY(-1px);
+}
+
+#alisio.al-busy .al-send {
+  opacity: 0.55;
+}
+
+.al-foot {
+  padding: 0 1rem 0.8rem;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.02em;
+  line-height: 1.45;
+  text-align: center;
+  color: var(--text-mute);
+}
+
+/* --- Celular: hoja a pantalla completa ----------------------------------------
+   --al-vh y --al-vt los escribe alisio.js con el área realmente visible, que
+   encoge cuando aparece el teclado. */
+@media (max-width: 560px) {
+  .al-panel {
+    position: fixed;
+    inset: var(--al-vt, 0px) 0 auto 0;
+    width: 100%;
+    height: var(--al-vh, 100dvh);
+    border: 0;
+    border-radius: 0;
+    transform: translateY(24px);
+    transform-origin: 50% 100%;
+  }
+
+  .al-head {
+    padding-top: max(0.85rem, env(safe-area-inset-top, 0px));
+  }
+
+  .al-foot {
+    padding-bottom: max(0.8rem, env(safe-area-inset-bottom, 0px));
+  }
+
+  /* Con la hoja abierta el lanzador queda debajo: se cierra desde la cabecera */
+  #alisio.al-open .al-launcher {
+    visibility: hidden;
+  }
+
+  .al-face,
+  .al-avatar--lg {
+    --size: 54px;
+    width: 54px;
+    height: 54px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .al-rotor,
+  .al-rotor-boost,
+  .al-dots i {
+    animation: none;
+  }
+}
+
+@media print {
+  #alisio {
+    display: none;
+  }
+}

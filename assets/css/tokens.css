@@ -1,0 +1,193 @@
+/* ==========================================================================
+   GUARDIANES DEL VIENTO — tokens de diseño
+   Única fuente de verdad de color, tipografía, espacio y movimiento.
+   La paleta sigue la dirección de arte del guion del tráiler: verde profundo,
+   arena, blanco y acento dorado; la tierra roja de las fotos de campo se
+   reserva para riesgo y alerta.
+   ========================================================================== */
+
+/* --- Tipografías alojadas en el sitio (SIL Open Font License) -------------
+   Sin CDN: la página funciona igual sin red y abierta como archivo local. */
+@font-face {
+  font-family: "Fraunces";
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url("../fonts/fraunces-var.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Fraunces";
+  font-style: italic;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url("../fonts/fraunces-italic-var.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Instrument Sans";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("../fonts/instrument-sans-var.woff2") format("woff2");
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/ibm-plex-mono-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../fonts/ibm-plex-mono-500.woff2") format("woff2");
+}
+
+:root {
+  /* --- Paleta base ------------------------------------------------------ */
+  --night: #060f0c;
+  --green-950: #0a1915;
+  --green-900: #0f241e;
+  --green-800: #153229;
+  --green-700: #1c4437;
+  --green-600: #255a49;
+  --green-500: #327662;
+  --green-300: #86b7a5;
+  --green-100: #d6e7df;
+
+  --sand-50: #fbf6ec;
+  --sand-100: #f7f0e3;
+  --sand-200: #efe4d0;
+  --sand-300: #e2d1b3;
+  --sand-400: #cfb88f;
+  --sand-600: #9a7f55;
+  --sand-800: #5c4b31;
+
+  --gold-200: #f6dc9b;
+  --gold-300: #f0c765;
+  --gold-400: #e5ae42;
+  --gold-500: #c98f22;
+  --gold-700: #85590a;
+
+  --earth-300: #eaa27f;
+  --earth-400: #db7f57;
+  --earth-600: #a84a2a;
+  --earth-700: #82371d;
+
+  --white: #fffdf8;
+  --ink: #12211c;
+
+  /* Tres identidades para figuras (comunidad, empresa, Estado). Terna validada
+     para daltonismo con todos los pares sobre el blanco de las tarjetas. */
+  --viz-1: #cf5a2e;
+  --viz-2: #3c6fb5;
+  --viz-3: #1f8a70;
+
+  /* --- Tipografía ------------------------------------------------------- */
+  --font-display: "Fraunces", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --font-text: "Instrument Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+
+  /* Escala fluida (320 → 1440 px) */
+  --step--2: clamp(0.72rem, 0.7rem + 0.08vw, 0.78rem);
+  --step--1: clamp(0.83rem, 0.81rem + 0.1vw, 0.9rem);
+  --step-0: clamp(1rem, 0.97rem + 0.15vw, 1.1rem);
+  --step-1: clamp(1.17rem, 1.1rem + 0.35vw, 1.4rem);
+  --step-2: clamp(1.4rem, 1.25rem + 0.75vw, 1.9rem);
+  --step-3: clamp(1.75rem, 1.45rem + 1.5vw, 2.75rem);
+  --step-4: clamp(2.2rem, 1.6rem + 3vw, 4.1rem);
+  --step-5: clamp(2.7rem, 1.6rem + 5.5vw, 6.4rem);
+
+  /* --- Espacio ---------------------------------------------------------- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --section-y: clamp(4rem, 2.5rem + 5vw, 7rem);
+  --gutter: clamp(1.25rem, 0.6rem + 3vw, 3rem);
+  --container: 75rem;
+  --container-wide: 86rem;
+  --measure: 62ch;
+
+  /* --- Forma ------------------------------------------------------------ */
+  --radius-1: 4px;
+  --radius-2: 10px;
+  --radius-3: 18px;
+  --radius-pill: 999px;
+
+  /* --- Movimiento: lento y sostenido, como el viento ------------------- */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-soft: cubic-bezier(0.33, 1, 0.68, 1);
+  --dur-1: 160ms;
+  --dur-2: 320ms;
+  --dur-3: 640ms;
+  --dur-4: 1100ms;
+
+  /* --- Capas ------------------------------------------------------------ */
+  --z-fondo: 0;
+  --z-content: 1;
+  --z-header: 50;
+  --z-mini: 60;
+  --z-chat: 70;
+  --z-overlay: 90;
+
+  --header-h: 68px;
+}
+
+/* --- Tonos ---------------------------------------------------------------
+   Cada sección declara su tono con data-tone (o un bloque suelto con la clase
+   tone-dark / tone-light) y todo lo que vive dentro lee los mismos nombres. Nunca se escribe un color de la paleta base dentro de
+   un componente: se usa el token semántico. */
+:root,
+[data-tone="dark"],
+.tone-dark {
+  color-scheme: dark;
+  --bg: var(--green-950);
+  --bg-raise: var(--green-900);
+  --bg-raise-2: var(--green-800);
+  --text: #f3ead9;
+  --text-soft: #c9cbbd;
+  --text-mute: #93a69c;
+  --line: rgba(243, 234, 217, 0.14);
+  --line-strong: rgba(243, 234, 217, 0.28);
+  --accent: var(--gold-400);
+  --accent-soft: rgba(229, 174, 66, 0.14);
+  --accent-ink: #1b1403;
+  --alert: var(--earth-400);
+  --alert-soft: rgba(219, 127, 87, 0.16);
+  --ok: var(--green-300);
+  --mark: var(--gold-400);
+  --mark-mute: #5f7369;
+  --track: rgba(243, 234, 217, 0.08);
+  --shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.7);
+}
+
+[data-tone="light"],
+.tone-light {
+  color-scheme: light;
+  --bg: var(--sand-100);
+  --bg-raise: var(--white);
+  --bg-raise-2: var(--sand-200);
+  --text: var(--ink);
+  --text-soft: #36453f;
+  --text-mute: #56635c;
+  --line: rgba(18, 33, 28, 0.13);
+  --line-strong: rgba(18, 33, 28, 0.3);
+  --accent: var(--gold-700);
+  --accent-soft: rgba(201, 143, 34, 0.16);
+  --accent-ink: var(--white);
+  --alert: var(--earth-600);
+  --alert-soft: rgba(168, 74, 42, 0.11);
+  --ok: var(--green-600);
+  --mark: #b47a12;
+  --mark-mute: #8b938c;
+  --track: rgba(18, 33, 28, 0.07);
+  --shadow: 0 24px 50px -28px rgba(18, 33, 28, 0.35);
+}

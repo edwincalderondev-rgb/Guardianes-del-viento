@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://edwincalderondev-rgb.github.io/Guardianes-del-viento/sitemap.xml

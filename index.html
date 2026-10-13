@@ -1,0 +1,1570 @@
+<!doctype html>
+<html lang="es" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Guardianes del Viento · Que la evidencia llegue primero</title>
+<meta name="description" content="Tesis de maestría. Guardianes del Viento propone una cooperativa wayuu sin ánimo de lucro que produce, valida y gobierna información ambiental y social alrededor de los parques eólicos de La Guajira. Tráiler, informe para evaluar la inversión y asistente de preguntas.">
+<meta name="theme-color" content="#0a1915">
+<meta name="color-scheme" content="dark light">
+<link rel="canonical" href="https://edwincalderondev-rgb.github.io/Guardianes-del-viento/">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_CO">
+<meta property="og:site_name" content="Guardianes del Viento">
+<meta property="og:title" content="Guardianes del Viento · Que la evidencia llegue primero">
+<meta property="og:description" content="Una cooperativa wayuu que produce, valida y gobierna la evidencia ambiental y social de la transición eólica en La Guajira. Tráiler e informe para evaluar la inversión.">
+<meta property="og:url" content="https://edwincalderondev-rgb.github.io/Guardianes-del-viento/">
+<meta property="og:image" content="https://edwincalderondev-rgb.github.io/Guardianes-del-viento/assets/img/og/guardianes-del-viento.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Guardianes del Viento: que la evidencia llegue primero.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Guardianes del Viento · Que la evidencia llegue primero">
+<meta name="twitter:description" content="Una cooperativa wayuu que produce, valida y gobierna la evidencia de la transición eólica en La Guajira.">
+<meta name="twitter:image" content="https://edwincalderondev-rgb.github.io/Guardianes-del-viento/assets/img/og/guardianes-del-viento.jpg">
+
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+
+<link rel="preload" href="assets/fonts/fraunces-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/instrument-sans-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" type="image/webp" href="assets/img/escenas/01-territorio-1100.webp" imagesrcset="assets/img/escenas/01-territorio-640.webp 640w, assets/img/escenas/01-territorio-1100.webp 1100w, assets/img/escenas/01-territorio-1672.webp 1672w" imagesizes="(min-width: 1100px) 58vw, 100vw" fetchpriority="high">
+
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/sections.css">
+<link rel="stylesheet" href="assets/css/trailer.css">
+<link rel="stylesheet" href="assets/css/alisio.css">
+
+<script>
+  // Marca que hay JavaScript y, si el script principal no llega a cargar, deja todo el contenido a la vista
+  document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+  setTimeout(function () { if (!window.__gvReady) document.documentElement.classList.add('no-reveal'); }, 4000);
+</script>
+</head>
+
+<body data-tone="dark">
+
+<canvas id="fondo" aria-hidden="true"></canvas>
+
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+<div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
+
+<!-- Iconos del sitio: un solo sprite en linea (funciona tambien abierto como archivo local) -->
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.2v13.6a.6.6 0 0 0 .92.5l10.7-6.8a.6.6 0 0 0 0-1L8.92 4.7A.6.6 0 0 0 8 5.2Z" fill="currentColor"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><path d="M7 5h3.4v14H7zM13.6 5H17v14h-3.4z" fill="currentColor"/></symbol>
+  <symbol id="i-replay" viewBox="0 0 24 24"><path d="M4.5 12a7.5 7.5 0 1 0 2.4-5.5M4.5 4.5v3.8h3.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-cc" viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M10.6 10.4a2.3 2.3 0 1 0 0 3.2M17 10.4a2.3 2.3 0 1 0 0 3.2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-volume" viewBox="0 0 24 24"><path d="M4 9.5h3.2L12 5.6v12.8l-4.8-3.9H4z" fill="currentColor"/><path d="M15.2 9.2a4 4 0 0 1 0 5.6M17.6 6.8a7.4 7.4 0 0 1 0 10.4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-mute" viewBox="0 0 24 24"><path d="M4 9.5h3.2L12 5.6v12.8l-4.8-3.9H4z" fill="currentColor"/><path d="m15.5 9.5 5 5m0-5-5 5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-expand" viewBox="0 0 24 24"><path d="M4.5 9.5v-5h5M19.5 9.5v-5h-5M4.5 14.5v5h5M19.5 14.5v5h-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-collapse" viewBox="0 0 24 24"><path d="M9.5 4.5v5h-5M14.5 4.5v5h5M9.5 19.5v-5h-5M14.5 19.5v-5h5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-screen" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M8.5 20.5h7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4.5 12h15m-5.5-5.5L19.5 12 14 17.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4.5v15m5.5-5.5L12 19.5 6.5 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6.5 9.5 5.5 5.5 5.5-5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-limit" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 7.8v5M12 16.2v.1" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M5 5.5h14a1.5 1.5 0 0 1 1.5 1.5v8.5A1.5 1.5 0 0 1 19 17h-6.5L8 20.5V17H5a1.5 1.5 0 0 1-1.5-1.5V7A1.5 1.5 0 0 1 5 5.5Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-mark" viewBox="0 0 32 32"><path d="M3 8.5c8.5 0 9.5 7.5 18 7.5h8M3 16h26M3 23.5c8.5 0 9.5-7.5 18-7.5" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></symbol>
+</svg>
+
+<header class="site-header" id="siteHeader">
+  <div class="site-header-inner">
+    <a class="brand" href="#trailer" aria-label="Guardianes del Viento, ir al inicio">
+      <svg class="brand-mark" aria-hidden="true"><use href="#i-mark"/></svg>
+      <span class="brand-name">Guardianes <span>del Viento</span></span>
+    </a>
+
+    <nav class="site-nav" aria-label="Secciones de la página">
+      <a href="#riesgo">El riesgo</a>
+      <a href="#solucion">La solución</a>
+      <a href="#impacto">Impacto 2030</a>
+      <a href="#piloto">El piloto</a>
+      <a href="#inversion">Inversión</a>
+      <a href="#territorio">Territorio</a>
+      <a href="#preguntas">Preguntas</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="now-playing" id="nowPlaying" type="button" hidden>
+        <span class="now-playing-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="now-playing-text">Tráiler en curso</span>
+      </button>
+      <a class="btn btn--gold btn--sm header-cta" href="#trailer" data-trailer-play>
+        <svg aria-hidden="true"><use href="#i-play"/></svg>
+        <span>Ver el tráiler</span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="menu">
+        <span class="visually-hidden">Abrir el menú</span>
+        <span class="menu-toggle-lines" aria-hidden="true"><i></i><i></i></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="menu" id="menu" data-tone="dark" hidden>
+  <nav class="menu-nav" aria-label="Todas las secciones">
+    <ol>
+      <li><a href="#trailer"><span>00</span>El tráiler</a></li>
+      <li><a href="#riesgo"><span>01</span>El riesgo</a></li>
+      <li><a href="#solucion"><span>02</span>La solución</a></li>
+      <li><a href="#tecnologia"><span>03</span>Tecnología</a></li>
+      <li><a href="#cambio"><span>04</span>Teoría de cambio</a></li>
+      <li><a href="#impacto"><span>05</span>Impacto 2030</a></li>
+      <li><a href="#piloto"><span>06</span>El piloto</a></li>
+      <li><a href="#gobernanza"><span>07</span>Gobernanza</a></li>
+      <li><a href="#inversion"><span>08</span>Inversión</a></li>
+      <li><a href="#territorio"><span>09</span>Territorio</a></li>
+      <li><a href="#preguntas"><span>10</span>Preguntas</a></li>
+    </ol>
+  </nav>
+</div>
+
+<main id="contenido">
+
+<!-- ========================================================================
+     00 · ESCENARIO DEL TRÁILER
+     El video es la pieza central: la página entera es su marco.
+     ===================================================================== -->
+<section class="stage" id="trailer" data-tone="dark" aria-labelledby="titulo">
+  <div class="stage-inner">
+
+    <div class="stage-copy">
+      <p class="eyebrow" data-rise style="--i:0">Tesis de maestría <span aria-hidden="true">·</span> La Guajira, Colombia</p>
+      <h1 class="stage-title" id="titulo">
+        <span class="line"><span data-rise style="--i:1">Guardianes</span></span>
+        <span class="line"><span data-rise style="--i:2">del <em>Viento</em></span></span>
+      </h1>
+      <p class="stage-motto" data-rise style="--i:3">Que la evidencia llegue primero.</p>
+      <p class="stage-lede" data-rise style="--i:4">Una cooperativa wayuu sin ánimo de lucro para producir, validar y gobernar la información ambiental y social alrededor de los parques eólicos de La Guajira.</p>
+      <div class="stage-actions" data-rise style="--i:5">
+        <button class="btn btn--gold" type="button" data-trailer-play>
+          <svg aria-hidden="true"><use href="#i-play"/></svg>
+          <span>Ver el tráiler</span>
+          <span class="btn-meta" data-trailer-duration>1:58</span>
+        </button>
+        <a class="btn btn--ghost" href="#cifras">
+          <span>Explorar el proyecto</span>
+          <svg aria-hidden="true"><use href="#i-down"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="player-slot" id="playerSlot">
+    <div class="player" id="player" data-state="idle" role="region" aria-label="Tráiler de Guardianes del Viento">
+      <div class="player-backdrop" aria-hidden="true"></div>
+
+      <div class="frame-wrap">
+        <div class="frame-glow" aria-hidden="true"></div>
+
+        <div class="frame" id="frame">
+          <!-- Escenas de la previsualización: las ocho del storyboard, sincronizadas con la voz.
+               Cuando exista el video final, trailer-data.js lo activa y estas capas no se usan. -->
+          <div class="scenes" id="scenes" aria-hidden="true">
+
+            <div class="scene" data-scene="1" style="--ox:24%;--oy:38%;--s0:1.02;--s1:1.16">
+              <img class="scene-img" alt="" width="1672" height="941" decoding="async"
+                   data-src="assets/img/escenas/01-territorio-1100.webp"
+                   data-srcset="assets/img/escenas/01-territorio-640.webp 640w, assets/img/escenas/01-territorio-1100.webp 1100w, assets/img/escenas/01-territorio-1672.webp 1672w">
+              <div class="scene-ov scene-ov--bl">
+                <p class="ov-caps" data-in=".33" data-out=".98">Energía para Colombia</p>
+                <p class="ov-caps ov-caps--gold" data-in=".68" data-out=".98">¿Confianza para el territorio?</p>
+              </div>
+              <svg class="ov-lines" viewBox="0 0 800 120" preserveAspectRatio="none" data-in=".53" data-out=".98">
+                <path d="M0 40 C 160 10, 300 70, 470 34 S 700 20, 800 52"/>
+                <path d="M0 62 C 150 96, 330 30, 480 70 S 690 96, 800 60"/>
+                <path d="M0 86 C 190 60, 290 110, 460 84 S 720 58, 800 92"/>
+              </svg>
+            </div>
+
+            <div class="scene" data-scene="2" style="--ox:52%;--oy:70%;--s0:1.12;--s1:1.02">
+              <img class="scene-img" alt="" width="1672" height="941" decoding="async"
+                   data-src="assets/img/escenas/02-versiones-1100.webp"
+                   data-srcset="assets/img/escenas/02-versiones-640.webp 640w, assets/img/escenas/02-versiones-1100.webp 1100w, assets/img/escenas/02-versiones-1672.webp 1672w">
+              <div class="scene-ov scene-ov--tl">
+                <p class="ov-caps" data-in=".13" data-out=".55">Desinformación <i>+</i> riesgo ambiental</p>
+              </div>
+              <div class="scene-ov scene-ov--bl">
+                <p class="ov-figure" data-in=".6" data-out=".985">
+                  <span class="ov-figure-pre">cerca del</span>
+                  <span class="ov-figure-num"><b data-ov-count="98">98</b> %</span>
+                  <span class="ov-figure-post">de los proyectos eólicos del país</span>
+                </p>
+              </div>
+              <p class="ov-source" data-in=".08" data-out=".95">Fuentes: WEF 2025 · UPME 2026</p>
+            </div>
+
+            <div class="scene" data-scene="3" style="--ox:40%;--oy:60%;--s0:1.18;--s1:1.06">
+              <img class="scene-img" alt="" width="1672" height="941" decoding="async"
+                   data-src="assets/img/escenas/03-monitoreo-1100.webp"
+                   data-srcset="assets/img/escenas/03-monitoreo-640.webp 640w, assets/img/escenas/03-monitoreo-1100.webp 1100w, assets/img/escenas/03-monitoreo-1672.webp 1672w">
+              <div class="scene-ov scene-ov--center">
+                <p class="ov-quote">
+                  <span data-in=".05" data-out=".97">¿Y si la evidencia</span>
+                  <span data-in=".45" data-out=".97"><em>naciera en el territorio?</em></span>
+                </p>
+              </div>
+            </div>
+
+            <div class="scene" data-scene="4" style="--ox:36%;--oy:44%;--s0:1.03;--s1:1.14">
+              <img class="scene-img" alt="" width="1672" height="941" decoding="async"
+                   data-src="assets/img/escenas/04-formacion-1100.webp"
+                   data-srcset="assets/img/escenas/04-formacion-640.webp 640w, assets/img/escenas/04-formacion-1100.webp 1100w, assets/img/escenas/04-formacion-1672.webp 1672w">
+              <p class="ov-stamp" data-in=".69" data-out=".985">Gobernanza comunitaria de datos</p>
+              <div class="scene-ov scene-ov--bl">
+                <p class="ov-tools" data-in=".42" data-out=".69">Sensores · Satélite · IA · Tableros bilingües</p>
+                <p class="ov-sum">
+                  <span data-in=".3" data-out=".985">Conocimiento wayuu</span>
+                  <i data-in=".42" data-out=".985">+</i>
+                  <span data-in=".42" data-out=".985">Tecnología</span>
+                  <i data-in=".57" data-out=".985">+</i>
+                  <span data-in=".57" data-out=".985">Validación</span>
+                </p>
+              </div>
+            </div>
+
+            <div class="scene scene--soft" data-scene="5" style="--ox:50%;--oy:50%;--s0:1.1;--s1:1.04">
+              <img class="scene-img" alt="" width="1672" height="941" decoding="async"
+                   data-src="assets/img/escenas/05-gobernanza-1100.webp"
+                   data-srcset="assets/img/escenas/05-gobernanza-640.webp 640w, assets/img/escenas/05-gobernanza-1100.webp 1100w, assets/img/escenas/05-gobernanza-1672.webp 1672w">
+              <div class="scene-ov scene-ov--center">
+                <ol class="ov-chain">
+                  <li data-in=".16" data-out=".985">Datos</li>
+                  <li data-in=".31" data-out=".985">Alertas</li>
+                  <li data-in=".52" data-out=".985">Respuestas</li>
+                  <li data-in=".7" data-out=".985">Decisiones</li>
+                </ol>
+                <p class="ov-result" data-in=".85" data-out=".985">Menos controversias</p>
+              </div>
+            </div>
+
+            <div class="scene scene--split" data-scene="6" style="--ox:30%;--oy:50%;--s0:1.04;--s1:1.12">
+              <img class="scene-img" alt="" width="1672" height="941" decoding="async"
+                   data-src="assets/img/escenas/03-monitoreo-1100.webp"
+                   data-srcset="assets/img/escenas/03-monitoreo-640.webp 640w, assets/img/escenas/03-monitoreo-1100.webp 1100w, assets/img/escenas/03-monitoreo-1672.webp 1672w">
+              <div class="scene-ov scene-ov--panel">
+                <p class="ov-year" data-in=".02" data-out=".985">Hacia 2030</p>
+                <p class="ov-goal" data-in=".17" data-out=".985">
+                  <b>24 personas</b> <span>4 parques</span>
+                  <small>50 % mujeres • 30 % jóvenes</small>
+                </p>
+                <p class="ov-goal" data-in=".44" data-out=".985">
+                  <b>−50 %</b> <span>tiempo de verificación</span>
+                </p>
+                <p class="ov-goal" data-in=".61" data-out=".985">
+                  <b>−30 %</b> <span>días de paralización</span>
+                </p>
+                <p class="ov-ods" data-in=".8" data-out=".985">ODS 6 · 9 · 13 · 16</p>
+                <p class="ov-foot" data-in=".17" data-out=".985">Piloto: 12 personas / 2 parques</p>
+              </div>
+            </div>
+
+            <div class="scene" data-scene="7" style="--ox:60%;--oy:44%;--s0:1.12;--s1:1.03">
+              <img class="scene-img" alt="" width="1672" height="941" decoding="async"
+                   data-src="assets/img/escenas/06-alianzas-1100.webp"
+                   data-srcset="assets/img/escenas/06-alianzas-640.webp 640w, assets/img/escenas/06-alianzas-1100.webp 1100w, assets/img/escenas/06-alianzas-1672.webp 1672w">
+              <div class="scene-ov scene-ov--center">
+                <p class="ov-invest" data-in=".07" data-out=".985">
+                  <span>Piloto</span>
+                  <b>COP 650 millones</b>
+                </p>
+                <p class="ov-caps ov-caps--sm" data-in=".64" data-out=".985">2 parques • 12 personas • validación independiente</p>
+                <ul class="ov-actors">
+                  <li data-in=".3" data-out=".985">Autoridades wayuu</li>
+                  <li data-in=".39" data-out=".985">Parques</li>
+                  <li data-in=".47" data-out=".985">Universidad</li>
+                  <li data-in=".55" data-out=".985">Laboratorio</li>
+                </ul>
+                <p class="ov-stamp ov-stamp--inline" data-in=".845" data-out=".985">Independencia</p>
+              </div>
+            </div>
+
+            <div class="scene" data-scene="8" style="--ox:44%;--oy:36%;--s0:1.02;--s1:1.1">
+              <img class="scene-img" alt="" width="1672" height="941" decoding="async"
+                   data-src="assets/img/escenas/07-equipo-1100.webp"
+                   data-srcset="assets/img/escenas/07-equipo-640.webp 640w, assets/img/escenas/07-equipo-1100.webp 1100w, assets/img/escenas/07-equipo-1672.webp 1672w">
+              <div class="scene-ov scene-ov--center scene-ov--low">
+                <p class="ov-call">
+                  <span data-in=".03" data-out="1.3">Invierta en <em>Guardianes del Viento</em></span>
+                  <small data-in=".19" data-out="1.3">Que la evidencia llegue primero</small>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <video class="frame-video" id="trailerVideo" playsinline preload="none" hidden></video>
+
+          <!-- Portada: lo que se ve antes de reproducir -->
+          <div class="frame-poster" id="framePoster">
+            <img alt="Recreación visual: una joven wayuu observa un parque eólico al atardecer en La Guajira." width="1672" height="941"
+                 src="assets/img/escenas/01-territorio-1100.webp"
+                 srcset="assets/img/escenas/01-territorio-640.webp 640w, assets/img/escenas/01-territorio-1100.webp 1100w, assets/img/escenas/01-territorio-1672.webp 1672w"
+                 sizes="(min-width: 1100px) 58vw, 100vw" fetchpriority="high" decoding="async">
+            <button class="poster-play" type="button" data-trailer-play aria-label="Reproducir el tráiler de Guardianes del Viento">
+              <span class="poster-play-ring" aria-hidden="true"></span>
+              <svg aria-hidden="true"><use href="#i-play"/></svg>
+            </button>
+            <div class="poster-meta" aria-hidden="true">
+              <span class="poster-meta-title">Tráiler</span>
+              <span class="poster-meta-time" data-trailer-duration>1:58</span>
+            </div>
+          </div>
+
+          <!-- Cierre: aparece al terminar -->
+          <div class="frame-end" id="frameEnd" hidden>
+            <p class="frame-end-title">Hagamos que la evidencia <em>llegue primero.</em></p>
+            <div class="frame-end-actions">
+              <a class="btn btn--gold" href="#cifras" data-trailer-exit>
+                <span>Conocer el proyecto</span>
+                <svg aria-hidden="true"><use href="#i-down"/></svg>
+              </a>
+              <button class="btn btn--ghost" type="button" data-trailer-replay>
+                <svg aria-hidden="true"><use href="#i-replay"/></svg>
+                <span>Ver de nuevo</span>
+              </button>
+            </div>
+          </div>
+
+          <p class="frame-badge" id="frameBadge" hidden>Previsualización del storyboard<span> · el video final ocupará este lugar</span></p>
+        </div>
+
+        <!-- Controles -->
+        <div class="controls" id="controls" role="group" aria-label="Controles del tráiler">
+          <button class="ctl ctl--play" id="ctlPlay" type="button" aria-label="Reproducir">
+            <svg class="ico-play" aria-hidden="true"><use href="#i-play"/></svg>
+            <svg class="ico-pause" aria-hidden="true"><use href="#i-pause"/></svg>
+          </button>
+          <p class="ctl-time" aria-hidden="true"><span id="ctlNow">0:00</span><i>/</i><span id="ctlTotal" data-trailer-duration>1:58</span></p>
+          <div class="scrub" id="scrub">
+            <svg class="scrub-wave" id="scrubWave" viewBox="0 0 480 40" preserveAspectRatio="none" aria-hidden="true"></svg>
+            <div class="scrub-ticks" id="scrubTicks" aria-hidden="true"></div>
+            <input class="scrub-input" id="scrubInput" type="range" min="0" max="118" step="0.1" value="0" aria-label="Posición del tráiler">
+          </div>
+          <button class="ctl" id="ctlCc" type="button" aria-pressed="false" aria-label="Subtítulos">
+            <svg aria-hidden="true"><use href="#i-cc"/></svg>
+          </button>
+          <button class="ctl" id="ctlMute" type="button" aria-pressed="false" aria-label="Silenciar">
+            <svg class="ico-vol" aria-hidden="true"><use href="#i-volume"/></svg>
+            <svg class="ico-muted" aria-hidden="true"><use href="#i-mute"/></svg>
+          </button>
+          <button class="ctl" id="ctlCinema" type="button" aria-pressed="false" aria-label="Modo cine">
+            <svg class="ico-expand" aria-hidden="true"><use href="#i-expand"/></svg>
+            <svg class="ico-collapse" aria-hidden="true"><use href="#i-collapse"/></svg>
+          </button>
+          <button class="ctl" id="ctlFull" type="button" aria-label="Pantalla completa">
+            <svg aria-hidden="true"><use href="#i-screen"/></svg>
+          </button>
+        </div>
+
+        <!-- Subtítulos: fuera del marco para poder bajar debajo de él en pantallas angostas -->
+        <p class="captions" id="captions" hidden></p>
+      </div>
+
+      <!-- Capítulos: las ocho escenas del guion -->
+      <nav class="chapters" aria-label="Escenas del tráiler">
+        <div class="chapters-head">
+          <span>Ocho escenas</span>
+          <button type="button" class="transcript-open" id="transcriptOpen" aria-haspopup="dialog">Leer la transcripción</button>
+        </div>
+        <ol class="chapters-list" id="chapters">
+          <li><button type="button" class="chapter" data-chapter="1"><span class="chapter-n">01</span><span class="chapter-t">La promesa y la tensión</span><span class="chapter-time">0:00</span></button></li>
+          <li><button type="button" class="chapter" data-chapter="2"><span class="chapter-n">02</span><span class="chapter-t">El riesgo global aterriza</span><span class="chapter-time">0:16</span></button></li>
+          <li><button type="button" class="chapter" data-chapter="3"><span class="chapter-n">03</span><span class="chapter-t">La pregunta de giro</span><span class="chapter-time">0:32</span></button></li>
+          <li><button type="button" class="chapter" data-chapter="4"><span class="chapter-n">04</span><span class="chapter-t">La innovación</span><span class="chapter-time">0:39</span></button></li>
+          <li><button type="button" class="chapter" data-chapter="5"><span class="chapter-n">05</span><span class="chapter-t">Teoría de cambio</span><span class="chapter-time">0:58</span></button></li>
+          <li><button type="button" class="chapter" data-chapter="6"><span class="chapter-n">06</span><span class="chapter-t">Impacto hacia 2030</span><span class="chapter-time">1:08</span></button></li>
+          <li><button type="button" class="chapter" data-chapter="7"><span class="chapter-n">07</span><span class="chapter-t">La inversión como alianza</span><span class="chapter-time">1:31</span></button></li>
+          <li><button type="button" class="chapter" data-chapter="8"><span class="chapter-n">08</span><span class="chapter-t">Decisión y llamado</span><span class="chapter-time">1:48</span></button></li>
+        </ol>
+      </nav>
+
+      <noscript>
+        <p class="noscript-note">Para ver la previsualización del tráiler active JavaScript. La locución está disponible aquí:</p>
+        <audio controls preload="none" src="assets/audio/narracion.m4a"></audio>
+      </noscript>
+    </div>
+    </div>
+  </div>
+
+  <a class="scroll-cue" href="#cifras" aria-label="Continuar al proyecto">
+    <span aria-hidden="true"></span>
+  </a>
+</section>
+
+<!-- ========================================================================
+     CIFRAS
+     ===================================================================== -->
+<section class="section figures" id="cifras" data-tone="dark" aria-labelledby="cifras-t">
+  <div class="container">
+    <header class="section-head section-head--row" data-reveal>
+      <div>
+        <p class="kicker"><span>El proyecto</span> en cifras</p>
+        <h2 class="section-title" id="cifras-t">Un piloto verificable antes que una <em>promesa.</em></h2>
+      </div>
+      <p class="lede">Guardianes del Viento busca reducir la incertidumbre que alimenta la desconfianza y las controversias, y dejar capacidad técnica, empleo y reinversión en el territorio.</p>
+    </header>
+
+    <ul class="stats" role="list">
+      <li class="stat" data-reveal style="--i:0">
+        <p class="stat-pre">cerca del</p>
+        <p class="stat-value"><span data-count="98">98</span><span class="unit"> %</span></p>
+        <p class="stat-label">de los proyectos eólicos del país se concentran en La Guajira.</p>
+        <p class="stat-src">Referencia del proyecto: UPME, 2026</p>
+      </li>
+      <li class="stat" data-reveal style="--i:1">
+        <p class="stat-pre">piloto</p>
+        <p class="stat-value"><span class="unit unit--pre">COP </span><span data-count="650">650</span><span class="unit"> M</span></p>
+        <p class="stat-label">de inversión estimada para un piloto verificable.</p>
+        <p class="stat-src">Supuesto de planeación</p>
+      </li>
+      <li class="stat" data-reveal style="--i:2">
+        <p class="stat-pre">cobertura inicial</p>
+        <p class="stat-value"><span data-count="2">2</span><span class="unit"> parques</span></p>
+        <p class="stat-label">y 12 personas wayuu como monitores para probar la solución.</p>
+        <p class="stat-src">Alcance del piloto</p>
+      </li>
+      <li class="stat" data-reveal style="--i:3">
+        <p class="stat-pre">meta 2030</p>
+        <p class="stat-value"><span data-count="24">24</span><span class="unit"> personas</span></p>
+        <p class="stat-label">wayuu certificadas para cubrir cuatro parques.</p>
+        <p class="stat-src">Meta de impacto</p>
+      </li>
+      <li class="stat" data-reveal style="--i:4">
+        <p class="stat-pre">meta 2030</p>
+        <p class="stat-value">−<span data-count="50">50</span><span class="unit"> %</span></p>
+        <p class="stat-label">en el tiempo de verificación.</p>
+        <p class="stat-src">Meta de resultado</p>
+      </li>
+      <li class="stat" data-reveal style="--i:5">
+        <p class="stat-pre">meta 2030</p>
+        <p class="stat-value">−<span data-count="30">30</span><span class="unit"> %</span></p>
+        <p class="stat-label">en los días de paralización vinculados a controversias de información.</p>
+        <p class="stat-src">Meta de resultado</p>
+      </li>
+    </ul>
+
+    <p class="disclaimer" data-reveal>
+      <svg aria-hidden="true"><use href="#i-limit"/></svg>
+      <span>Las cifras corresponden a metas y supuestos de planeación que deberán validarse durante el piloto. No representan resultados ya alcanzados.</span>
+    </p>
+  </div>
+</section>
+
+<!-- ========================================================================
+     01 · EL RIESGO
+     ===================================================================== -->
+<section class="section" id="riesgo" data-tone="light" aria-labelledby="riesgo-t">
+  <div class="container">
+    <header class="section-head" data-reveal>
+      <p class="kicker"><span>01</span> El riesgo que da origen al proyecto</p>
+      <h2 class="section-title" id="riesgo-t">Cuando la evidencia no es compartida, cada actor decide desde una <em>versión diferente</em> del territorio.</h2>
+    </header>
+
+    <div class="split">
+      <div class="prose" data-reveal>
+        <p class="prose-lead">La Guajira concentra una parte determinante del desarrollo eólico colombiano, pero los proyectos se despliegan en un territorio donde persisten brechas sociales, institucionales y de confianza.</p>
+        <p>Cuando comunidad, empresa y Estado reciben versiones distintas sobre impactos, compromisos o mediciones, la información deja de orientar la decisión y se convierte en un nuevo foco de conflicto.</p>
+        <p>El <cite>Global Risks Report 2025</cite> mantiene la información falsa y la desinformación entre los riesgos de mayor preocupación en el corto plazo, mientras los riesgos ambientales dominan el horizonte de largo plazo. En La Guajira estos riesgos se superponen: las decisiones sobre agua, biodiversidad, uso del suelo, relacionamiento comunitario y operación de los proyectos requieren datos oportunos, comprensibles y reconocidos por las partes.</p>
+        <p>El problema no se limita a que circule información falsa. También aparece cuando los datos llegan tarde, no pueden verificarse, se presentan en formatos inaccesibles o provienen de una fuente que alguna de las partes no considera legítima. En ese contexto, incluso una medición técnicamente correcta puede no generar confianza.</p>
+      </div>
+
+      <figure class="photo" data-reveal>
+        <div class="photo-frame">
+          <img src="assets/img/escenas/02-versiones-1100.webp"
+               srcset="assets/img/escenas/02-versiones-640.webp 640w, assets/img/escenas/02-versiones-1100.webp 1100w, assets/img/escenas/02-versiones-1672.webp 1672w"
+               sizes="(min-width: 960px) 46vw, 100vw" width="1672" height="941" loading="lazy" decoding="async"
+               alt="Recreación visual: dos mujeres wayuu, un trabajador de un parque y una funcionaria revisan mapas y registros que no coinciden sobre una mesa.">
+          <span class="photo-badge">Recreación visual</span>
+        </div>
+        <figcaption>Comunidad, empresa y Estado frente a registros que no coinciden.</figcaption>
+      </figure>
+    </div>
+
+    <!-- Figura interactiva: el motivo de la escena 1 del guion («tres líneas finas que no coinciden») -->
+    <figure class="versions" id="versions" data-reveal>
+      <div class="versions-head">
+        <p class="versions-title">Tres versiones del mismo territorio</p>
+        <p class="versions-state" id="versionsState" aria-live="polite">Sin evidencia compartida crecen la desconfianza, el conflicto y las paralizaciones.</p>
+      </div>
+      <div class="versions-plot">
+        <svg id="versionsSvg" viewBox="0 0 960 220" preserveAspectRatio="none" role="img" aria-labelledby="versionsDesc">
+          <desc id="versionsDesc">Ilustración conceptual, no una medición: tres líneas que representan las versiones de la comunidad, la empresa y el Estado. Con el control inferior se acercan hasta coincidir en una sola.</desc>
+          <path class="v-line v-line--a" d=""/>
+          <path class="v-line v-line--b" d=""/>
+          <path class="v-line v-line--c" d=""/>
+          <path class="v-line v-line--one" d=""/>
+        </svg>
+        <ul class="versions-legend" aria-hidden="true">
+          <li class="v-a">Comunidad</li>
+          <li class="v-b">Empresa</li>
+          <li class="v-c">Estado</li>
+        </ul>
+      </div>
+      <div class="versions-control">
+        <label for="versionsRange">Evidencia compartida</label>
+        <input id="versionsRange" type="range" min="0" max="100" step="1" value="0" aria-describedby="versionsDesc">
+        <div class="versions-scale" aria-hidden="true"><span>Versiones distintas</span><span>Una misma evidencia</span></div>
+      </div>
+      <figcaption>Ilustración conceptual del problema. No representa datos medidos.</figcaption>
+    </figure>
+
+    <div class="effects" data-reveal>
+      <h3 class="sub-title">Lo que ocurre cuando falta evidencia compartida</h3>
+      <ol class="effects-list">
+        <li><b>Desconfianza</b><span>Las mediciones, los compromisos y las respuestas son cuestionados.</span></li>
+        <li><b>Reacción tardía</b><span>Una alerta ambiental o social se atiende después de que la tensión ha aumentado.</span></li>
+        <li><b>Duplicidad</b><span>Cada parte encarga su propia verificación y los resultados pueden no coincidir.</span></li>
+        <li><b>Paralización</b><span>Las controversias informativas contribuyen a retrasos, mayores costos y deterioro reputacional.</span></li>
+        <li><b>Pérdida de legitimidad</b><span>Las decisiones se perciben como externas o desconectadas del conocimiento territorial.</span></li>
+      </ol>
+    </div>
+
+    <div class="context" data-reveal>
+      <h3 class="sub-title">La oportunidad en La Guajira</h3>
+      <div class="context-grid">
+        <div class="context-facts">
+          <p class="fact"><b>67,4 %</b><span>de pobreza monetaria en el departamento en 2021.</span></p>
+          <p class="fact"><b>2023</b><span>Windpeshi, suspendido de forma indefinida.</span></p>
+        </div>
+        <div class="prose">
+          <p>Los antecedentes de proyectos detenidos muestran que construir infraestructura no garantiza por sí solo la viabilidad territorial. El caso de Windpeshi muestra que los costos de la transición energética no dependen únicamente de la ingeniería o del precio de la energía: también intervienen la confianza, la calidad del relacionamiento, la distribución de beneficios y la capacidad para resolver diferencias antes de que afecten la operación.</p>
+          <p>Guardianes del Viento plantea que producir información confiable y gobernada desde el territorio puede convertirse en un servicio. Los proyectos eólicos necesitan reducir incertidumbre, atender alertas y demostrar cumplimiento; las comunidades necesitan capacidad para observar, interpretar y decidir sobre la información que se produce en su territorio.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================================
+     INTERLUDIO · LA PREGUNTA DE GIRO
+     ===================================================================== -->
+<section class="turn" data-tone="dark" aria-labelledby="turn-t">
+  <div class="turn-media" aria-hidden="true">
+    <img src="assets/img/escenas/03-monitoreo-1100.webp"
+         srcset="assets/img/escenas/03-monitoreo-640.webp 640w, assets/img/escenas/03-monitoreo-1100.webp 1100w, assets/img/escenas/03-monitoreo-1672.webp 1672w"
+         sizes="100vw" width="1672" height="941" loading="lazy" decoding="async" alt="" data-parallax="0.12">
+  </div>
+  <div class="container turn-inner">
+    <p class="kicker" data-reveal><span>La pregunta</span> de giro</p>
+    <h2 class="turn-title" id="turn-t" data-reveal>¿Y si la evidencia <em>naciera en el territorio?</em></h2>
+    <p class="turn-sub" data-reveal>¿Y si ella, junto con su comunidad, pudiera producir y gobernar esa evidencia?</p>
+    <p class="turn-credit">Recreación visual · no representa una persona o un hecho real</p>
+  </div>
+</section>
+
+<!-- ========================================================================
+     02 · LA SOLUCIÓN
+     ===================================================================== -->
+<section class="section" id="solucion" data-tone="light" aria-labelledby="solucion-t">
+  <div class="container">
+    <header class="section-head" data-reveal>
+      <p class="kicker"><span>02</span> La solución propuesta</p>
+      <h2 class="section-title" id="solucion-t">Una cooperativa wayuu que observa, mide, valida, comunica y <em>gobierna</em> la información.</h2>
+      <p class="lede">Guardianes del Viento sería una cooperativa wayuu sin ánimo de lucro que presta servicios de monitoreo ambiental y social a proyectos eólicos. Su actividad no consiste únicamente en recopilar datos: integra cinco funciones que deben operar juntas.</p>
+    </header>
+
+    <div class="functions" id="functions" data-reveal>
+      <div class="functions-tabs" role="tablist" aria-label="Las cinco funciones del servicio">
+        <button role="tab" type="button" id="fn-tab-1" aria-controls="fn-panel-1" aria-selected="true"><span>01</span>Observar</button>
+        <button role="tab" type="button" id="fn-tab-2" aria-controls="fn-panel-2" aria-selected="false" tabindex="-1"><span>02</span>Medir</button>
+        <button role="tab" type="button" id="fn-tab-3" aria-controls="fn-panel-3" aria-selected="false" tabindex="-1"><span>03</span>Validar</button>
+        <button role="tab" type="button" id="fn-tab-4" aria-controls="fn-panel-4" aria-selected="false" tabindex="-1"><span>04</span>Comunicar</button>
+        <button role="tab" type="button" id="fn-tab-5" aria-controls="fn-panel-5" aria-selected="false" tabindex="-1"><span>05</span>Gobernar</button>
+      </div>
+      <div class="functions-panels">
+        <div class="fn-panel" role="tabpanel" id="fn-panel-1" aria-labelledby="fn-tab-1" tabindex="0">
+          <h3>Observar</h3>
+          <p>Lectura territorial, recorridos, identificación de cambios y registro de percepción comunitaria.</p>
+        </div>
+        <div class="fn-panel" role="tabpanel" id="fn-panel-2" aria-labelledby="fn-tab-2" tabindex="0" hidden>
+          <h3>Medir</h3>
+          <p>Sensores de bajo costo, muestras, información satelital y drones únicamente en zonas autorizadas.</p>
+        </div>
+        <div class="fn-panel" role="tabpanel" id="fn-panel-3" aria-labelledby="fn-tab-3" tabindex="0" hidden>
+          <h3>Validar</h3>
+          <p>Calibración, contraste de muestras y auditoría independiente de la cadena de custodia.</p>
+        </div>
+        <div class="fn-panel" role="tabpanel" id="fn-panel-4" aria-labelledby="fn-tab-4" tabindex="0" hidden>
+          <h3>Comunicar</h3>
+          <p>Alertas, reportes y tableros bilingües que expliquen qué ocurrió, dónde y qué respuesta se produjo.</p>
+        </div>
+        <div class="fn-panel" role="tabpanel" id="fn-panel-5" aria-labelledby="fn-tab-5" tabindex="0" hidden>
+          <h3>Gobernar</h3>
+          <p>Reglas comunitarias sobre acceso, sensibilidad, publicación, corrección y uso de los datos.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="needs" data-reveal>
+      <h3 class="sub-title">Dos necesidades, un mismo servicio</h3>
+      <p class="needs-intro">La cooperativa articula lo que necesitan los proyectos y lo que necesitan las comunidades, sin entregar el control de la evidencia a quien financia el servicio.</p>
+      <dl class="pairs">
+        <div><dt>Evidencia temprana</dt><dd>Monitoreo periódico y alertas con cadena de custodia.</dd></div>
+        <div><dt>Credibilidad técnica</dt><dd>Calibración y validación por universidad o laboratorio.</dd></div>
+        <div><dt>Legitimidad territorial</dt><dd>Participación wayuu y gobernanza comunitaria de los datos.</dd></div>
+        <div><dt>Comprensión</dt><dd>Tableros y comunicación en wayuunaiki y español.</dd></div>
+        <div><dt>Continuidad</dt><dd>Contratos recurrentes y reinversión de excedentes.</dd></div>
+      </dl>
+    </div>
+
+    <aside class="callout tone-dark" data-reveal>
+      <p class="callout-kicker">Una cooperativa con propósito económico</p>
+      <p class="callout-body">La naturaleza sin ánimo de lucro no elimina la disciplina financiera: la cooperativa debe cobrar por sus servicios, cubrir su operación y construir reservas. La diferencia está en el destino del excedente.</p>
+      <ul class="callout-figures">
+        <li><b>100 %</b><span>de los excedentes se reinvierte en formación, equipos y proyectos comunitarios (meta).</span></li>
+        <li><b>10 %</b><span>como mínimo, dirigido a protección o restauración ambiental cuando se generen excedentes.</span></li>
+      </ul>
+    </aside>
+  </div>
+</section>
+
+<!-- CÓMO FUNCIONA -->
+<section class="section section--tight" id="servicio" data-tone="light" aria-labelledby="servicio-t">
+  <div class="container">
+    <header class="section-head" data-reveal>
+      <p class="kicker"><span>02.1</span> Cómo funciona el servicio</p>
+      <h2 class="section-title section-title--sm" id="servicio-t">El servicio inicia antes de instalar sensores.</h2>
+      <p class="lede">Cada parque participante debe acordar con las autoridades wayuu los puntos de observación, los protocolos, los datos sensibles y el procedimiento para atender alertas. Después se levanta una línea base que permita comparar los cambios y atribuir con mayor prudencia los resultados del piloto.</p>
+    </header>
+
+    <ol class="steps">
+      <li class="step" data-reveal style="--i:0">
+        <span class="step-n">1</span>
+        <h3>Preparación</h3>
+        <p>Consentimiento, gobernanza, seguridad, selección de monitores y puntos.</p>
+        <p class="step-out"><span>Resultado verificable</span>Acuerdos y protocolos aprobados.</p>
+      </li>
+      <li class="step" data-reveal style="--i:1">
+        <span class="step-n">2</span>
+        <h3>Formación</h3>
+        <p>Uso de equipos, cadena de custodia, seguridad y comunicación.</p>
+        <p class="step-out"><span>Resultado verificable</span>Personas certificadas y pruebas de competencia.</p>
+      </li>
+      <li class="step" data-reveal style="--i:2">
+        <span class="step-n">3</span>
+        <h3>Medición</h3>
+        <p>Registros ambientales y sociales con controles de calidad.</p>
+        <p class="step-out"><span>Resultado verificable</span>Datos trazables y comparables.</p>
+      </li>
+      <li class="step" data-reveal style="--i:3">
+        <span class="step-n">4</span>
+        <h3>Validación</h3>
+        <p>Calibración, contraste de muestras y auditoría por muestreo.</p>
+        <p class="step-out"><span>Resultado verificable</span>Mediciones reconocidas como utilizables.</p>
+      </li>
+      <li class="step" data-reveal style="--i:4">
+        <span class="step-n">5</span>
+        <h3>Alerta</h3>
+        <p>Clasificación, comunicación y asignación de responsable.</p>
+        <p class="step-out"><span>Resultado verificable</span>Evento reportado con hora, ubicación y evidencia.</p>
+      </li>
+      <li class="step" data-reveal style="--i:5">
+        <span class="step-n">6</span>
+        <h3>Respuesta</h3>
+        <p>Acción del parque o autoridad y seguimiento al cierre.</p>
+        <p class="step-out"><span>Resultado verificable</span>Respuesta documentada dentro del plazo.</p>
+      </li>
+      <li class="step" data-reveal style="--i:6">
+        <span class="step-n">7</span>
+        <h3>Aprendizaje</h3>
+        <p>Revisión de indicadores y decisiones de adaptación.</p>
+        <p class="step-out"><span>Resultado verificable</span>Continuar, corregir, ampliar o detener.</p>
+      </li>
+    </ol>
+
+    <blockquote class="pull" data-reveal>
+      <p>El parque no compra un resultado favorable ni controla lo que se publica. Contrata una capacidad independiente de monitoreo, verificación y respuesta.</p>
+      <footer>Si quien paga pudiera modificar una medición o bloquear un reporte válido, la propuesta perdería precisamente el valor que busca crear.</footer>
+    </blockquote>
+  </div>
+</section>
+
+<!-- ========================================================================
+     03 · TECNOLOGÍA
+     ===================================================================== -->
+<section class="section" id="tecnologia" data-tone="dark" aria-labelledby="tecnologia-t">
+  <div class="container">
+    <div class="split split--media-first">
+      <figure class="photo" data-reveal>
+        <div class="photo-frame">
+          <img src="assets/img/escenas/04-formacion-1100.webp"
+               srcset="assets/img/escenas/04-formacion-640.webp 640w, assets/img/escenas/04-formacion-1100.webp 1100w, assets/img/escenas/04-formacion-1672.webp 1672w"
+               sizes="(min-width: 960px) 46vw, 100vw" width="1672" height="941" loading="lazy" decoding="async"
+               alt="Recreación visual: una joven wayuu ajusta una estación de medición de viento junto a un técnico y otros monitores, con aerogeneradores al fondo.">
+          <span class="photo-badge">Recreación visual</span>
+        </div>
+        <figcaption>La tecnología se integra al trabajo de campo y a protocolos comprensibles para quienes producen y usan la evidencia.</figcaption>
+      </figure>
+
+      <header class="section-head" data-reveal>
+        <p class="kicker"><span>03</span> Innovación y tecnología</p>
+        <h2 class="section-title" id="tecnologia-t">La innovación no está en un sensor. Está en la <em>arquitectura.</em></h2>
+        <p class="lede">Herramientas digitales, conocimiento wayuu, validación externa y reglas de gobernanza dentro de un mismo servicio. Esa arquitectura cambia quién produce la evidencia, quién puede revisarla y cómo se convierte en una decisión.</p>
+      </header>
+    </div>
+
+    <ul class="tech" role="list">
+      <li class="tech-card" data-reveal style="--i:0">
+        <h3>Sensores de bajo costo</h3>
+        <p>Seguimiento frecuente de variables ambientales.</p>
+        <p class="tech-limit"><svg aria-hidden="true"><use href="#i-limit"/></svg><span><b>Límite de diseño.</b> Requieren calibración, mantenimiento y contraste.</span></p>
+      </li>
+      <li class="tech-card" data-reveal style="--i:1">
+        <h3>Información satelital</h3>
+        <p>Identificación de cambios y comparación temporal.</p>
+        <p class="tech-limit"><svg aria-hidden="true"><use href="#i-limit"/></svg><span><b>Límite de diseño.</b> No sustituye la observación de campo.</span></p>
+      </li>
+      <li class="tech-card" data-reveal style="--i:2">
+        <h3>Inteligencia artificial</h3>
+        <p>Detección de patrones y priorización de alertas.</p>
+        <p class="tech-limit"><svg aria-hidden="true"><use href="#i-limit"/></svg><span><b>Límite de diseño.</b> No decide la validez cultural ni reemplaza el juicio humano.</span></p>
+      </li>
+      <li class="tech-card" data-reveal style="--i:3">
+        <h3>Drones</h3>
+        <p>Registro en áreas extensas o de acceso complejo.</p>
+        <p class="tech-limit"><svg aria-hidden="true"><use href="#i-limit"/></svg><span><b>Límite de diseño.</b> Solo en zonas autorizadas y con protocolo de privacidad.</span></p>
+      </li>
+      <li class="tech-card" data-reveal style="--i:4">
+        <h3>Trazabilidad digital</h3>
+        <p>Registro de origen, cambios, accesos y respuesta.</p>
+        <p class="tech-limit"><svg aria-hidden="true"><use href="#i-limit"/></svg><span><b>Límite de diseño.</b> La transparencia no implica publicar datos sensibles.</span></p>
+      </li>
+      <li class="tech-card" data-reveal style="--i:5">
+        <h3>Tableros bilingües</h3>
+        <p>Comunicación comprensible para actores distintos.</p>
+        <p class="tech-limit"><svg aria-hidden="true"><use href="#i-limit"/></svg><span><b>Límite de diseño.</b> Deben probarse con usuarios y conectividad local.</span></p>
+      </li>
+    </ul>
+
+    <p class="note" data-reveal>La adopción tecnológica será gradual. El piloto debe privilegiar herramientas mantenibles en el territorio, reducir la dependencia de proveedores y formar a las personas que operarán el sistema después de la fase inicial.</p>
+  </div>
+</section>
+
+<!-- ========================================================================
+     04 · TEORÍA DE CAMBIO
+     ===================================================================== -->
+<section class="section" id="cambio" data-tone="light" aria-labelledby="cambio-t">
+  <div class="container">
+    <header class="section-head" data-reveal>
+      <p class="kicker"><span>04</span> Teoría de cambio</p>
+      <h2 class="section-title" id="cambio-t">Datos legítimos activan alertas. Las alertas aceleran respuestas. Mejores decisiones <em>reducen controversias.</em></h2>
+      <p class="lede">La hipótesis es sencilla: si la información se genera con participación comunitaria, protocolos técnicos y validación independiente, aumentará la probabilidad de que comunidad, empresa y autoridad la reconozcan como utilizable. Esa aceptación permite actuar antes y decidir con menor incertidumbre.</p>
+    </header>
+
+    <ol class="chain" data-reveal>
+      <li><span class="chain-k">Entradas</span><p>Fondo piloto, consentimiento, equipos, personas formadoras, universidad y parques participantes.</p></li>
+      <li><span class="chain-k">Actividades</span><p>Formar, medir, validar, alertar, responder, comunicar y auditar.</p></li>
+      <li><span class="chain-k">Productos</span><p>Monitores certificados, registros trazables, alertas, respuestas y tableros.</p></li>
+      <li><span class="chain-k">Resultados</span><p>Mayor aceptación de los datos, reducción del tiempo de verificación y respuestas más oportunas.</p></li>
+      <li class="chain-impact"><span class="chain-k">Impacto</span><p>Menor incidencia de controversias informativas, capacidad territorial y una transición energética más confiable.</p></li>
+    </ol>
+
+    <div class="split split--even">
+      <figure class="photo" data-reveal>
+        <div class="photo-frame">
+          <img src="assets/img/escenas/05-gobernanza-1100.webp"
+               srcset="assets/img/escenas/05-gobernanza-640.webp 640w, assets/img/escenas/05-gobernanza-1100.webp 1100w, assets/img/escenas/05-gobernanza-1672.webp 1672w"
+               sizes="(min-width: 960px) 46vw, 100vw" width="1672" height="941" loading="lazy" decoding="async"
+               alt="Recreación visual: una joven wayuu presenta un tablero de datos en un computador a miembros de su comunidad sentados en círculo bajo una enramada.">
+          <span class="photo-badge">Recreación visual</span>
+        </div>
+        <figcaption>La evidencia se discute donde se produce.</figcaption>
+      </figure>
+
+      <div class="twin" data-reveal>
+        <article class="twin-card">
+          <h3>La lógica que debe probar el piloto</h3>
+          <p>Datos legítimos permiten emitir alertas comprensibles. Las alertas, cuando tienen un responsable y un plazo, aceleran respuestas documentadas. Las respuestas oportunas reducen la repetición de eventos y la incertidumbre que alimenta las controversias. Si además la cooperativa cubre parte creciente de sus costos mediante contratos, la capacidad puede mantenerse y ampliarse.</p>
+        </article>
+        <article class="twin-card twin-card--limit">
+          <h3>Lo que no puede afirmarse de antemano</h3>
+          <p>Guardianes no puede atribuirse por sí solo la reducción de todos los conflictos o paralizaciones: esos resultados también dependen de condiciones políticas, económicas, regulatorias y sociales. Por eso los indicadores se refieren a controversias de información y se comparan con una línea base, sin presentar correlación como causalidad automática.</p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POR QUÉ ESTA IDEA -->
+<section class="section section--tight" id="seleccion" data-tone="light" aria-labelledby="seleccion-t">
+  <div class="container">
+    <header class="section-head" data-reveal>
+      <p class="kicker"><span>04.1</span> Por qué fue seleccionada esta idea</p>
+      <h2 class="section-title section-title--sm" id="seleccion-t">Tres alternativas, un mismo escenario y una decisión que resiste el cambio de pesos.</h2>
+      <p class="lede">El escenario de transición energética en La Guajira dio origen a tres alternativas complementarias. La comparación se apoyó en la teoría de la utilidad multiatributo: innovación y viabilidad recibieron 35 % cada una, porque una solución diferente solo crea valor si puede implementarse; la sostenibilidad integral recibió 30 %.</p>
+    </header>
+
+    <div class="choice">
+      <figure class="chart" data-reveal aria-labelledby="chart-maut-t">
+        <figcaption>
+          <p class="chart-title" id="chart-maut-t">Calificación de las tres alternativas</p>
+          <p class="chart-sub">Utilidad multiatributo · escenario base (35 % innovación, 35 % viabilidad, 30 % sostenibilidad)</p>
+        </figcaption>
+        <ul class="bars" role="list">
+          <li class="bar bar--focus" style="--v:4.48">
+            <div class="bar-label"><b>Guardianes del Viento</b><span>Monitoreo comunitario, validación independiente y gobernanza wayuu de datos.</span></div>
+            <div class="bar-track"><span class="bar-fill"></span></div>
+            <p class="bar-value">4,48</p>
+          </li>
+          <li class="bar" style="--v:4.13">
+            <div class="bar-label"><b>Libro de Acuerdos Abiertos</b><span>Trazabilidad de compromisos, responsables, plazos y cumplimiento.</span></div>
+            <div class="bar-track"><span class="bar-fill"></span></div>
+            <p class="bar-value">4,13</p>
+          </li>
+          <li class="bar" style="--v:3.98">
+            <div class="bar-label"><b>Agua con Energía</b><span>Infraestructura hídrica renovable con operación y resultados verificables.</span></div>
+            <div class="bar-track"><span class="bar-fill"></span></div>
+            <p class="bar-value">3,98</p>
+          </li>
+        </ul>
+        <p class="chart-note">Las barras parten de cero. Calificaciones del análisis de selección del proyecto.</p>
+      </figure>
+
+      <div class="sens" id="sens" data-reveal>
+        <p class="chart-title">Comprobación de la decisión</p>
+        <p class="chart-sub">Análisis de sensibilidad: cambie el énfasis y vea la calificación de Guardianes.</p>
+        <div class="sens-tabs" role="radiogroup" aria-label="Escenario de pesos">
+          <button type="button" role="radio" aria-checked="true" data-sens="base">Base</button>
+          <button type="button" role="radio" aria-checked="false" tabindex="-1" data-sens="innovacion">Énfasis en innovación</button>
+          <button type="button" role="radio" aria-checked="false" tabindex="-1" data-sens="viabilidad">Énfasis en viabilidad</button>
+          <button type="button" role="radio" aria-checked="false" tabindex="-1" data-sens="sostenibilidad">Énfasis en sostenibilidad</button>
+        </div>
+        <div class="sens-body" aria-live="polite">
+          <dl class="sens-weights">
+            <div><dt>Innovación</dt><dd><span class="sens-w" data-w="innovacion" style="--w:35"></span><b data-wv="innovacion">35 %</b></dd></div>
+            <div><dt>Viabilidad</dt><dd><span class="sens-w" data-w="viabilidad" style="--w:35"></span><b data-wv="viabilidad">35 %</b></dd></div>
+            <div><dt>Sostenibilidad</dt><dd><span class="sens-w" data-w="sostenibilidad" style="--w:30"></span><b data-wv="sostenibilidad">30 %</b></dd></div>
+          </dl>
+          <p class="sens-score"><span>Guardianes</span><b id="sensScore">4,48</b></p>
+        </div>
+        <p class="chart-note">Guardianes conservó el primer lugar en los cuatro escenarios: la selección no depende de una sola distribución de pesos, sino del desempeño equilibrado de la propuesta.</p>
+
+        <!-- La tabla va dentro de un contenedor oculto: una tabla ignora el ancho de 1 px y desbordaría la página -->
+        <div class="visually-hidden">
+        <table>
+          <caption>Análisis de sensibilidad: pesos por escenario y calificación de Guardianes</caption>
+          <thead><tr><th scope="col">Escenario</th><th scope="col">Innovación</th><th scope="col">Viabilidad</th><th scope="col">Sostenibilidad</th><th scope="col">Guardianes</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Base</th><td>35 %</td><td>35 %</td><td>30 %</td><td>4,48</td></tr>
+            <tr><th scope="row">Énfasis en innovación</th><td>60 %</td><td>20 %</td><td>20 %</td><td>4,56</td></tr>
+            <tr><th scope="row">Énfasis en viabilidad</th><td>20 %</td><td>60 %</td><td>20 %</td><td>4,34</td></tr>
+            <tr><th scope="row">Énfasis en sostenibilidad</th><td>20 %</td><td>20 %</td><td>60 %</td><td>4,56</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================================
+     05 · IMPACTO 2030
+     ===================================================================== -->
+<section class="section" id="impacto" data-tone="dark" aria-labelledby="impacto-t">
+  <div class="container">
+    <header class="section-head" data-reveal>
+      <p class="kicker"><span>05</span> Resultados e impacto hacia 2030</p>
+      <h2 class="section-title" id="impacto-t">El impacto se mide con metas concretas y con la <em>evidencia</em> que las respalda.</h2>
+    </header>
+
+    <ul class="dims" role="list" data-reveal>
+      <li><b>People</b><span>Participación y capacidades.</span></li>
+      <li><b>Planet</b><span>Alertas y protección ambiental.</span></li>
+      <li><b>Prosperity</b><span>Sostenibilidad financiera y valor retenido en el territorio.</span></li>
+      <li><b>Place</b><span>Uso de evidencia para las decisiones territoriales.</span></li>
+    </ul>
+
+    <div class="table-wrap" data-reveal>
+      <table class="data-table">
+        <caption class="visually-hidden">Indicadores, metas y evidencia hacia 2030</caption>
+        <thead>
+          <tr><th scope="col">Indicador</th><th scope="col">Meta</th><th scope="col">Evidencia</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Personas wayuu certificadas</th>
+            <td data-label="Meta"><b class="goal">24 personas</b> para cubrir cuatro parques; 50 % mujeres y 30 % jóvenes.</td>
+            <td data-label="Evidencia">Registros de formación y certificación.</td>
+          </tr>
+          <tr>
+            <th scope="row">Mediciones críticas utilizables</th>
+            <td data-label="Meta"><b class="goal">80 %</b> reconocidas por comunidad, empresa y autoridad.</td>
+            <td data-label="Evidencia">Actas de validación y encuestas separadas.</td>
+          </tr>
+          <tr>
+            <th scope="row">Tiempo de verificación</th>
+            <td data-label="Meta"><b class="goal">−30 %</b> al finalizar el piloto y <b class="goal">−50 %</b> en 2030.</td>
+            <td data-label="Evidencia">Hora de reporte, validación y respuesta.</td>
+          </tr>
+          <tr>
+            <th scope="row">Alertas atendidas</th>
+            <td data-label="Meta"><b class="goal">80 %</b> respondidas y documentadas en 72 horas.</td>
+            <td data-label="Evidencia">Bitácora de alertas y cierres.</td>
+          </tr>
+          <tr>
+            <th scope="row">Días de paralización</th>
+            <td data-label="Meta"><b class="goal">−15 %</b> en 2028 y <b class="goal">−30 %</b> en 2030 por controversias de información.</td>
+            <td data-label="Evidencia">Cronogramas, actas y clasificación independiente.</td>
+          </tr>
+          <tr>
+            <th scope="row">Cobertura de costos recurrentes</th>
+            <td data-label="Meta"><b class="goal">70 %</b> mediante contratos en 2030.</td>
+            <td data-label="Evidencia">Contratos y estados financieros.</td>
+          </tr>
+          <tr>
+            <th scope="row">Gasto retenido en el territorio</th>
+            <td data-label="Meta"><b class="goal">60 %</b> del gasto operativo en 2030.</td>
+            <td data-label="Evidencia">Nómina, compras y auditoría.</td>
+          </tr>
+          <tr>
+            <th scope="row">Reinversión</th>
+            <td data-label="Meta"><b class="goal">100 %</b> de excedentes; mínimo 10 % en protección o restauración ambiental.</td>
+            <td data-label="Evidencia">Estados financieros y actas de asamblea.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="ods" data-reveal>
+      <p class="ods-title">Objetivos de Desarrollo Sostenible con los que se relaciona</p>
+      <ul role="list">
+        <li><b>6</b><span>Agua limpia y saneamiento</span></li>
+        <li><b>9</b><span>Industria, innovación e infraestructura</span></li>
+        <li><b>13</b><span>Acción por el clima</span></li>
+        <li><b>16</b><span>Paz, justicia e instituciones sólidas</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================================
+     06 · MODELO Y PILOTO
+     ===================================================================== -->
+<section class="section" id="modelo" data-tone="light" aria-labelledby="modelo-t">
+  <div class="container">
+    <header class="section-head" data-reveal>
+      <p class="kicker"><span>06</span> Modelo de negocio y clientes</p>
+      <h2 class="section-title" id="modelo-t">Un servicio recurrente, con cláusulas de <em>independencia.</em></h2>
+      <p class="lede">La cooperativa presta un servicio recurrente a desarrolladores y operadores eólicos, mediante contratos de monitoreo, validación y reporte por parque. Puede complementarse con cooperación o capital semilla en la fase inicial, pero su sostenibilidad debe depender progresivamente de ingresos por servicio.</p>
+    </header>
+
+    <ul class="clients" role="list">
+      <li class="client" data-reveal style="--i:0">
+        <h3>Parques eólicos</h3>
+        <p class="client-need"><span>Necesidad</span>Reducir incertidumbre y responder a alertas.</p>
+        <p class="client-value"><span>Valor que recibe</span>Información temprana, trazable y con legitimidad territorial.</p>
+      </li>
+      <li class="client" data-reveal style="--i:1">
+        <h3>Aseguradoras y financiadores</h3>
+        <p class="client-need"><span>Necesidad</span>Comprender riesgos ambientales, sociales y de continuidad.</p>
+        <p class="client-value"><span>Valor que recibe</span>Indicadores verificables y seguimiento de compromisos.</p>
+      </li>
+      <li class="client" data-reveal style="--i:2">
+        <h3>Autoridades ambientales</h3>
+        <p class="client-need"><span>Necesidad</span>Fortalecer seguimiento y capacidad de respuesta.</p>
+        <p class="client-value"><span>Valor que recibe</span>Evidencia complementaria con cadena de custodia.</p>
+      </li>
+      <li class="client" data-reveal style="--i:3">
+        <h3>Comunidades wayuu</h3>
+        <p class="client-need"><span>Necesidad</span>Participar y conservar control sobre información sensible.</p>
+        <p class="client-value"><span>Valor que recibe</span>Capacidad técnica, empleo, gobernanza y reinversión.</p>
+      </li>
+      <li class="client" data-reveal style="--i:4">
+        <h3>Cooperación y fondos públicos</h3>
+        <p class="client-need"><span>Necesidad</span>Financiar soluciones con impacto medible.</p>
+        <p class="client-value"><span>Valor que recibe</span>Hitos, auditoría y resultados vinculados al territorio.</p>
+      </li>
+      <li class="client client--price tone-dark" data-reveal style="--i:5">
+        <h3>Precio de referencia</h3>
+        <p class="price"><span class="unit unit--pre">COP </span>25 M<small>mensuales por parque</small></p>
+        <p>Supuesto de planeación para un servicio integral: personal, operación de campo, mantenimiento, conectividad, plataforma, validación y administración. No corresponde al precio de un sensor ni al punto de equilibrio, y deberá validarse antes de contratar.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="section section--tight" id="piloto" data-tone="light" aria-labelledby="piloto-t">
+  <div class="container">
+    <header class="section-head" data-reveal>
+      <p class="kicker"><span>06.1</span> Piloto y criterios de validación</p>
+      <h2 class="section-title section-title--sm" id="piloto-t">Diseñado para reducir incertidumbre antes de escalar.</h2>
+      <p class="lede">Iniciaría en dos parques con condiciones contrastantes y 12 personas wayuu como monitores. Durante los primeros meses se levanta la línea base y se prueban los protocolos; luego se evalúa si la evidencia es aceptada, utilizada y financieramente sostenible.</p>
+    </header>
+
+    <div class="pilot">
+      <dl class="scope" data-reveal>
+        <div><dt>Cobertura</dt><dd>Dos parques y sus áreas de influencia acordadas.</dd></div>
+        <div><dt>Equipo comunitario</dt><dd>12 personas wayuu, seis por parque, con metas de participación de mujeres y jóvenes.</dd></div>
+        <div><dt>Variables</dt><dd>Indicadores ambientales y sociales definidos con comunidad, parques y validador.</dd></div>
+        <div><dt>Validación</dt><dd>Universidad o laboratorio con calibración, contraste y auditoría por muestreo.</dd></div>
+        <div><dt>Respuesta</dt><dd>Alertas asignadas y documentadas; meta de 80 % atendidas dentro de 72 horas.</dd></div>
+        <div><dt>Evaluación</dt><dd>Comparación con línea base y decisión de continuar, adaptar, ampliar o detener.</dd></div>
+      </dl>
+
+      <div class="thresholds" data-reveal>
+        <h3 class="sub-title">Umbrales para continuar</h3>
+        <ul class="checks">
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Los monitores pueden trabajar sin amenazas no controladas y existe una ruta de protección activa.</span></li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>La calidad técnica cumple los protocolos y las mediciones críticas son aceptadas como utilizables.</span></li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Las alertas generan respuestas documentadas y la información se utiliza en decisiones reales.</span></li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Los clientes reconocen valor suficiente para avanzar hacia contratos que cubran costos recurrentes.</span></li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>La gobernanza comunitaria funciona sin captura, exclusión o interferencia del financiador.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================================
+     07 · GOBERNANZA Y ALIANZAS
+     ===================================================================== -->
+<section class="section" id="gobernanza" data-tone="dark" aria-labelledby="gobernanza-t">
+  <div class="container">
+    <div class="split">
+      <header class="section-head" data-reveal>
+        <p class="kicker"><span>07</span> Gobernanza y alianzas</p>
+        <h2 class="section-title" id="gobernanza-t">La confianza depende de una distribución clara de <em>responsabilidades.</em></h2>
+        <p class="lede">Las decisiones sobre datos sensibles corresponden a la gobernanza comunitaria; la calidad técnica, a la universidad o laboratorio; los parques deben responder a las alertas; el financiador administra recursos y verifica hitos, pero no modifica mediciones ni veta resultados válidos.</p>
+      </header>
+
+      <figure class="photo" data-reveal>
+        <div class="photo-frame">
+          <img src="assets/img/escenas/06-alianzas-1100.webp"
+               srcset="assets/img/escenas/06-alianzas-640.webp 640w, assets/img/escenas/06-alianzas-1100.webp 1100w, assets/img/escenas/06-alianzas-1672.webp 1672w"
+               sizes="(min-width: 960px) 46vw, 100vw" width="1672" height="941" loading="lazy" decoding="async"
+               alt="Recreación visual: una joven wayuu explica un mapa a una autoridad tradicional y a tres aliados alrededor de una mesa, con un sensor y aerogeneradores al fondo.">
+          <span class="photo-badge">Recreación visual</span>
+        </div>
+        <figcaption>Una alianza con roles independientes.</figcaption>
+      </figure>
+    </div>
+
+    <ul class="roles" role="list" data-reveal>
+      <li><span>El parque</span><b>financia y responde</b></li>
+      <li><span>La cooperativa</span><b>mide</b></li>
+      <li><span>La universidad o el laboratorio</span><b>valida</b></li>
+      <li><span>La comunidad</span><b>gobierna los datos sensibles</b></li>
+      <li class="roles-no"><span>El financiador</span><b>verifica hitos, sin veto</b></li>
+    </ul>
+
+    <div class="gov">
+      <div class="gov-spaces" data-reveal>
+        <h3 class="sub-title">Cuatro espacios de decisión</h3>
+        <dl class="pairs pairs--stack">
+          <div><dt>Asamblea comunitaria</dt><dd>Representación, prioridades, restricciones culturales y reinversión.</dd></div>
+          <div><dt>Comité de gobernanza de datos</dt><dd>Accesos, publicación, privacidad, incidentes y correcciones.</dd></div>
+          <div><dt>Mesa técnica</dt><dd>Protocolos, calibración, calidad, cadena de custodia y auditoría.</dd></div>
+          <div><dt>Comité de seguimiento</dt><dd>Alertas, respuestas, indicadores, contratos y compromisos.</dd></div>
+        </dl>
+        <p class="note">Las decisiones se adoptan por consenso o, cuando no sea posible, por mayoría de dos tercios que incluya a las autoridades de los territorios afectados. Las controversias técnicas deben pasar a revisión independiente dentro de un plazo definido.</p>
+      </div>
+
+      <div class="gov-actors" data-reveal>
+        <h3 class="sub-title">Actores necesarios para ejecutar</h3>
+        <ul class="actors">
+          <li><b>Autoridades y comunidades wayuu</b><span>Aprobar la gobernanza, seleccionar puntos y monitores, aportar conocimiento territorial y decidir sobre datos sensibles.</span></li>
+          <li><b>Dos parques participantes</b><span>Financiar, facilitar acceso, responder a alertas y aceptar cláusulas de independencia.</span></li>
+          <li><b>Universidad o laboratorio</b><span>Formar, calibrar, validar muestras, certificar capacidades y auditar calidad.</span></li>
+          <li><b>ANLA, Corpoguajira y entidades territoriales</b><span>Alinear formatos y articular la evidencia con el seguimiento ambiental e institucional.</span></li>
+          <li><b>Defensoría y organizaciones de derechos humanos</b><span>Activar prevención y respuesta ante amenazas o presiones.</span></li>
+          <li><b>SENA, Minciencias SGR y cooperación</b><span>Aportar capital semilla, formación, validación tecnológica y fortalecimiento organizacional.</span></li>
+          <li><b>Fiduciario, aseguradoras y financiadores</b><span>Administrar recursos, acompañar hitos y fortalecer la sostenibilidad sin controlar resultados.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RIESGOS Y CONTROLES -->
+<section class="section" id="controles" data-tone="light" aria-labelledby="controles-t">
+  <div class="container">
+    <header class="section-head" data-reveal>
+      <p class="kicker"><span>07.1</span> Riesgos y mecanismos de control</p>
+      <h2 class="section-title section-title--sm" id="controles-t">Mitigar la desinformación no elimina la desconfianza: los riesgos de operar se vigilan desde el diseño.</h2>
+    </header>
+
+    <div class="table-wrap" data-reveal>
+      <table class="data-table data-table--risks">
+        <caption class="visually-hidden">Riesgos críticos, control propuesto y condición de decisión</caption>
+        <thead>
+          <tr><th scope="col">Riesgo crítico</th><th scope="col">Control propuesto</th><th scope="col">Condición de decisión</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Captura por un clan o grupo</th><td data-label="Control propuesto">Representación, conflictos de interés y mayoría calificada.</td><td data-label="Condición de decisión">Adaptar o suspender si persiste la exclusión.</td></tr>
+          <tr><th scope="row">Amenazas a monitores</th><td data-label="Control propuesto">Ruta confidencial, Defensoría y suspensión preventiva.</td><td data-label="Condición de decisión">No continuar sin protección efectiva.</td></tr>
+          <tr><th scope="row">Uso indebido de datos</th><td data-label="Control propuesto">Clasificación, permisos, auditoría de accesos y soberanía comunitaria.</td><td data-label="Condición de decisión">Investigar, contener y revisar autorizaciones.</td></tr>
+          <tr><th scope="row">Baja calidad técnica</th><td data-label="Control propuesto">Calibración, cadena de custodia y validación independiente.</td><td data-label="Condición de decisión">No publicar como evidencia válida.</td></tr>
+          <tr><th scope="row">Interferencia del financiador</th><td data-label="Control propuesto">Cláusulas de independencia y ausencia de veto.</td><td data-label="Condición de decisión">Activar revisión externa o terminar el contrato.</td></tr>
+          <tr><th scope="row">Dependencia financiera</th><td data-label="Control propuesto">Fondo inicial, contratos escalonados y diversificación.</td><td data-label="Condición de decisión">No escalar sin ruta de cobertura de costos.</td></tr>
+          <tr><th scope="row">Baja adopción de la evidencia</th><td data-label="Control propuesto">Diseño conjunto, comunicación bilingüe y encuestas separadas.</td><td data-label="Condición de decisión">Adaptar formatos y protocolos.</td></tr>
+          <tr><th scope="row">Cambio político o regulatorio</th><td data-label="Control propuesto">Alineación institucional y documentación de cumplimiento.</td><td data-label="Condición de decisión">Actualizar alcance sin debilitar la gobernanza.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <blockquote class="pull pull--alert" data-reveal>
+      <p>La seguridad de los monitores es una condición de continuidad, no un indicador compensable.</p>
+      <footer>Un buen resultado técnico o financiero no justifica operar cuando existen amenazas que no pueden controlarse.</footer>
+    </blockquote>
+  </div>
+</section>
+
+<!-- ========================================================================
+     08 · INVERSIÓN
+     ===================================================================== -->
+<section class="section" id="inversion" data-tone="dark" aria-labelledby="inversion-t">
+  <div class="container">
+    <header class="section-head section-head--row" data-reveal>
+      <div>
+        <p class="kicker"><span>08</span> Inversión requerida y uso de recursos</p>
+        <h2 class="section-title" id="inversion-t"><span class="nowrap">COP 650 millones</span> para una capacidad de monitoreo <em>distribuida.</em></h2>
+      </div>
+      <p class="lede">El valor no corresponde a construir infraestructura eólica ni hídrica: financia equipos, plataforma, formación, gobernanza, validación e implementación territorial. El presupuesto debe detallarse con cotizaciones antes del cierre financiero.</p>
+    </header>
+
+    <figure class="chart chart--budget" data-reveal aria-labelledby="chart-budget-t">
+      <figcaption>
+        <p class="chart-title" id="chart-budget-t">Uso de los recursos del piloto</p>
+        <p class="chart-sub">COP millones · piloto en dos parques con 12 personas wayuu</p>
+      </figcaption>
+      <ul class="bars bars--budget" role="list" style="--max:150">
+        <li class="bar" style="--v:150"><div class="bar-label"><b>Sensores y equipos</b><span>Medición, muestreo, calibración y repuestos iniciales.</span></div><div class="bar-track"><span class="bar-fill"></span></div><p class="bar-value">150</p></li>
+        <li class="bar" style="--v:120"><div class="bar-label"><b>Operación inicial</b><span>Personal, validación, mantenimiento y contingencias de arranque.</span></div><div class="bar-track"><span class="bar-fill"></span></div><p class="bar-value">120</p></li>
+        <li class="bar" style="--v:110"><div class="bar-label"><b>Plataforma y trazabilidad</b><span>Registro, tableros, permisos, alertas y seguimiento.</span></div><div class="bar-track"><span class="bar-fill"></span></div><p class="bar-value">110</p></li>
+        <li class="bar" style="--v:100"><div class="bar-label"><b>Formación y protocolos</b><span>Certificación, seguridad, cadena de custodia y comunicación.</span></div><div class="bar-track"><span class="bar-fill"></span></div><p class="bar-value">100</p></li>
+        <li class="bar" style="--v:70"><div class="bar-label"><b>Implementación territorial</b><span>Asambleas, acuerdos, desplazamientos y levantamiento de línea base.</span></div><div class="bar-track"><span class="bar-fill"></span></div><p class="bar-value">70</p></li>
+        <li class="bar" style="--v:60"><div class="bar-label"><b>Drones y accesorios</b><span>Registro en áreas autorizadas y soporte de campo.</span></div><div class="bar-track"><span class="bar-fill"></span></div><p class="bar-value">60</p></li>
+        <li class="bar" style="--v:40"><div class="bar-label"><b>Cómputo y conectividad</b><span>Dispositivos, almacenamiento y operación en zonas con brechas de conexión.</span></div><div class="bar-track"><span class="bar-fill"></span></div><p class="bar-value">40</p></li>
+      </ul>
+      <p class="chart-total"><span>Total</span><b>650</b></p>
+    </figure>
+
+    <div class="funding" data-reveal>
+      <div>
+        <h3 class="sub-title">Estructura sugerida de financiación</h3>
+        <p>El piloto puede combinar aportes de los parques, capital semilla público o de cooperación y recursos administrados por un fiduciario. El financiador obtiene visibilidad sobre el uso de los recursos, pero no control sobre la validez de los resultados.</p>
+      </div>
+      <div>
+        <p class="milestones-title">Desembolsos condicionados a hitos verificables</p>
+        <ol class="milestones">
+          <li>Aprobación de la gobernanza</li>
+          <li>Formación</li>
+          <li>Instalación</li>
+          <li>Calidad de datos</li>
+          <li>Respuesta a alertas</li>
+          <li>Evaluación del piloto</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LECTURA FINANCIERA -->
+<section class="section section--tight" id="finanzas" data-tone="dark" aria-labelledby="finanzas-t">
+  <div class="container">
+    <header class="section-head" data-reveal>
+      <p class="kicker"><span>08.1</span> Lectura financiera y sostenibilidad</p>
+      <h2 class="section-title section-title--sm" id="finanzas-t">Una ruta potencial de sostenibilidad, si se validan el precio, la adopción y los costos.</h2>
+      <p class="lede">Los ingresos se estiman como tarifa por parque multiplicada por el número de contratos, con una tarifa de referencia de COP 25 millones mensuales por parque.</p>
+    </header>
+
+    <div class="finance">
+      <ul class="scenarios" role="list" data-reveal>
+        <li class="scenario">
+          <h3>Conservador</h3>
+          <dl>
+            <div><dt>Ingresos acumulados a cinco años</dt><dd>COP 10.200 M</dd></div>
+            <div><dt>VPN al 15 %</dt><dd>COP 53 M</dd></div>
+            <div><dt>Recuperación</dt><dd>Año 5</dd></div>
+          </dl>
+        </li>
+        <li class="scenario scenario--base">
+          <h3>Base</h3>
+          <dl>
+            <div><dt>Ingresos acumulados a cinco años</dt><dd>COP 17.100 M</dd></div>
+            <div><dt>VPN al 15 %</dt><dd>COP 3.260 M</dd></div>
+            <div><dt>Recuperación</dt><dd>Año 3</dd></div>
+          </dl>
+        </li>
+        <li class="scenario">
+          <h3>Expansivo</h3>
+          <dl>
+            <div><dt>Ingresos acumulados a cinco años</dt><dd class="is-text">Mayor adopción que el caso base</dd></div>
+            <div><dt>VPN al 15 %</dt><dd class="is-text">Superior al caso base</dd></div>
+            <div><dt>Recuperación</dt><dd class="is-text">Antes del año 3</dd></div>
+          </dl>
+        </li>
+      </ul>
+
+      <figure class="chart chart--cols" data-reveal aria-labelledby="chart-parks-t">
+        <figcaption>
+          <p class="chart-title" id="chart-parks-t">Contratos por año en la proyección base</p>
+          <p class="chart-sub">Número de parques con contrato · trayectoria comercial supuesta</p>
+        </figcaption>
+        <ol class="cols" style="--max:24">
+          <li style="--v:2"><span class="col-plot"><span class="col-value">2</span><span class="col-bar"></span></span><span class="col-label">Año 1</span></li>
+          <li style="--v:5"><span class="col-plot"><span class="col-value">5</span><span class="col-bar"></span></span><span class="col-label">Año 2</span></li>
+          <li style="--v:10"><span class="col-plot"><span class="col-value">10</span><span class="col-bar"></span></span><span class="col-label">Año 3</span></li>
+          <li style="--v:16"><span class="col-plot"><span class="col-value">16</span><span class="col-bar"></span></span><span class="col-label">Año 4</span></li>
+          <li style="--v:24"><span class="col-plot"><span class="col-value">24</span><span class="col-bar"></span></span><span class="col-label">Año 5</span></li>
+        </ol>
+        <p class="chart-note">Esta trayectoria comercial es un supuesto y no debe confundirse con la meta de impacto de 24 personas en cuatro parques.</p>
+      </figure>
+    </div>
+
+    <p class="note" data-reveal>El resultado conservador es relevante porque conserva un VPN positivo, aunque con margen reducido. Esto no garantiza el retorno: indica que existe una ruta potencial de sostenibilidad si se validan el precio, la adopción, los costos de campo y la continuidad contractual.</p>
+  </div>
+</section>
+
+<!-- ========================================================================
+     09 · TERRITORIO
+     ===================================================================== -->
+<section class="section" id="territorio" data-tone="light" aria-labelledby="territorio-t">
+  <div class="container">
+    <header class="section-head section-head--row" data-reveal>
+      <div>
+        <p class="kicker"><span>09</span> El territorio</p>
+        <h2 class="section-title" id="territorio-t">El lugar donde la transición energética se vuelve <em>cotidiana.</em></h2>
+      </div>
+      <p class="lede">Registro fotográfico de campo: los parques eólicos y la vida que transcurre a su alrededor. A diferencia de las recreaciones del tráiler, estas imágenes son fotografías reales.</p>
+    </header>
+
+    <ul class="gallery" id="gallery" role="list">
+      <li class="g g--tall" data-reveal style="--i:0">
+        <a href="assets/img/territorio/parque-via-789.webp" data-lightbox>
+          <img src="assets/img/territorio/parque-via-480.webp" width="480" height="600" loading="lazy" decoding="async" alt="Vía destapada que serpentea entre cardones hacia una fila de aerogeneradores bajo un cielo con nubes.">
+        </a>
+      </li>
+      <li class="g g--wide" data-reveal style="--i:1">
+        <a href="assets/img/territorio/rancheria-enramada-1400.webp" data-lightbox>
+          <img src="assets/img/territorio/rancheria-enramada-700.webp" width="700" height="525" loading="lazy" decoding="async" alt="Enramada de techo vegetal junto a un camino de piedras y una pila de bloques, rodeada de cardones.">
+        </a>
+      </li>
+      <li class="g g--tall" data-reveal style="--i:2">
+        <a href="assets/img/territorio/parque-torre-960.webp" data-lightbox>
+          <img src="assets/img/territorio/parque-torre-480.webp" width="480" height="600" loading="lazy" decoding="async" alt="Aerogenerador visto desde abajo, con las puntas de las aspas rojas contra un cielo azul intenso.">
+        </a>
+      </li>
+      <li class="g g--wide" data-reveal style="--i:3">
+        <a href="assets/img/territorio/rancheria-casa-1400.webp" data-lightbox>
+          <img src="assets/img/territorio/rancheria-casa-700.webp" width="700" height="525" loading="lazy" decoding="async" alt="Casa de barro con techo de zinc y una banca de madera, frente a un sendero de piedras.">
+        </a>
+      </li>
+      <li class="g g--tall" data-reveal style="--i:4">
+        <a href="assets/img/territorio/parque-costa-947.webp" data-lightbox>
+          <img src="assets/img/territorio/parque-costa-480.webp" width="480" height="600" loading="lazy" decoding="async" alt="Aerogenerador junto a una vía de grava, con el mar al fondo y más torres en la distancia.">
+        </a>
+      </li>
+      <li class="g g--wide" data-reveal style="--i:5">
+        <a href="assets/img/territorio/rancheria-camioneta-1400.webp" data-lightbox>
+          <img src="assets/img/territorio/rancheria-camioneta-700.webp" width="700" height="525" loading="lazy" decoding="async" alt="Camioneta cargada con varas secas sobre la tierra rojiza, con una franja de cardones al fondo.">
+        </a>
+      </li>
+      <li class="g g--tall" data-reveal style="--i:6">
+        <a href="assets/img/territorio/parque-loma-853.webp" data-lightbox>
+          <img src="assets/img/territorio/parque-loma-480.webp" width="480" height="600" loading="lazy" decoding="async" alt="Vía de grava que sube hacia varios aerogeneradores alineados sobre una loma.">
+        </a>
+      </li>
+      <li class="g g--wide" data-reveal style="--i:7">
+        <a href="assets/img/territorio/rancheria-corral-1400.webp" data-lightbox>
+          <img src="assets/img/territorio/rancheria-corral-700.webp" width="700" height="525" loading="lazy" decoding="async" alt="Explanada de tierra rojiza con corrales de madera y canecas, bajo un cielo amplio con nubes.">
+        </a>
+      </li>
+      <li class="g g--tall" data-reveal style="--i:8">
+        <a href="assets/img/territorio/parque-mar-879.webp" data-lightbox>
+          <img src="assets/img/territorio/parque-mar-480.webp" width="480" height="600" loading="lazy" decoding="async" alt="Aerogeneradores junto a un cruce de vías destapadas, con el mar en el horizonte.">
+        </a>
+      </li>
+      <li class="g g--wide" data-reveal style="--i:9">
+        <a href="assets/img/territorio/terreno-1280.webp" data-lightbox>
+          <img src="assets/img/territorio/terreno-700.webp" width="700" height="525" loading="lazy" decoding="async" alt="Terreno removido con huellas de maquinaria y un buldócer al fondo, junto a la vegetación seca.">
+        </a>
+      </li>
+    </ul>
+
+    <p class="gallery-note" data-reveal>Fotografías de campo. Las imágenes marcadas como «Recreación visual» en el resto de la página fueron generadas específicamente para este proyecto y no representan personas o hechos reales.</p>
+  </div>
+</section>
+
+<!-- ========================================================================
+     10 · PREGUNTAS
+     ===================================================================== -->
+<section class="section" id="preguntas" data-tone="light" aria-labelledby="preguntas-t">
+  <div class="container">
+    <div class="ask" data-reveal>
+      <div class="ask-avatar" aria-hidden="true">
+        <span class="ask-tower"></span>
+        <img class="ask-rotor" src="assets/img/alisio/rotor.webp" width="640" height="640" loading="lazy" decoding="async" alt="">
+      </div>
+      <div class="ask-copy">
+        <p class="kicker"><span>10</span> Preguntas técnicas</p>
+        <h2 class="section-title" id="preguntas-t">Pregúntele a <em>Alisio.</em></h2>
+        <p class="lede">Alisio es el asistente del proyecto. Lleva el nombre de los vientos constantes del nordeste que mueven los parques de La Guajira y responde con la información del informe: fundamento, solución técnica, inversión, riesgos y escalamiento.</p>
+        <div class="ask-actions">
+          <button class="btn btn--dark" type="button" data-alisio-open>
+            <svg aria-hidden="true"><use href="#i-chat"/></svg>
+            <span>Conversar con Alisio</span>
+          </button>
+          <p class="ask-hint">Sin inteligencia artificial generativa: cada respuesta sale del documento de preguntas técnicas del proyecto.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq" id="faq" data-reveal>
+      <div class="faq-group">
+        <h3 class="faq-group-title"><span>01</span> Fundamento del proyecto</h3>
+        <details class="faq-item" name="faq">
+          <summary><span class="faq-n">1</span><span class="faq-q">¿Qué problema específico resuelve Guardianes del Viento y por qué representa una oportunidad de inversión?</span><svg aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+          <div class="faq-a">
+            <p>Guardianes del Viento aborda la falta de información ambiental y social que comunidad, empresa y autoridad reconozcan como legítima y verificable. Esa brecha puede generar verificaciones duplicadas, respuestas tardías, deterioro reputacional y días de paralización asociados a controversias. La oportunidad consiste en convertir ese costo de incertidumbre en un servicio recurrente de monitoreo, validación y gestión de alertas, mientras se crea capacidad wayuu y se reinvierte valor en La Guajira.</p>
+            <button class="faq-ask" type="button" data-alisio-ask="¿Qué problema específico resuelve Guardianes del Viento y por qué representa una oportunidad de inversión?">Seguir con Alisio <svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          </div>
+        </details>
+        <details class="faq-item" name="faq">
+          <summary><span class="faq-n">2</span><span class="faq-q">¿Qué diferencia a Guardianes del monitoreo ambiental convencional contratado por una empresa?</span><svg aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+          <div class="faq-a">
+            <p>El monitoreo convencional suele concentrarse en el cumplimiento técnico del desarrollador. Guardianes incorpora producción comunitaria de evidencia, gobernanza wayuu de datos, comunicación bilingüe y validación independiente. El parque financia el servicio, pero no controla la medición ni puede vetar un resultado válido. La diferenciación no depende de un sensor exclusivo; surge de integrar tecnología, conocimiento territorial y reglas de independencia dentro de una misma operación.</p>
+            <button class="faq-ask" type="button" data-alisio-ask="¿Qué diferencia a Guardianes del monitoreo ambiental convencional contratado por una empresa?">Seguir con Alisio <svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          </div>
+        </details>
+        <details class="faq-item" name="faq">
+          <summary><span class="faq-n">3</span><span class="faq-q">¿Qué evidencia sustenta que el problema es relevante en La Guajira?</span><svg aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+          <div class="faq-a">
+            <p>El proyecto parte de la concentración de desarrollos eólicos en el departamento, de antecedentes de conflictividad y de casos como la suspensión indefinida de Windpeshi en 2023. El Global Risks Report 2025 mantiene la desinformación entre los riesgos inmediatos y los riesgos ambientales entre los más severos de largo plazo. Estas referencias justifican el problema, pero el piloto deberá levantar evidencia local sobre tiempos de verificación, alertas, confianza y paralizaciones.</p>
+            <button class="faq-ask" type="button" data-alisio-ask="¿Qué evidencia sustenta que el problema es relevante en La Guajira?">Seguir con Alisio <svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          </div>
+        </details>
+        <details class="faq-item" name="faq">
+          <summary><span class="faq-n">4</span><span class="faq-q">¿Por qué una cooperativa wayuu es una estructura adecuada para prestar este servicio?</span><svg aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+          <div class="faq-a">
+            <p>La cooperativa permite que las personas del territorio participen en la producción de evidencia y en las decisiones sobre su uso. También facilita la contratación de monitores, la prestación de servicios y la reinversión de excedentes. Su naturaleza sin ánimo de lucro protege el propósito territorial, aunque no elimina la disciplina empresarial: debe facturar, controlar costos, construir reservas y demostrar que puede sostener la operación con contratos.</p>
+            <button class="faq-ask" type="button" data-alisio-ask="¿Por qué una cooperativa wayuu es una estructura adecuada para prestar este servicio?">Seguir con Alisio <svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          </div>
+        </details>
+        <details class="faq-item" name="faq">
+          <summary><span class="faq-n">5</span><span class="faq-q">¿Qué resultados concretos deberían convencer a un inversionista de que el modelo funciona?</span><svg aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+          <div class="faq-a">
+            <p>El piloto debe demostrar cinco resultados: seguridad para los monitores, mediciones técnicamente válidas, aceptación y uso de la evidencia por las partes, respuestas documentadas a las alertas y disposición de pago de los clientes. Las metas incluyen 80 % de mediciones críticas utilizables, 80 % de alertas respondidas dentro de 72 horas y una reducción de 30 % en el tiempo de verificación al finalizar el piloto.</p>
+            <button class="faq-ask" type="button" data-alisio-ask="¿Qué resultados concretos deberían convencer a un inversionista de que el modelo funciona?">Seguir con Alisio <svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          </div>
+        </details>
+      </div>
+      <div class="faq-group">
+        <h3 class="faq-group-title"><span>02</span> Solución técnica y datos</h3>
+        <details class="faq-item" name="faq">
+          <summary><span class="faq-n">6</span><span class="faq-q">¿Qué componentes tecnológicos utiliza la solución y qué función cumple cada uno?</span><svg aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+          <div class="faq-a">
+            <p>Los sensores de bajo costo permiten seguimiento frecuente; la información satelital ayuda a identificar cambios y contrastar periodos; los drones apoyan registros en zonas autorizadas; la plataforma conserva trazabilidad, permisos y estados de las alertas; los tableros bilingües facilitan comprensión. La inteligencia artificial puede detectar patrones y priorizar eventos, pero no reemplaza el juicio de los monitores, la validación técnica ni la decisión comunitaria.</p>
+            <button class="faq-ask" type="button" data-alisio-ask="¿Qué componentes tecnológicos utiliza la solución y qué función cumple cada uno?">Seguir con Alisio <svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          </div>
+        </details>
+        <details class="faq-item" name="faq">
+          <summary><span class="faq-n">7</span><span class="faq-q">¿Cómo se define qué variables ambientales y sociales serán monitoreadas?</span><svg aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+          <div class="faq-a">
+            <p>El piloto debe seleccionar las variables mediante una mesa técnica con autoridades wayuu, parques, universidad o laboratorio y autoridades ambientales. La selección considera riesgos del parque, obligaciones existentes, preocupaciones comunitarias, posibilidad de medición confiable y utilidad para decidir. Cada variable necesita unidad, frecuencia, punto de muestreo, responsable, umbral de alerta, método de validación y regla de publicación.</p>
+            <button class="faq-ask" type="button" data-alisio-ask="¿Cómo se define qué variables ambientales y sociales serán monitoreadas?">Seguir con Alisio <svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          </div>
+        </details>
+        <details class="faq-item" name="faq">
+          <summary><span class="faq-n">8</span><span class="faq-q">¿Cómo se garantiza la calidad y comparabilidad de los datos?</span><svg aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+          <div class="faq-a">
+            <p>La operación combina equipos calibrados, protocolos documentados, formación certificada, cadena de custodia, controles de duplicados y contraste de muestras. La universidad o laboratorio valida la metodología y realiza auditorías por muestreo. Las versiones del dato, los cambios y los accesos quedan registrados. Una medición que incumpla el protocolo se conserva como incidente de calidad, pero no se presenta como evidencia válida.</p>
+            <button class="faq-ask" type="button" data-alisio-ask="¿Cómo se garantiza la calidad y comparabilidad de los datos?">Seguir con Alisio <svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          </div>
+        </details>
+        <details class="faq-item" name="faq">
+          <summary><span class="faq-n">9</span><span class="faq-q">¿Qué ocurre desde que se detecta una alerta hasta que se cierra?</span><svg aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+          <div class="faq-a">
+            <p>La alerta registra variable, ubicación, hora, evidencia, criticidad y responsable. El parque o la entidad competente recibe la notificación y debe documentar la respuesta. La meta es atender 80 % dentro de 72 horas. Si existe desacuerdo, se activa contraste técnico y revisión independiente. El cierre exige evidencia de la acción realizada o una justificación documentada de por qué no pudo ejecutarse.</p>
+            <button class="faq-ask" type="button" data-alisio-ask="¿Qué ocurre desde que se detecta una alerta hasta que se cierra?">Seguir con Alisio <svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          </div>
+        </details>
+        <details class="faq-item" name="faq">
+          <summary><span class="faq-n">10</span><span class="faq-q">¿Quién controla los datos y cómo se protege la información sensible?</span><svg aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+          <div class="faq-a">
+            <p>La propuesta aplica soberanía de datos indígenas. El comité comunitario clasifica la información como pública, restringida o sensible y define permisos, propósito y tiempo de conservación. Los contratos separan propiedad, custodia, licencias de uso y obligaciones regulatorias. La plataforma registra accesos y modificaciones. La transparencia no significa publicar ubicaciones culturales, información personal o conocimiento territorial cuya difusión no haya sido autorizada.</p>
+            <button class="faq-ask" type="button" data-alisio-ask="¿Quién controla los datos y cómo se protege la información sensible?">Seguir con Alisio <svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          </div>
+        </details>
+      </div>
+      <div class="faq-group">
+        <h3 class="faq-group-title"><span>03</span> Clientes, inversión y sostenibilidad financiera</h3>
+        <details class="faq-item" name="faq">
+          <summary><span class="faq-n">11</span><span class="faq-q">¿Quiénes son los clientes y qué valor recibe cada uno?</span><svg aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+          <div class="faq-a">
+            <p>Los desarrolladores y operadores eólicos serían los clientes principales porque necesitan anticipar riesgos, responder a alertas y demostrar trazabilidad. Los financiadores y aseguradoras pueden utilizar indicadores para evaluar exposición y cumplimiento. Las autoridades reciben evidencia complementaria. Las comunidades obtienen empleo, capacidad técnica y control sobre datos. La propuesta debe adaptar el contrato a cada usuario sin comprometer la independencia del resultado.</p>
+            <button class="faq-ask" type="button" data-alisio-ask="¿Quiénes son los clientes y qué valor recibe cada uno?">Seguir con Alisio <svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          </div>
+        </details>
+        <details class="faq-item" name="faq">
+          <summary><span class="faq-n">12</span><span class="faq-q">¿Cómo se validará que los clientes están dispuestos a pagar?</span><svg aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+          <div class="faq-a">
+            <p>Antes de escalar deben realizarse entrevistas, cartas de intención y negociación del alcance con al menos dos parques. La validación comercial debe confirmar variables, frecuencia, tiempos de respuesta, condiciones de acceso, tarifa y duración. El indicador más fuerte no será una declaración de interés, sino un contrato o pago anticipado. El piloto también debe registrar qué costos evita o reduce el servicio para sustentar la renovación.</p>
+            <button class="faq-ask" type="button" data-alisio-ask="¿Cómo se validará que los clientes están dispuestos a pagar?">Seguir con Alisio <svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          </div>
+        </details>
+        <details class="faq-item" name="faq">
+          <summary><span class="faq-n">13</span><span class="faq-q">¿Qué cubre la inversión inicial de COP 650 millones y cómo se controlará su uso?</span><svg aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+          <div class="faq-a">
+            <p>La estimación asigna COP 150 millones a sensores, 60 a drones y accesorios, 110 a plataforma, 40 a cómputo y conectividad, 100 a formación y protocolos, 70 a implementación territorial y 120 a operación inicial. Los desembolsos deben vincularse a hitos: gobernanza aprobada, personas formadas, equipos instalados, línea base, operación y evaluación. Las cifras requieren cotizaciones, contingencias y administración fiduciaria antes del cierre.</p>
+            <button class="faq-ask" type="button" data-alisio-ask="¿Qué cubre la inversión inicial de COP 650 millones y cómo se controlará su uso?">Seguir con Alisio <svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          </div>
+        </details>
+        <details class="faq-item" name="faq">
+          <summary><span class="faq-n">14</span><span class="faq-q">¿Cómo puede financiarse una cooperativa sin ánimo de lucro y qué retorno puede recibir el aportante?</span><svg aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+          <div class="faq-a">
+            <p>La cooperativa no distribuiría dividendos ni entregaría participación patrimonial. El piloto puede combinar aportes no reembolsables, cooperación, pagos anticipados de los parques, financiación recuperable o deuda respaldada por contratos. Un financiador de impacto recibe evidencia de resultados y reducción de riesgos; un acreedor recibe intereses según el flujo pactado. El instrumento debe definirse antes de solicitar recursos para evitar llamar inversión a un aporte sin retorno financiero.</p>
+            <button class="faq-ask" type="button" data-alisio-ask="¿Cómo puede financiarse una cooperativa sin ánimo de lucro y qué retorno puede recibir el aportante?">Seguir con Alisio <svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          </div>
+        </details>
+        <details class="faq-item" name="faq">
+          <summary><span class="faq-n">15</span><span class="faq-q">¿Qué supuestos sostienen la proyección financiera y qué ocurre en un escenario adverso?</span><svg aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+          <div class="faq-a">
+            <p>La modelación utiliza una tarifa de COP 25 millones mensuales por parque, crecimiento en contratos y costos de operación escalables. En el escenario base proyecta ingresos acumulados de COP 17.100 millones, VPN al 15 % de COP 3.260 millones y recuperación en el año 3. En el conservador, los ingresos bajan a COP 10.200 millones, el VPN a COP 53 millones y la recuperación pasa al año 5. Precio, adopción, permanencia y costos deben probarse.</p>
+            <button class="faq-ask" type="button" data-alisio-ask="¿Qué supuestos sostienen la proyección financiera y qué ocurre en un escenario adverso?">Seguir con Alisio <svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          </div>
+        </details>
+      </div>
+      <div class="faq-group">
+        <h3 class="faq-group-title"><span>04</span> Riesgos, impacto y escalamiento</h3>
+        <details class="faq-item" name="faq">
+          <summary><span class="faq-n">16</span><span class="faq-q">¿Cuáles son los riesgos que podrían hacer fracasar el proyecto?</span><svg aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+          <div class="faq-a">
+            <p>Los riesgos críticos son captura de la gobernanza por un clan, amenazas a monitores, uso indebido de datos, baja calidad técnica, interferencia del financiador, poca adopción de la evidencia, dependencia de subsidios y cambios regulatorios. Cada riesgo necesita responsable, señal temprana y respuesta. La seguridad, la independencia y la protección de datos son condiciones de continuidad; no pueden compensarse con un buen resultado financiero.</p>
+            <button class="faq-ask" type="button" data-alisio-ask="¿Cuáles son los riesgos que podrían hacer fracasar el proyecto?">Seguir con Alisio <svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          </div>
+        </details>
+        <details class="faq-item" name="faq">
+          <summary><span class="faq-n">17</span><span class="faq-q">¿Cómo se protege la independencia cuando los parques pagan por el servicio?</span><svg aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+          <div class="faq-a">
+            <p>El contrato separa las funciones: el parque financia y responde, la cooperativa mide, la universidad o laboratorio valida y la comunidad gobierna los datos sensibles. El cliente puede solicitar aclaración y ejercer réplica, pero no modificar la medición ni bloquear un reporte válido. Las controversias pasan a revisión independiente. Los desembolsos no deben condicionarse a resultados favorables, sino al cumplimiento del protocolo.</p>
+            <button class="faq-ask" type="button" data-alisio-ask="¿Cómo se protege la independencia cuando los parques pagan por el servicio?">Seguir con Alisio <svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          </div>
+        </details>
+        <details class="faq-item" name="faq">
+          <summary><span class="faq-n">18</span><span class="faq-q">¿Cómo se medirá el impacto sin atribuir a Guardianes resultados que dependen de otros factores?</span><svg aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+          <div class="faq-a">
+            <p>El piloto levantará una línea base y clasificará los eventos vinculados a controversias de información. Comparará tiempos de verificación, alertas, aceptación de datos, confianza y días de paralización antes y después y, cuando sea posible, entre parques o periodos de contraste. El proyecto hablará de contribución y no de causalidad exclusiva, porque también intervienen decisiones empresariales, condiciones políticas y regulación.</p>
+            <button class="faq-ask" type="button" data-alisio-ask="¿Cómo se medirá el impacto sin atribuir a Guardianes resultados que dependen de otros factores?">Seguir con Alisio <svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          </div>
+        </details>
+        <details class="faq-item" name="faq">
+          <summary><span class="faq-n">19</span><span class="faq-q">¿Cómo se relaciona la solución con la consulta previa, el licenciamiento y las autoridades ambientales?</span><svg aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+          <div class="faq-a">
+            <p>Guardianes aporta evidencia complementaria. No sustituye la consulta previa, los estudios de impacto, el licenciamiento, el seguimiento de la ANLA o Corpoguajira ni las obligaciones de los desarrolladores. Los protocolos deben alinearse con formatos institucionales para que la información resulte utilizable. La aceptación de las autoridades es un supuesto del piloto y debe confirmarse antes de presentar el modelo como parte formal del seguimiento.</p>
+            <button class="faq-ask" type="button" data-alisio-ask="¿Cómo se relaciona la solución con la consulta previa, el licenciamiento y las autoridades ambientales?">Seguir con Alisio <svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          </div>
+        </details>
+        <details class="faq-item" name="faq">
+          <summary><span class="faq-n">20</span><span class="faq-q">¿Qué condiciones deben cumplirse para escalar y por qué invertir ahora?</span><svg aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+          <div class="faq-a">
+            <p>El modelo solo debe escalar si protege a los monitores, produce datos válidos, logra que las partes los utilicen, genera respuestas y demuestra contratos suficientes para sostener la operación. El momento es relevante porque la expansión eólica avanza y la confianza territorial sigue siendo una condición de viabilidad. Financiar ahora permite probar la solución en escala controlada. Hacia 2030, la meta de impacto es 24 personas en cuatro parques; la proyección comercial de hasta 24 parques es independiente.</p>
+            <button class="faq-ask" type="button" data-alisio-ask="¿Qué condiciones deben cumplirse para escalar y por qué invertir ahora?">Seguir con Alisio <svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================================
+     CIERRE · LA PROPUESTA
+     ===================================================================== -->
+<section class="closing" id="propuesta" data-tone="dark" aria-labelledby="propuesta-t">
+  <div class="closing-media" aria-hidden="true">
+    <img src="assets/img/escenas/07-equipo-1100.webp"
+         srcset="assets/img/escenas/07-equipo-640.webp 640w, assets/img/escenas/07-equipo-1100.webp 1100w, assets/img/escenas/07-equipo-1672.webp 1672w"
+         sizes="100vw" width="1672" height="941" loading="lazy" decoding="async" alt="" data-parallax="0.1">
+  </div>
+  <div class="container closing-inner">
+    <p class="kicker" data-reveal><span>La propuesta</span> al inversionista</p>
+    <h2 class="closing-title" id="propuesta-t" data-reveal>Invierta en Guardianes del Viento. Hagamos que la evidencia <em>llegue primero.</em></h2>
+    <p class="closing-lede" data-reveal>Se propone invertir COP 650 millones en un piloto con gobierno comunitario, validación independiente y desembolsos por hitos. La iniciativa puede reducir la exposición a retrasos y controversias, mejorar la trazabilidad de decisiones ESG y demostrar una forma de transición energética que deja capacidades en el territorio.</p>
+    <p class="closing-rule" data-reveal>La expansión debe seguir la evidencia y no precederla.</p>
+    <div class="closing-actions" data-reveal>
+      <button class="btn btn--gold" type="button" data-trailer-play>
+        <svg aria-hidden="true"><use href="#i-play"/></svg>
+        <span>Ver el tráiler</span>
+      </button>
+      <button class="btn btn--ghost" type="button" data-alisio-ask="¿Qué condiciones deben cumplirse para escalar y por qué invertir ahora?">
+        <span>¿Por qué invertir ahora?</span>
+        <svg aria-hidden="true"><use href="#i-arrow"/></svg>
+      </button>
+    </div>
+    <p class="closing-credit">Recreación visual · no representa personas o hechos reales</p>
+  </div>
+</section>
+
+</main>
+
+<!-- Transcripción de la locución: alternativa en texto del tráiler -->
+<dialog class="transcript" id="transcript" aria-labelledby="transcript-t">
+  <header class="transcript-head">
+    <h2 id="transcript-t">Transcripción del tráiler</h2>
+    <button class="ctl" type="button" id="transcriptClose" aria-label="Cerrar la transcripción"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+  </header>
+  <div class="transcript-body" tabindex="0">
+    <p>En La Guajira, una joven wayuu observa un parque eólico. Su territorio promete energía para Colombia, pero comunidad, empresa y Estado reciben versiones distintas. Sin evidencia compartida, crecen la desconfianza, el conflicto y las paralizaciones.</p>
+    <p>El Global Risks Report 2025 ubica la desinformación entre las amenazas inmediatas y los riesgos ambientales entre los más severos de la próxima década. La Guajira concentra cerca del 98 % de los proyectos eólicos del país: allí, ambos riesgos convergen.</p>
+    <p>¿Y si ella, junto con su comunidad, pudiera producir y gobernar esa evidencia?</p>
+    <p>Guardianes del Viento es una cooperativa wayuu sin ánimo de lucro. Forma monitores locales y combina conocimiento territorial, sensores, información satelital, inteligencia artificial y tableros bilingües. La comunidad gobierna los datos y reinvierte los excedentes en formación y proyectos ambientales.</p>
+    <p>La cadena es clara: datos legítimos activan alertas; las alertas aceleran respuestas; y mejores decisiones reducen controversias.</p>
+    <p>Hacia el año 2030, buscamos vincular a 24 personas wayuu como monitores para cubrir cuatro parques, reducir 50 % el tiempo de verificación y 30 % los días de paralización relacionados con controversias de información.</p>
+    <p>El piloto requiere 650 millones de pesos y alianzas con autoridades wayuu, dos parques, una universidad y un laboratorio validador. Apoyarlo reduce incertidumbre, protege proyectos y deja capacidades en La Guajira.</p>
+    <p>Invierta en Guardianes del Viento. Hagamos que la evidencia llegue primero. La transición energética necesita confianza.</p>
+    <p class="transcript-note">Las cifras son metas y supuestos de planeación; no representan resultados ya alcanzados.</p>
+  </div>
+</dialog>
+
+
+<!-- ========================================================================
+     REFERENCIAS Y PIE
+     ===================================================================== -->
+<footer class="site-footer" data-tone="dark">
+  <div class="container">
+    <section class="refs" id="referencias" aria-labelledby="referencias-t">
+      <h2 class="refs-title" id="referencias-t">Referencias esenciales</h2>
+      <ol class="refs-list">
+        <li>Autoridad Nacional de Licencias Ambientales. (2025). <cite>Avances estratégicos en Transición Energética Justa y gestión ambiental en La Guajira.</cite></li>
+        <li>Keeney, R. L., y Raiffa, H. (1976). <cite>Decisions with multiple objectives.</cite> Wiley.</li>
+        <li>Nesta. (2013). <cite>Development impact and you.</cite></li>
+        <li>OECD y Eurostat. (2018). <cite>Oslo Manual.</cite></li>
+        <li>Oxfam Colombia. (2026). <cite>Los conflictos del viento.</cite></li>
+        <li>Reyes García, V., et al. (2022). Data sovereignty in community based environmental monitoring. <cite>BioScience, 72</cite>(8), 714–717.</li>
+        <li>Serafeim, G. (2022). <cite>Purpose and profit.</cite></li>
+        <li>Stockholm Environment Institute. (2025). <cite>Anajia Guajira.</cite></li>
+        <li>Unidad de Planeación Minero Energética. (2026). <cite>La revolución del viento en La Guajira.</cite></li>
+        <li>World Economic Forum. (2025). <cite>The global risks report 2025.</cite></li>
+      </ol>
+    </section>
+
+    <div class="footer-notes">
+      <p>Los valores financieros son supuestos de planeación del proyecto y requieren validación comercial, técnica y contractual antes de una decisión de inversión.</p>
+      <p>El video abre el interés; el informe permite revisar los supuestos, indicadores, riesgos y condiciones que sostienen la propuesta antes de tomar una decisión.</p>
+    </div>
+
+    <div class="footer-bottom">
+      <a class="brand" href="#trailer" aria-label="Guardianes del Viento, volver al inicio">
+        <svg class="brand-mark" aria-hidden="true"><use href="#i-mark"/></svg>
+        <span class="brand-name">Guardianes <span>del Viento</span></span>
+      </a>
+      <p class="footer-meta">Tesis de maestría · La Guajira, Colombia · 2026</p>
+      <a class="to-top" href="#trailer">Volver arriba <svg aria-hidden="true"><use href="#i-down"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+<script defer src="assets/js/trailer-data.js"></script>
+<script defer src="assets/js/fondo.js"></script>
+<script defer src="assets/js/main.js"></script>
+<script defer src="assets/js/trailer.js"></script>
+<script defer src="assets/js/alisio-kb.js"></script>
+<script defer src="assets/js/alisio.js"></script>
+</body>
+</html>

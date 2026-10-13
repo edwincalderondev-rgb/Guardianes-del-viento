@@ -1,0 +1,1596 @@
+/* ==========================================================================
+   GUARDIANES DEL VIENTO — escenario del tráiler
+   El video es la pieza central y la página su marco. El reproductor vive en el
+   héroe; al reproducir se expande a «modo cine» y la página se apaga.
+   ========================================================================== */
+
+.stage {
+  position: relative;
+  z-index: var(--z-content);
+  display: grid;
+  align-items: center;
+  min-height: 100svh;
+  padding: calc(var(--header-h) + clamp(1rem, 3vh, 2.5rem)) 0 clamp(2.75rem, 6vh, 4.5rem);
+  color: var(--text);
+  /* El resplandor del marco sobresale: sin esto ensancharía la página en el celular */
+  overflow-x: clip;
+}
+
+/* Luz baja de atardecer, la misma de la portada */
+.stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(60% 70% at 78% 42%, rgba(229, 174, 66, 0.11), transparent 70%),
+    /* penumbra detrás del texto: el viento pasa, pero no le disputa la lectura */
+    radial-gradient(46% 62% at 17% 52%, rgba(6, 15, 12, 0.62), rgba(6, 15, 12, 0) 72%),
+    linear-gradient(180deg, rgba(6, 15, 12, 0.5), transparent 22%, transparent 70%, rgba(6, 15, 12, 0.55));
+}
+
+.stage-inner {
+  display: grid;
+  gap: clamp(1.75rem, 4vw, 4rem);
+  align-items: center;
+  width: 100%;
+  max-width: calc(var(--container-wide) + var(--gutter) * 2);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+@media (min-width: 1100px) {
+  .stage-inner {
+    grid-template-columns: minmax(0, 0.74fr) minmax(0, 1.26fr);
+  }
+}
+
+/* --- Texto del héroe ------------------------------------------------------ */
+.stage-copy {
+  display: grid;
+  gap: clamp(0.9rem, 1.4vw, 1.35rem);
+  justify-items: start;
+}
+
+.stage-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.9rem, 1.2rem + 4.6vw, 5.4rem);
+  font-weight: 360;
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+}
+
+.stage-title .line {
+  display: block;
+  overflow: hidden;
+  /* aire para que la máscara no corte las astas descendentes ni la cursiva */
+  padding: 0.06em 0.08em 0.12em 0;
+  margin-bottom: -0.12em;
+}
+
+.stage-title .line > span {
+  display: inline-block;
+  animation-name: rise-line;
+}
+
+@keyframes rise-line {
+  from {
+    transform: translateY(108%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+.stage-motto {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  font-style: italic;
+  font-weight: 340;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--gold-200);
+}
+
+.stage-lede {
+  max-width: 44ch;
+  font-size: var(--step-0);
+  line-height: 1.6;
+  color: var(--text-soft);
+}
+
+.stage-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.4rem;
+}
+
+/* --- Reproductor ----------------------------------------------------------- */
+.player-slot {
+  min-width: 0;
+}
+
+.player {
+  position: relative;
+  display: grid;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.player-backdrop {
+  display: none;
+}
+
+.frame-wrap {
+  position: relative;
+  width: 100%;
+  /* El marco nunca crece más de lo que cabe en la primera pantalla junto a los capítulos */
+  max-width: calc((100svh - var(--header-h) - 11.75rem) * 16 / 9);
+  min-width: min(100%, 17.5rem);
+  margin-inline: auto;
+}
+
+@media (min-width: 1100px) {
+  .frame-wrap {
+    margin-inline: auto 0;
+  }
+}
+
+.frame-glow {
+  position: absolute;
+  inset: -10%;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(closest-side, rgba(229, 174, 66, 0.26), rgba(229, 174, 66, 0) 72%);
+  filter: blur(34px);
+  opacity: 0.85;
+  animation: glow 9s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    opacity: 0.55;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 0.95;
+    transform: scale(1.03);
+  }
+}
+
+.frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: var(--radius-3);
+  background: #040907;
+  box-shadow:
+    0 0 0 1px rgba(243, 234, 217, 0.13),
+    0 44px 90px -44px rgba(0, 0, 0, 0.95);
+  /* Todo lo que se escribe sobre la imagen se mide contra el marco (cqw/cqh) */
+  container-type: size;
+}
+
+/* --- Portada --------------------------------------------------------------- */
+.frame-poster {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  transition:
+    opacity var(--dur-3) ease,
+    visibility 0s linear var(--dur-3);
+}
+
+.frame-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.02);
+  transition: transform 2.4s var(--ease-out);
+}
+
+.frame-poster::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(60% 60% at 50% 50%, rgba(6, 15, 12, 0.18), rgba(6, 15, 12, 0) 70%),
+    linear-gradient(180deg, rgba(6, 15, 12, 0.16), rgba(6, 15, 12, 0) 40%, rgba(6, 15, 12, 0.72));
+}
+
+.frame-poster:hover img {
+  transform: scale(1.055);
+}
+
+.poster-play {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  color: #1b1403;
+}
+
+.poster-play svg {
+  position: relative;
+  box-sizing: content-box;
+  width: clamp(1.5rem, 3.4cqw, 2.1rem);
+  height: clamp(1.5rem, 3.4cqw, 2.1rem);
+  padding: clamp(1.1rem, 2.6cqw, 1.7rem);
+  border-radius: 50%;
+  background: var(--gold-400);
+  box-shadow: 0 18px 44px -14px rgba(0, 0, 0, 0.7);
+  transition:
+    transform var(--dur-2) var(--ease-out),
+    background-color var(--dur-1) ease;
+}
+
+.poster-play:hover svg,
+.poster-play:focus-visible svg {
+  transform: scale(1.07);
+  background: var(--gold-300);
+}
+
+.poster-play:focus-visible {
+  outline-offset: -6px;
+}
+
+.poster-play-ring {
+  position: absolute;
+  width: clamp(3.7rem, 8.6cqw, 5.5rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1px solid rgba(240, 199, 101, 0.75);
+  animation: ring 2.8s var(--ease-out) infinite;
+}
+
+@keyframes ring {
+  from {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  to {
+    transform: scale(1.85);
+    opacity: 0;
+  }
+}
+
+.poster-meta {
+  position: absolute;
+  z-index: 1;
+  left: clamp(0.9rem, 3cqw, 1.5rem);
+  bottom: clamp(0.8rem, 2.6cqw, 1.3rem);
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  color: #fff;
+}
+
+.poster-meta-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 3cqw, 1.7rem);
+  font-style: italic;
+  font-weight: 380;
+}
+
+.poster-meta-time {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.08em;
+  opacity: 0.85;
+}
+
+.player:not([data-state="idle"]):not([data-state="soon"]) .frame-poster {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Sin video ni previsualización: solo la portada con el aviso */
+.player[data-state="soon"] .poster-play,
+.player[data-state="soon"] .controls {
+  display: none;
+}
+
+.frame-badge {
+  position: absolute;
+  z-index: 4;
+  top: clamp(0.6rem, 2cqw, 0.95rem);
+  left: clamp(0.6rem, 2cqw, 0.95rem);
+  max-width: calc(100% - 1.5rem);
+  padding: 0.32rem 0.6rem;
+  border-radius: var(--radius-1);
+  background: rgba(6, 15, 12, 0.66);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(243, 234, 217, 0.92);
+  transition: opacity var(--dur-3) ease;
+}
+
+.player[data-state="playing"]:not(.is-ui) .frame-badge {
+  opacity: 0;
+}
+
+.frame-video {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000;
+}
+
+/* --- Escenas de la previsualización --------------------------------------- */
+.scenes {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: #040907;
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.9s ease,
+    visibility 0s linear 0.9s;
+}
+
+.scene.is-on {
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity 0.9s ease,
+    visibility 0s;
+}
+
+.scene-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform-origin: var(--ox, 50%) var(--oy, 50%);
+  /* --p (0..1) es el avance de la escena: lo escribe trailer.js en cada cuadro */
+  transform: scale(calc(var(--s0, 1.02) + (var(--s1, 1.12) - var(--s0, 1.02)) * var(--p, 0)));
+  will-change: transform;
+}
+
+.scene::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(4, 9, 7, 0.34), rgba(4, 9, 7, 0) 30%, rgba(4, 9, 7, 0.05) 52%, rgba(4, 9, 7, 0.82)),
+    linear-gradient(90deg, rgba(4, 9, 7, 0.46), rgba(4, 9, 7, 0) 58%);
+}
+
+.scene--soft .scene-img {
+  filter: blur(1.1cqw) brightness(0.5) saturate(0.85);
+}
+
+/* Cifra grande al centro sobre una foto clara: necesita su propia penumbra */
+.scene[data-scene="7"]::after {
+  background:
+    radial-gradient(70% 62% at 50% 52%, rgba(4, 9, 7, 0.72), rgba(4, 9, 7, 0.2) 78%),
+    linear-gradient(180deg, rgba(4, 9, 7, 0.3), rgba(4, 9, 7, 0) 30%, rgba(4, 9, 7, 0.78));
+}
+
+.scene--soft::after,
+.scene--split::after {
+  background: linear-gradient(180deg, rgba(4, 9, 7, 0.3), rgba(4, 9, 7, 0.1) 40%, rgba(4, 9, 7, 0.7));
+}
+
+/* Todo texto en pantalla entra y sale con la misma respiración */
+.scene [data-in] {
+  opacity: 0;
+  transform: translateY(0.55em);
+  transition:
+    opacity 0.7s var(--ease-soft),
+    transform 1s var(--ease-out);
+}
+
+.scene [data-in].on {
+  opacity: 1;
+  transform: none;
+}
+
+.scene-ov {
+  position: absolute;
+  z-index: 2;
+  color: #fff;
+  text-shadow: 0 2px 22px rgba(0, 0, 0, 0.55);
+}
+
+.scene-ov--bl {
+  left: 6cqw;
+  right: 6cqw;
+  bottom: 17cqh;
+  display: grid;
+  gap: 1.1cqw;
+  justify-items: start;
+}
+
+.scene-ov--tl {
+  top: 13cqh;
+  left: 6cqw;
+  right: 6cqw;
+}
+
+.scene-ov--center {
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 2.4cqw;
+  padding: 8cqh 7cqw 12cqh;
+  text-align: center;
+}
+
+.scene-ov--low {
+  place-content: end center;
+  padding-bottom: 20cqh;
+}
+
+.scene-ov--panel {
+  inset: 0 0 0 50%;
+  display: grid;
+  align-content: center;
+  gap: 2.3cqw;
+  padding: 7cqh 5cqw 13cqh 7cqw;
+  background: linear-gradient(90deg, rgba(6, 15, 12, 0), rgba(6, 15, 12, 0.9) 24%);
+}
+
+.ov-caps {
+  font-size: 2.15cqw;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.ov-caps--gold {
+  color: var(--gold-300);
+}
+
+.ov-caps--sm {
+  font-size: 1.5cqw;
+  letter-spacing: 0.18em;
+}
+
+.ov-caps i {
+  margin-inline: 0.35em;
+  font-style: normal;
+  color: var(--gold-300);
+}
+
+.ov-lines {
+  position: absolute;
+  z-index: 1;
+  inset: 34% 0 auto 0;
+  width: 100%;
+  height: 26%;
+  overflow: visible;
+}
+
+.ov-lines path {
+  fill: none;
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+  stroke-linecap: round;
+  stroke-dasharray: 1100;
+  stroke-dashoffset: 1100;
+  transition: stroke-dashoffset 2.6s var(--ease-in-out);
+}
+
+.ov-lines path:nth-child(1) { stroke: rgba(255, 253, 248, 0.92); }
+.ov-lines path:nth-child(2) { stroke: var(--gold-300); transition-delay: 0.25s; }
+.ov-lines path:nth-child(3) { stroke: var(--earth-300); transition-delay: 0.5s; }
+
+.ov-lines.on path {
+  stroke-dashoffset: 0;
+}
+
+.ov-lines[data-in] {
+  transform: none;
+}
+
+.ov-figure {
+  display: grid;
+  gap: 0.6cqw;
+}
+
+.ov-figure-pre,
+.ov-figure-post {
+  font-size: 1.7cqw;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.ov-figure-pre {
+  color: var(--gold-300);
+}
+
+.ov-figure-num {
+  font-size: 13cqw;
+  font-weight: 600;
+  line-height: 0.88;
+  letter-spacing: -0.045em;
+  font-variant-numeric: tabular-nums;
+}
+
+.ov-source {
+  position: absolute;
+  z-index: 2;
+  right: 4cqw;
+  bottom: 17cqh;
+  font-family: var(--font-mono);
+  font-size: 1.15cqw;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.ov-quote {
+  font-family: var(--font-display);
+  font-size: 6.2cqw;
+  font-weight: 340;
+  line-height: 1.02;
+  letter-spacing: -0.028em;
+}
+
+.ov-quote span {
+  display: block;
+}
+
+.ov-quote em,
+.ov-call em {
+  font-style: italic;
+  color: var(--gold-300);
+}
+
+.ov-stamp {
+  position: absolute;
+  z-index: 2;
+  top: 13cqh;
+  right: 5cqw;
+  padding: 0.85cqw 1.5cqw;
+  border: 1.5px solid var(--gold-300);
+  border-radius: 0.5cqw;
+  background: rgba(6, 15, 12, 0.5);
+  font-family: var(--font-mono);
+  font-size: 1.25cqw;
+  font-weight: 500;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+  color: var(--gold-200);
+}
+
+.ov-stamp--inline {
+  position: static;
+  margin-top: 1cqw;
+}
+
+.ov-tools {
+  font-family: var(--font-mono);
+  font-size: 1.3cqw;
+  letter-spacing: 0.09em;
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.ov-sum {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4em 0.55em;
+  font-size: 2.35cqw;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.ov-sum i {
+  font-style: normal;
+  color: var(--gold-300);
+}
+
+.ov-chain {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1.2cqw 0;
+  font-size: 2.5cqw;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.ov-chain li {
+  display: inline-flex;
+  align-items: center;
+}
+
+.ov-chain li + li::before {
+  content: "";
+  width: 0.5em;
+  height: 0.5em;
+  margin-inline: 0.9em 1.1em;
+  border-top: 2px solid var(--gold-300);
+  border-right: 2px solid var(--gold-300);
+  transform: rotate(45deg);
+}
+
+.ov-result {
+  font-family: var(--font-display);
+  font-size: 4.6cqw;
+  font-style: italic;
+  font-weight: 340;
+  letter-spacing: -0.02em;
+  color: var(--gold-300);
+}
+
+.ov-year {
+  font-family: var(--font-mono);
+  font-size: 1.4cqw;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-300);
+}
+
+.ov-goal {
+  display: grid;
+  gap: 0.3cqw;
+}
+
+.ov-goal b {
+  font-size: 5.3cqw;
+  font-weight: 600;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+.ov-goal span {
+  font-size: 1.45cqw;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.ov-goal small {
+  font-family: var(--font-mono);
+  font-size: 1.2cqw;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.ov-ods {
+  justify-self: start;
+  padding: 0.5cqw 1.1cqw;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 99px;
+  font-family: var(--font-mono);
+  font-size: 1.2cqw;
+  letter-spacing: 0.12em;
+}
+
+.ov-foot {
+  font-family: var(--font-mono);
+  font-size: 1.1cqw;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.ov-invest {
+  display: grid;
+  gap: 0.5cqw;
+}
+
+.ov-invest span {
+  font-size: 1.6cqw;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold-300);
+}
+
+.ov-invest b {
+  font-size: 7.4cqw;
+  font-weight: 600;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+.ov-actors {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8cqw;
+}
+
+.ov-actors li {
+  padding: 0.6cqw 1.3cqw;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 99px;
+  background: rgba(6, 15, 12, 0.35);
+  font-size: 1.3cqw;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.ov-call {
+  display: grid;
+  gap: 2cqw;
+  font-family: var(--font-display);
+  font-size: 5.5cqw;
+  font-weight: 340;
+  line-height: 1.02;
+  letter-spacing: -0.028em;
+}
+
+.ov-call small {
+  font-family: var(--font-text);
+  font-size: 1.65cqw;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+/* --- Subtítulos y cierre --------------------------------------------------- */
+.captions {
+  position: absolute;
+  z-index: 6;
+  left: 50%;
+  bottom: 3.9rem;
+  width: max-content;
+  max-width: min(86%, 48rem);
+  padding: 0.3em 0.75em 0.38em;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.78);
+  font-size: clamp(0.92rem, 0.72rem + 0.62vw, 1.35rem);
+  font-weight: 500;
+  line-height: 1.35;
+  text-align: center;
+  text-wrap: balance;
+  color: #fff;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.player.is-cinema .captions {
+  font-size: clamp(0.95rem, 0.7rem + 0.95vw, 1.7rem);
+}
+
+/* Entre frases queda vacío: conserva su sitio sin verse */
+.captions:empty {
+  visibility: hidden;
+}
+
+.player[data-state="idle"] .captions,
+.player[data-state="soon"] .captions,
+.player[data-state="ended"] .captions {
+  display: none;
+}
+
+/* En un marco angosto el subtítulo taparía los textos de la escena: baja
+   debajo del marco y reserva dos renglones para que nada salte al cambiar. */
+@media (max-width: 699px) {
+  .captions,
+  .player.is-cinema .captions {
+    position: static;
+    display: grid;
+    place-items: center;
+    width: auto;
+    max-width: none;
+    min-height: 3.4em;
+    margin-top: 0.6rem;
+    font-size: 0.95rem;
+    transform: none;
+  }
+}
+
+.frame-end {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: clamp(1rem, 3cqw, 2rem);
+  padding: 6cqw;
+  background: rgba(6, 15, 12, 0.74);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  text-align: center;
+  animation: fade-in var(--dur-3) ease both;
+}
+
+.frame-end-title {
+  max-width: 16ch;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 5cqw, 4rem);
+  font-weight: 340;
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+  color: #fff;
+}
+
+.frame-end-title em {
+  font-style: italic;
+  color: var(--gold-300);
+}
+
+.frame-end-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* --- Controles -------------------------------------------------------------- */
+/* La capa de controles calca el marco (mismo ancho, misma proporción) y alinea
+   los botones a su borde inferior. No se ancla al envoltorio porque este
+   también contiene los subtítulos cuando bajan debajo del marco. */
+.controls {
+  position: absolute;
+  z-index: 5;
+  inset: 0 0 auto 0;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.15rem;
+  padding: 0 0.6rem 0.45rem;
+  border-radius: var(--radius-3);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 68%, rgba(0, 0, 0, 0.78));
+  color: #fff;
+  /* Deja pasar los clics al marco (pausar, doble clic); solo los botones los reciben */
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  transition:
+    opacity var(--dur-2) ease,
+    transform var(--dur-2) var(--ease-out),
+    visibility 0s linear var(--dur-2);
+}
+
+.player.is-ui .controls,
+.controls:has(:focus-visible) {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition-delay: 0s;
+}
+
+/* Antes de empezar manda la portada; al terminar, el cierre */
+.player[data-state="idle"] .controls,
+.player[data-state="soon"] .controls,
+.player[data-state="ended"] .controls {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.player[data-state="playing"]:not(.is-ui) .frame {
+  cursor: none;
+}
+
+.controls > * {
+  pointer-events: auto;
+}
+
+.ctl-time {
+  align-self: flex-end;
+  line-height: 40px;
+}
+
+.ctl {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: #fff;
+  transition: background-color var(--dur-1) ease;
+}
+
+/* Con subtítulos, los textos del pie de la escena suben para no quedar debajo */
+.player.has-cc .scene-ov--bl {
+  bottom: 31cqh;
+}
+
+.player.has-cc .ov-source {
+  display: none;
+}
+
+.ctl:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.ctl:focus-visible {
+  outline-color: #fff;
+  outline-offset: -2px;
+}
+
+.ctl svg {
+  width: 21px;
+  height: 21px;
+}
+
+.ctl[aria-pressed="true"]:not(#ctlMute):not(#ctlCinema) {
+  color: var(--gold-300);
+}
+
+.ico-pause,
+.ico-muted,
+.ico-collapse {
+  display: none;
+}
+
+.player[data-state="playing"] .ico-play,
+.player[data-state="loading"] .ico-play {
+  display: none;
+}
+
+.player[data-state="playing"] .ico-pause,
+.player[data-state="loading"] .ico-pause {
+  display: block;
+}
+
+#ctlMute[aria-pressed="true"] .ico-vol,
+#ctlCinema[aria-pressed="true"] .ico-expand {
+  display: none;
+}
+
+#ctlMute[aria-pressed="true"] .ico-muted,
+#ctlCinema[aria-pressed="true"] .ico-collapse {
+  display: block;
+}
+
+.ctl-time {
+  flex: none;
+  padding-inline: 0.35rem 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.ctl-time i {
+  margin-inline: 0.3em;
+  font-style: normal;
+  opacity: 0.5;
+}
+
+/* Barra de avance con la forma de onda real de la locución */
+.scrub {
+  --prog: 0%;
+  position: relative;
+  flex: 1;
+  min-width: 3rem;
+  height: 40px;
+}
+
+.scrub-wave {
+  position: absolute;
+  inset: 9px 0;
+  width: 100%;
+  height: calc(100% - 18px);
+}
+
+.scrub-wave .wave-base {
+  fill: rgba(255, 255, 255, 0.32);
+}
+
+.scrub-wave .wave-prog {
+  fill: var(--gold-400);
+  clip-path: inset(0 calc(100% - var(--prog)) 0 0);
+}
+
+.scrub-ticks span {
+  position: absolute;
+  top: 5px;
+  bottom: 5px;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.42);
+}
+
+.scrub::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  bottom: 3px;
+  left: var(--prog);
+  width: 2px;
+  margin-left: -1px;
+  border-radius: 1px;
+  background: #fff;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+}
+
+.scrub-input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.scrub:has(.scrub-input:focus-visible) {
+  outline: 2px solid #fff;
+  outline-offset: 1px;
+  border-radius: 4px;
+}
+
+/* --- Capítulos --------------------------------------------------------------- */
+.chapters {
+  min-width: 0;
+}
+
+.chapters-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.45rem;
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+}
+
+.transcript-open {
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  color: var(--gold-300);
+  border-bottom: 1px solid rgba(240, 199, 101, 0.45);
+  transition: border-color var(--dur-1) ease;
+}
+
+.transcript-open:hover {
+  border-bottom-color: var(--gold-300);
+}
+
+.chapters-list {
+  list-style: none;
+  padding: 2px;
+  margin: -2px;
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+  -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 3.5rem), transparent);
+  mask-image: linear-gradient(90deg, #000 calc(100% - 3.5rem), transparent);
+}
+
+.chapters-list.is-end {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 3.5rem);
+  mask-image: linear-gradient(90deg, transparent, #000 3.5rem);
+}
+
+.chapters-list::-webkit-scrollbar {
+  display: none;
+}
+
+.chapters-list li {
+  flex: none;
+  scroll-snap-align: start;
+}
+
+.chapter {
+  --cp: 0;
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.2rem 0.6rem;
+  align-content: start;
+  width: 10.2rem;
+  height: 100%;
+  padding: 0.6rem 0.75rem 0.7rem;
+  overflow: hidden;
+  border-radius: var(--radius-2);
+  border: 1px solid var(--line);
+  background: rgba(15, 36, 30, 0.6);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  text-align: left;
+  color: var(--text-soft);
+  transition:
+    border-color var(--dur-2) ease,
+    background-color var(--dur-2) ease,
+    color var(--dur-2) ease;
+}
+
+.chapter:hover {
+  border-color: var(--line-strong);
+  color: var(--text);
+}
+
+.chapter-n,
+.chapter-time {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+}
+
+.chapter-n {
+  color: var(--accent);
+}
+
+.chapter-time {
+  justify-self: end;
+  color: var(--text-mute);
+}
+
+.chapter-t {
+  grid-column: 1 / -1;
+  font-size: var(--step--1);
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.chapter::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 2px;
+  background: var(--gold-400);
+  transform: scaleX(var(--cp));
+  transform-origin: 0 50%;
+}
+
+.chapter.is-current {
+  border-color: rgba(229, 174, 66, 0.7);
+  background: rgba(229, 174, 66, 0.1);
+  color: var(--text);
+}
+
+.chapter.is-done {
+  --cp: 1;
+}
+
+.player[data-state="soon"] .chapter {
+  pointer-events: none;
+}
+
+.noscript-note {
+  font-size: var(--step--1);
+  color: var(--text-soft);
+}
+
+/* --- Modo cine ---------------------------------------------------------------
+   El reproductor pasa a ocupar la pantalla; su hueco en el héroe conserva el
+   alto (lo fija trailer.js) para que la página no se mueva debajo. */
+html.is-cinema {
+  overflow: hidden;
+}
+
+/* El escenario crea su propio contexto de apilamiento: en modo cine tiene que
+   subir entero por encima de la cabecera y del asistente */
+html.is-cinema .stage {
+  z-index: var(--z-overlay);
+}
+
+.player.is-cinema {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-overlay);
+  grid-template-rows: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(0.6rem, 1.6vh, 1.1rem);
+  padding: clamp(0.75rem, 2.4vh, 1.6rem) clamp(0.75rem, 3vw, 2.5rem);
+}
+
+.player.is-cinema .player-backdrop {
+  display: block;
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(120% 95% at 50% 38%, #0d2019 0%, #040907 62%, #020504 100%);
+  animation: fade-in var(--dur-3) ease both;
+}
+
+.player.is-cinema .frame-wrap {
+  width: min(100%, calc((100svh - 9.25rem) * 16 / 9));
+  max-width: none;
+  margin-inline: auto;
+}
+
+.player.is-cinema .frame-glow {
+  inset: -6%;
+  opacity: 0.5;
+}
+
+.player.is-cinema .chapters {
+  width: min(100%, calc((100svh - 9.25rem) * 16 / 9));
+  margin-inline: auto;
+}
+
+.player.is-cinema .chapters-head {
+  display: none;
+}
+
+@media (min-width: 1000px) {
+  .player.is-cinema .chapters-list {
+    display: grid;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    overflow: visible;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .player.is-cinema .chapter {
+    width: auto;
+  }
+}
+
+/* En horizontal bajo (celular acostado) los capítulos ceden todo el alto al marco */
+@media (max-height: 520px) {
+  .player.is-cinema .chapters {
+    display: none;
+  }
+
+  .player.is-cinema .frame-wrap {
+    width: min(100%, calc((100svh - 1.5rem) * 16 / 9));
+  }
+}
+
+.player:fullscreen {
+  background: #020504;
+}
+
+/* --- Transcripción (diálogo) ------------------------------------------------ */
+.transcript {
+  width: min(44rem, calc(100vw - 2rem));
+  max-height: min(84svh, 46rem);
+  margin: auto;
+  padding: 0;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-3);
+  background: var(--green-900);
+  color: var(--text);
+  box-shadow: 0 40px 100px -30px #000;
+  overflow: hidden;
+}
+
+.transcript[open] {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  animation: dialog-in var(--dur-3) var(--ease-out) both;
+}
+
+.transcript::backdrop {
+  background: rgba(3, 8, 6, 0.74);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+@keyframes dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.transcript-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem 1.1rem 1.1rem 1.6rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.transcript-head h2 {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  font-weight: 400;
+  letter-spacing: -0.012em;
+}
+
+.transcript-head .ctl {
+  color: var(--text);
+}
+
+.transcript-body {
+  display: grid;
+  gap: 1.05rem;
+  padding: 1.4rem 1.6rem 1.8rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  color: var(--text-soft);
+}
+
+.transcript-body p:first-child {
+  color: var(--text);
+}
+
+.transcript-note {
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+  font-size: var(--step--1);
+  color: var(--text-mute);
+}
+
+/* --- Flecha de continuar ---------------------------------------------------- */
+.scroll-cue {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(0.5rem, 1.6vh, 1.1rem);
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 34px;
+  transform: translateX(-50%);
+}
+
+.scroll-cue span {
+  position: relative;
+  display: block;
+  width: 1px;
+  height: 26px;
+  overflow: hidden;
+  background: rgba(243, 234, 217, 0.2);
+}
+
+.scroll-cue span::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--gold-300);
+  animation: cue 2.4s var(--ease-in-out) infinite;
+}
+
+@keyframes cue {
+  0% {
+    transform: translateY(-100%);
+  }
+  55%,
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+/* --- Celular ----------------------------------------------------------------- */
+@media (max-width: 1099px) {
+  .stage {
+    align-items: start;
+    min-height: 0;
+    padding-bottom: clamp(2.5rem, 7vw, 4rem);
+  }
+
+  .frame-wrap {
+    max-width: 46rem;
+  }
+
+  .scroll-cue {
+    display: none;
+  }
+}
+
+@media (max-width: 599px) {
+  .stage-actions .btn {
+    flex: 1 1 auto;
+  }
+
+  .ctl {
+    width: 36px;
+    height: 36px;
+  }
+
+  #ctlFull {
+    display: none;
+  }
+
+  .ctl-time {
+    padding-inline: 0.15rem 0.35rem;
+    font-size: 0.7rem;
+  }
+
+  .controls {
+    gap: 0;
+    padding-inline: 0.3rem;
+  }
+
+  .chapter {
+    width: 9.2rem;
+  }
+
+  /* En el celular el aviso se queda en lo esencial */
+  .frame-badge span {
+    display: none;
+  }
+
+  .frame {
+    border-radius: var(--radius-2);
+  }
+
+  .controls {
+    border-radius: var(--radius-2);
+  }
+
+  .ctl-time {
+    line-height: 36px;
+  }
+}
+
+/* --- Marco pequeño (celular en vertical) -------------------------------------
+   Los textos de escena se miden contra el marco; por debajo de este ancho lo
+   más menudo dejaría de leerse: se agranda lo esencial y se retira lo demás. */
+@container (max-width: 560px) {
+  .ov-caps {
+    font-size: 3.5cqw;
+    letter-spacing: 0.1em;
+  }
+
+  .ov-caps--sm {
+    font-size: 2.7cqw;
+  }
+
+  .ov-figure-pre,
+  .ov-figure-post {
+    font-size: 2.8cqw;
+  }
+
+  .ov-figure-num {
+    font-size: 17cqw;
+  }
+
+  .ov-source,
+  .ov-foot,
+  .ov-tools {
+    display: none;
+  }
+
+  .ov-quote {
+    font-size: 7.6cqw;
+  }
+
+  .ov-stamp {
+    padding: 1.2cqw 2cqw;
+    font-size: 2.3cqw;
+  }
+
+  .ov-sum {
+    font-size: 3.3cqw;
+  }
+
+  .ov-chain {
+    font-size: 3.4cqw;
+  }
+
+  .ov-result {
+    font-size: 6.4cqw;
+  }
+
+  .ov-year {
+    font-size: 2.6cqw;
+  }
+
+  .ov-goal b {
+    font-size: 6cqw;
+  }
+
+  .ov-goal span {
+    font-size: 2.5cqw;
+  }
+
+  .ov-goal small,
+  .ov-ods {
+    font-size: 2.2cqw;
+  }
+
+  .ov-invest span {
+    font-size: 2.8cqw;
+  }
+
+  .ov-invest b {
+    font-size: 8.4cqw;
+  }
+
+  .ov-actors li {
+    padding: 1cqw 2cqw;
+    font-size: 2.3cqw;
+  }
+
+  .ov-call {
+    font-size: 7.4cqw;
+  }
+
+  .ov-call small {
+    font-size: 2.6cqw;
+    letter-spacing: 0.18em;
+  }
+
+  .scene-ov--bl,
+  .player.has-cc .scene-ov--bl {
+    bottom: 22cqh;
+  }
+
+  .scene-ov--center {
+    gap: 1.4cqw;
+    padding: 13cqh 5cqw 14cqh;
+  }
+
+  .scene-ov--panel {
+    inset: 0 0 0 42%;
+    gap: 1.2cqw;
+    padding: 13cqh 4cqw 19cqh 6cqw;
+  }
+
+  .ov-ods {
+    display: none;
+  }
+
+  .frame-end {
+    gap: 0.6rem;
+    padding: 3cqw;
+  }
+
+  .frame-end-title {
+    font-size: 5.6cqw;
+  }
+
+  .frame-end-actions {
+    flex-wrap: nowrap;
+  }
+
+  .frame-end .btn {
+    --btn-h: 38px;
+    padding-inline: 0.85rem;
+    font-size: 0.8rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene-img {
+    transform: scale(1.03);
+  }
+
+  .frame-glow,
+  .poster-play-ring,
+  .scroll-cue span::after {
+    animation: none;
+  }
+}
