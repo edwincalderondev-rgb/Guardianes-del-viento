@@ -70,6 +70,8 @@
   var sceneMap = [];
   var chapterEls = [];
   var prefs = readPrefs();
+  var badgeHtml = badge.innerHTML;
+  var badgeDirty = false;
 
   /* --- Utilidades --------------------------------------------------------- */
   function clamp(v, a, b) { return v < a ? a : v > b ? b : v; }
@@ -211,6 +213,11 @@
       }
     });
     media.addEventListener('playing', function () {
+      if (badgeDirty) {
+        badgeDirty = false;
+        badge.innerHTML = badgeHtml;
+        badge.hidden = !usePreview;
+      }
       setState('playing');
       startLoop();
       pokeUi();
@@ -241,7 +248,10 @@
       setState('idle');
       badge.hidden = false;
       badge.textContent = 'No fue posible cargar el tráiler. Revise la conexión e inténtelo de nuevo.';
-      media = null;
+      badgeDirty = true;
+      // El audio se vuelve a crear en el siguiente intento; el <video> es el mismo
+      // elemento del documento y se reutiliza (play() lo recarga si quedó en error)
+      if (!useVideo) media = null;
     });
     setupMediaSession();
     return media;
@@ -253,11 +263,15 @@
     if (typeof at === 'number') seek(at);
     else if (state === 'ended') seek(0);
     if (state === 'idle' || state === 'ended') setState('loading');
+    if (media.error) media.load();
     var p = media.play();
     if (p && typeof p.catch === 'function') {
       p.catch(function (err) {
         if (err && err.name === 'AbortError') return;
-        setState(media && media.currentTime > 0 ? 'paused' : 'idle');
+        var back = media && media.currentTime > 0 ? 'paused' : 'idle';
+        setState(back);
+        // Si no llegó a arrancar no hay nada que ver: no se deja a nadie encerrado en el modo cine
+        if (back === 'idle') exitCinema();
       });
     }
   }
@@ -388,28 +402,31 @@
   }
 
   /* --- Controles visibles solo mientras hay actividad ---------------------- */
+  function hideUi() {
+    uiTimer = 0;
+    if (state !== 'playing') return;
+    // Si alguien navega con teclado por los controles, no se le esconden: se
+    // vuelve a mirar más tarde, por si el foco ya salió
+    var a = doc.activeElement;
+    var keyboard = a && a !== doc.body && player.contains(a) && a.matches(':focus-visible');
+    if (keyboard) uiTimer = window.setTimeout(hideUi, UI_HIDE_MS);
+    else player.classList.remove('is-ui');
+  }
+
   function pokeUi() {
     player.classList.add('is-ui');
     window.clearTimeout(uiTimer);
-    if (state === 'playing') {
-      uiTimer = window.setTimeout(function () {
-        // Si alguien navega con teclado por los controles, no se le esconden
-        var a = doc.activeElement;
-        var keyboard = a && a !== doc.body && player.contains(a) && a.matches(':focus-visible');
-        if (!keyboard) player.classList.remove('is-ui');
-      }, UI_HIDE_MS);
-    }
+    uiTimer = state === 'playing' ? window.setTimeout(hideUi, UI_HIDE_MS) : 0;
   }
 
   function syncMute() {
     var muted = media ? media.muted || media.volume === 0 : prefs.muted;
+    // Nombre fijo + aria-pressed: un lector anuncia «Silenciar, presionado», sin contradicción
     ctlMute.setAttribute('aria-pressed', String(muted));
-    ctlMute.setAttribute('aria-label', muted ? 'Activar el sonido' : 'Silenciar');
   }
 
   function syncCc() {
     ctlCc.setAttribute('aria-pressed', String(prefs.cc));
-    ctlCc.setAttribute('aria-label', prefs.cc ? 'Ocultar los subtítulos' : 'Mostrar los subtítulos');
     player.classList.toggle('has-cc', prefs.cc && cues.length > 0);
     ctlCc.hidden = !cues.length;
   }
@@ -434,6 +451,29 @@
     );
   }
 
+  /* En modo cine el reproductor es un diálogo modal: el resto de la página queda
+     inerte, también para el cursor de un lector de pantalla. */
+  var inertNodes = [];
+
+  function setModal(on) {
+    if (on) {
+      player.setAttribute('role', 'dialog');
+      player.setAttribute('aria-modal', 'true');
+      var nodes = [byId('siteHeader'), byId('menu'), doc.querySelector('.site-footer'), byId('alisio'),
+        stage.querySelector('.stage-copy'), stage.querySelector('.scroll-cue')];
+      Array.prototype.forEach.call(doc.querySelectorAll('main > *'), function (el) {
+        if (el !== stage) nodes.push(el);
+      });
+      inertNodes = nodes.filter(function (el) { return el && !el.hasAttribute('inert'); });
+      inertNodes.forEach(function (el) { el.setAttribute('inert', ''); });
+    } else {
+      player.setAttribute('role', 'region');
+      player.removeAttribute('aria-modal');
+      inertNodes.forEach(function (el) { el.removeAttribute('inert'); });
+      inertNodes = [];
+    }
+  }
+
   function enterCinema() {
     if (isCinema()) return;
     lastFocus = doc.activeElement;
@@ -443,7 +483,7 @@
     player.classList.add('is-cinema');
     root.classList.add('is-cinema');
     ctlCinema.setAttribute('aria-pressed', 'true');
-    ctlCinema.setAttribute('aria-label', 'Salir del modo cine');
+    setModal(true);
     if (stageInView) flip(first);
     ctlPlay.focus({ preventScroll: true });
     updateNowPlaying();
@@ -458,7 +498,8 @@
     root.classList.remove('is-cinema');
     slot.style.height = '';
     ctlCinema.setAttribute('aria-pressed', 'false');
-    ctlCinema.setAttribute('aria-label', 'Modo cine');
+    // Antes de devolver el foco: quien lo recibe puede estar en una zona que quedó inerte
+    setModal(false);
     // Solo se anima la vuelta si el héroe está a la vista; si no, el marco «volaría» desde fuera
     if (stageInView) flip(first);
     // El foco vuelve a quien abrió el modo cine; si ya no está a la vista (la portada
@@ -522,10 +563,10 @@
       });
       navigator.mediaSession.setActionHandler('play', function () { play(); });
       navigator.mediaSession.setActionHandler('pause', pause);
-      navigator.mediaSession.setActionHandler('seekbackward', function () { seek(media.currentTime - SEEK_STEP); });
-      navigator.mediaSession.setActionHandler('seekforward', function () { seek(media.currentTime + SEEK_STEP); });
-      navigator.mediaSession.setActionHandler('previoustrack', function () { seek(scenes[Math.max(0, current - 1)].start); });
-      navigator.mediaSession.setActionHandler('nexttrack', function () { seek(scenes[Math.min(scenes.length - 1, current + 1)].start); });
+      navigator.mediaSession.setActionHandler('seekbackward', function () { if (media) seek(media.currentTime - SEEK_STEP); });
+      navigator.mediaSession.setActionHandler('seekforward', function () { if (media) seek(media.currentTime + SEEK_STEP); });
+      navigator.mediaSession.setActionHandler('previoustrack', function () { if (media) seek(scenes[Math.max(0, current - 1)].start); });
+      navigator.mediaSession.setActionHandler('nexttrack', function () { if (media) seek(scenes[Math.min(scenes.length - 1, current + 1)].start); });
     } catch (e) { /* acción no admitida por este navegador */ }
   }
 
@@ -536,10 +577,9 @@
     if (!isCinema() && !inside) return;
     var tag = e.target.tagName;
     if (tag === 'TEXTAREA' || (tag === 'INPUT' && e.target !== scrubInput)) return;
-    if (state === 'idle' || state === 'soon') return;
-
     var key = e.key;
     var onButton = tag === 'BUTTON' || tag === 'A';
+    // Escape va primero: tiene que sacar del modo cine aunque el tráiler no haya arrancado
     if (key === 'Escape') {
       if (isCinema() && !doc.fullscreenElement) {
         e.preventDefault();
@@ -547,6 +587,7 @@
       }
       return;
     }
+    if (state === 'idle' || state === 'soon') return;
     if ((key === ' ' || key === 'Enter') && onButton) return;
 
     var handled = true;
@@ -596,11 +637,18 @@
       if (e.target.closest('[data-trailer-exit]')) exitCinema();
     });
 
+    // En táctil el primer toque solo muestra los controles. Hay que mirar si estaban
+    // ocultos ANTES de que el propio toque los muestre: por eso este oyente va en fase
+    // de captura (corre antes que el pokeUi del reproductor) y el clic solo lo consulta.
+    var uiWasHidden = false;
+    frame.addEventListener('pointerdown', function (e) {
+      uiWasHidden = e.pointerType === 'touch' && state === 'playing' && !player.classList.contains('is-ui');
+    }, true);
     frame.addEventListener('click', function (e) {
       if (state === 'idle' || state === 'soon' || state === 'ended') return;
       if (e.target.closest('button, a, input')) return;
-      // En táctil el primer toque solo muestra los controles
-      if (e.pointerType === 'touch' && state === 'playing' && !player.classList.contains('is-ui')) {
+      if (uiWasHidden) {
+        uiWasHidden = false;
         pokeUi();
         return;
       }

@@ -882,7 +882,15 @@
     visibility 0s linear var(--dur-2);
 }
 
-.player.is-ui .controls,
+.player.is-ui .controls {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition-delay: 0s;
+}
+
+/* Aparte a propósito: un navegador sin :has() descarta la regla ENTERA que lo
+   contiene, y si compartiera lista con la de arriba los controles no saldrían nunca */
 .controls:has(:focus-visible) {
   opacity: 1;
   visibility: visible;

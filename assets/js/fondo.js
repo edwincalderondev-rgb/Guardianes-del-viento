@@ -13,6 +13,7 @@
    no competir con ellos.
 
    API pública: window.Fondo = { supported, running, start(), stop(), set() }
+   set({ intensity, tint, calm, still, adaptive }); still: true deja un cuadro fijo.
    ========================================================================== */
 (function () {
   'use strict';
@@ -276,6 +277,7 @@
   var contextLost = false;
   var reduced = false;      // prefers-reduced-motion
   var frozen = false;       // el gobernador dejó un cuadro fijo
+  var still = false;        // la persona pulsó «Pausar animaciones»
   var adaptive = true;
   var darkVisible = true;
   var rafId = 0;
@@ -796,7 +798,7 @@
     if (!supported || contextLost) return;
     if (!rafId) {
       settle();
-      if (trailsStale && (reduced || frozen)) prewarm();
+      if (trailsStale && (reduced || frozen || still)) prewarm();
     }
     draw();
   }
@@ -857,7 +859,7 @@
 
   /* Único punto que decide si el bucle corre. */
   function sync() {
-    var shouldRun = active && supported && !contextLost && !reduced && !frozen && darkVisible && !document.hidden;
+    var shouldRun = active && supported && !contextLost && !reduced && !frozen && !still && darkVisible && !document.hidden;
     if (shouldRun && !rafId) {
       resumed = true;
       paceTime = 0;
@@ -869,7 +871,7 @@
       window.cancelAnimationFrame(rafId);
       rafId = 0;
       // Lo que queda a la vista es un cuadro fijo: que tenga sus estelas completas
-      if ((reduced || frozen) && supported && !contextLost) {
+      if ((reduced || frozen || still) && supported && !contextLost) {
         trailsStale = true;
         paint();
       }
@@ -1042,6 +1044,10 @@
     if (isNumber(options.intensity)) intensityTarget = clamp(options.intensity, 0, 1);
     if (isNumber(options.tint)) tintTarget = clamp(options.tint, -1, 1);
     if (typeof options.calm === 'boolean') speedTarget = options.calm ? CALM_SPEED : 1;
+    if (typeof options.still === 'boolean' && options.still !== still) {
+      still = options.still;
+      sync();
+    }
     if (typeof options.adaptive === 'boolean') {
       adaptive = options.adaptive;
       if (!adaptive && (frozen || quality > 0)) {

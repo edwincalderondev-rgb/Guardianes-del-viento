@@ -1362,8 +1362,9 @@
   border-color: color-mix(in srgb, var(--alert) 34%, transparent);
 }
 
+/* Tierra oscura: sobre el fondo de aviso, el tono normal de alerta no llega a 4,5:1 */
 .twin-card--limit h3 {
-  color: var(--alert);
+  color: var(--earth-700);
 }
 
 .choice {

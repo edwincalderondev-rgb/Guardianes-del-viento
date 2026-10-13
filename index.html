@@ -43,6 +43,8 @@
   // Marca que hay JavaScript y, si el script principal no llega a cargar, deja todo el contenido a la vista
   document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
   setTimeout(function () { if (!window.__gvReady) document.documentElement.classList.add('no-reveal'); }, 4000);
+  // «Pausar animaciones» se recuerda: se aplica antes de pintar para que nada llegue a moverse
+  try { if (localStorage.getItem('gv-motion') === 'off') document.documentElement.classList.add('is-still'); } catch (e) {}
 </script>
 </head>
 
@@ -71,6 +73,7 @@
   <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-limit" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 7.8v5M12 16.2v.1" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
   <symbol id="i-chat" viewBox="0 0 24 24"><path d="M5 5.5h14a1.5 1.5 0 0 1 1.5 1.5v8.5A1.5 1.5 0 0 1 19 17h-6.5L8 20.5V17H5a1.5 1.5 0 0 1-1.5-1.5V7A1.5 1.5 0 0 1 5 5.5Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-motion" viewBox="0 0 24 24"><path d="M3 7.5c3-2.4 5.5-2.4 8.5 0s5.5 2.4 8.5 0M3 12.5c3-2.4 5.5-2.4 8.5 0s5.5 2.4 8.5 0M3 17.5c3-2.4 5.5-2.4 8.5 0s5.5 2.4 8.5 0" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
   <symbol id="i-mark" viewBox="0 0 32 32"><path d="M3 8.5c8.5 0 9.5 7.5 18 7.5h8M3 16h26M3 23.5c8.5 0 9.5-7.5 18-7.5" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></symbol>
 </svg>
 
@@ -95,6 +98,9 @@
       <button class="now-playing" id="nowPlaying" type="button" hidden>
         <span class="now-playing-bars" aria-hidden="true"><i></i><i></i><i></i></span>
         <span class="now-playing-text">Tráiler en curso</span>
+      </button>
+      <button class="motion-toggle" type="button" data-motion-toggle aria-label="Pausar animaciones" title="Pausar animaciones">
+        <svg aria-hidden="true"><use href="#i-motion"/></svg>
       </button>
       <a class="btn btn--gold btn--sm header-cta" href="#trailer" data-trailer-play>
         <svg aria-hidden="true"><use href="#i-play"/></svg>
@@ -124,6 +130,10 @@
       <li><a href="#preguntas"><span>10</span>Preguntas</a></li>
     </ol>
   </nav>
+  <button class="motion-text" type="button" data-motion-toggle>
+    <svg aria-hidden="true"><use href="#i-motion"/></svg><i aria-hidden="true"></i>
+    <span class="motion-label">Pausar animaciones</span>
+  </button>
 </div>
 
 <main id="contenido">
@@ -385,7 +395,7 @@
       </nav>
 
       <noscript>
-        <p class="noscript-note">Para ver la previsualización del tráiler active JavaScript. La locución está disponible aquí:</p>
+        <p class="noscript-note">Para ver la previsualización del tráiler active JavaScript. Aquí está la locución; su transcripción completa queda al final de la página.</p>
         <audio controls preload="none" src="assets/audio/narracion.m4a"></audio>
       </noscript>
     </div>
@@ -1311,7 +1321,7 @@
             <svg aria-hidden="true"><use href="#i-chat"/></svg>
             <span>Conversar con Alisio</span>
           </button>
-          <p class="ask-hint">Sin inteligencia artificial generativa: cada respuesta sale del documento de preguntas técnicas del proyecto.</p>
+          <p class="ask-hint">Sin inteligencia artificial generativa: cada respuesta sale del informe del proyecto, del guion del tráiler y de su documento de preguntas técnicas.</p>
         </div>
       </div>
     </div>
@@ -1555,6 +1565,10 @@
         <span class="brand-name">Guardianes <span>del Viento</span></span>
       </a>
       <p class="footer-meta">Tesis de maestría · La Guajira, Colombia · 2026</p>
+      <button class="motion-text" type="button" data-motion-toggle>
+        <svg aria-hidden="true"><use href="#i-motion"/></svg><i aria-hidden="true"></i>
+        <span class="motion-label">Pausar animaciones</span>
+      </button>
       <a class="to-top" href="#trailer">Volver arriba <svg aria-hidden="true"><use href="#i-down"/></svg></a>
     </div>
   </div>

@@ -180,9 +180,13 @@ html.is-locked {
    y lo dejan ver; las claras son opacas y lo tapan. */
 #fondo {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 100%;
+  /* Alto del viewport más grande: en el celular la barra del navegador aparece y
+     desaparece, y un lienzo que cambiara de tamaño con ella borraría las estelas */
+  height: 100vh;
+  height: 100lvh;
   z-index: var(--z-fondo);
   pointer-events: none;
 }
@@ -908,6 +912,7 @@ html.no-js #fondo {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  min-height: 44px;
   margin-left: auto;
   font-size: var(--step--1);
   font-weight: 500;
@@ -930,9 +935,176 @@ html.no-js #fondo {
   transform: rotate(180deg) translateY(3px);
 }
 
+/* --- Pausar animaciones ----------------------------------------------------
+   Tres botones para el mismo interruptor: cabecera (escritorio), menú (celular)
+   y pie. La clase is-still en <html> detiene lo que se mueve solo. */
+.motion-toggle {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(243, 234, 217, 0.22);
+  color: rgba(243, 234, 217, 0.8);
+  transition:
+    border-color var(--dur-1) ease,
+    color var(--dur-1) ease;
+}
+
+.motion-toggle:hover {
+  border-color: rgba(243, 234, 217, 0.55);
+  color: #f3ead9;
+}
+
+.motion-toggle svg,
+.motion-text svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Pausado: una raya cruza el icono */
+.motion-toggle.is-on::after,
+.motion-text.is-on svg + i {
+  content: "";
+  position: absolute;
+  width: 22px;
+  height: 1.6px;
+  border-radius: 2px;
+  background: currentColor;
+  transform: rotate(-45deg);
+}
+
+.motion-toggle.is-on {
+  border-color: rgba(229, 174, 66, 0.6);
+  color: var(--gold-300);
+}
+
+.motion-text {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 44px;
+  font-size: var(--step--1);
+  font-weight: 500;
+  color: var(--text-soft);
+  transition: color var(--dur-1) ease;
+}
+
+.motion-text:hover,
+.motion-text.is-on {
+  color: var(--gold-300);
+}
+
+.motion-text i {
+  position: absolute;
+  left: -2px;
+}
+
+.menu .motion-text {
+  margin-top: 1.5rem;
+}
+
+html.is-still .al-rotor,
+html.is-still .al-rotor-boost,
+html.is-still .ask-rotor,
+html.is-still .poster-play-ring,
+html.is-still .frame-glow,
+html.is-still .now-playing-bars i,
+html.is-still .scroll-cue span::after {
+  animation: none !important;
+}
+
+/* --- Sin JavaScript ----------------------------------------------------------
+   Todo el contenido queda a la vista y se retira lo que solo funciona con
+   script, para no dejar botones que no hacen nada. */
+.no-js .menu-toggle,
+.no-js .header-cta,
+.no-js [data-motion-toggle],
+.no-js [data-trailer-play],
+.no-js [data-alisio-ask],
+.no-js .chapters,
+.no-js .versions,
+.no-js .sens-tabs,
+.no-js #transcriptClose,
+.no-js .sens-body,
+.no-js .functions-tabs,
+.no-js #transcriptOpen {
+  display: none !important;
+}
+
+.no-js .site-nav {
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.no-js .fn-panel[hidden] {
+  display: grid !important;
+}
+
+.no-js .functions-panels {
+  gap: 2.5rem;
+}
+
+/* Sin las pestañas, los cinco paneles ocupan todo el ancho de la tarjeta */
+.no-js .functions {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* La cabecera no puede volverse opaca al bajar (eso lo hace el script): se queda
+   arriba, sobre el escenario oscuro, en vez de flotar ilegible sobre lo claro */
+.no-js .site-header {
+  position: absolute;
+}
+
+.no-js .fn-panel h3 {
+  font-size: var(--step-3);
+}
+
+/* La tabla equivalente del análisis de sensibilidad pasa a ser la vista */
+.no-js .sens .visually-hidden {
+  position: static !important;
+  width: auto;
+  height: auto;
+  margin: 1.25rem 0 0;
+  overflow: visible;
+  clip-path: none;
+  white-space: normal;
+  font-size: var(--step--1);
+}
+
+.no-js .sens table th,
+.no-js .sens table td {
+  padding: 0.45rem 0.5rem 0.45rem 0;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+
+/* La transcripción del tráiler queda como un bloque más de la página */
+.no-js dialog.transcript {
+  position: static;
+  display: block;
+  width: min(44rem, calc(100% - 2rem));
+  max-height: none;
+  margin: 3rem auto;
+  z-index: var(--z-content);
+}
+
+.no-js .frame-glow,
+.no-js .poster-play-ring {
+  animation: none;
+}
+
 /* --- Ajustes por ancho --------------------------------------------------- */
 @media (max-width: 1099px) {
   .site-nav {
+    display: none;
+  }
+
+  .header-actions .motion-toggle {
     display: none;
   }
 
@@ -965,6 +1137,22 @@ html.no-js #fondo {
 
   .brand-name {
     font-size: 1.02rem;
+  }
+}
+
+/* En los celulares más angostos no cabe el botón del tráiler junto al menú:
+   el del héroe sigue a la vista */
+@media (max-width: 359px) {
+  .header-cta {
+    display: none;
+  }
+}
+
+/* El lanzador del asistente flota abajo a la derecha: el pie le deja sitio para
+   que no tape «Volver arriba» */
+@media (max-width: 759px) {
+  .site-footer {
+    padding-bottom: calc(2.25rem + 76px + env(safe-area-inset-bottom, 0px));
   }
 }
 

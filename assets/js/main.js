@@ -17,6 +17,8 @@
   var $ = function (sel, ctx) { return (ctx || doc).querySelector(sel); };
   var $$ = function (sel, ctx) { return Array.prototype.slice.call((ctx || doc).querySelectorAll(sel)); };
   var clamp = function (v, a, b) { return v < a ? a : v > b ? b : v; };
+  // Sin movimiento: lo pide el sistema o lo pidió la persona con «Pausar animaciones»
+  var calm = function () { return reduceMotion.matches || root.classList.contains('is-still'); };
   var easeOut = function (k) { return 1 - Math.pow(1 - k, 3); };
 
   /* ------------------------------------------------------------------------
@@ -48,7 +50,7 @@
     }
     lastY = y;
 
-    if (!reduceMotion.matches) {
+    if (!calm()) {
       var vh = window.innerHeight;
       for (var i = 0; i < parallaxEls.length; i++) {
         var p = parallaxEls[i];
@@ -124,7 +126,7 @@
   var menuToggle = $('#menuToggle');
 
   if (menu && menuToggle) {
-    var menuLinks = $$('a', menu);
+    var menuLinks = $$('a, button', menu);
     var label = $('.visually-hidden', menuToggle);
     $$('li', menu).forEach(function (li, i) { li.style.setProperty('--n', i); });
 
@@ -205,7 +207,7 @@
         var el = en.target;
         revealIO.unobserve(el);
         el.classList.add('is-in');
-        if (!reduceMotion.matches) $$('[data-count]', el).forEach(countUp);
+        if (!calm()) $$('[data-count]', el).forEach(countUp);
       });
     }, { rootMargin: '0px 0px -10% 0px', threshold: 0 });
     revealEls.forEach(function (el) { revealIO.observe(el); });
@@ -234,6 +236,7 @@
       'Con participación comunitaria, protocolos técnicos y validación independiente, las versiones se acercan.',
       'Una misma evidencia, reconocida por las partes, permite actuar antes y decidir con menor incertidumbre.',
     ];
+    var SHORT = ['versiones distintas', 'las versiones se acercan', 'una misma evidencia'];
     var t = 0;
     var stateIndex = -1;
     var visible = false;
@@ -269,12 +272,13 @@
         stateIndex = idx;
         stateEl.textContent = STATES[idx];
       }
-      range.setAttribute('aria-valuetext', range.value + ' por ciento. ' + STATES[idx]);
+      // Corto: la frase completa la anuncia la región viva solo al cambiar de tramo
+      range.setAttribute('aria-valuetext', range.value + ' %, ' + SHORT[idx]);
     }
 
     function loop(now) {
       draw(now / 1000);
-      raf = visible && !reduceMotion.matches ? window.requestAnimationFrame(loop) : 0;
+      raf = visible && !calm() ? window.requestAnimationFrame(loop) : 0;
     }
 
     function wake() {
@@ -292,9 +296,12 @@
     if (hasIO) {
       new IntersectionObserver(function (entries) {
         visible = entries[0].isIntersecting;
-        if (visible && !reduceMotion.matches) wake();
+        if (visible && !calm()) wake();
       }, { rootMargin: '10% 0px 10% 0px' }).observe(fig);
     }
+    doc.addEventListener('motion:change', function () {
+      if (visible && !calm()) wake();
+    });
   })();
 
   /* ------------------------------------------------------------------------
@@ -399,7 +406,7 @@
     var links = $$('#gallery a[data-lightbox]');
     if (!links.length) return;
 
-    var box, img, caption, count, index = 0, opener = null, startX = null;
+    var box, img, caption, count, index = 0, opener = null, startX = null, closeTimer = 0;
 
     function icon(name) {
       return '<svg aria-hidden="true"><use href="#' + name + '"/></svg>';
@@ -477,6 +484,8 @@
 
     function open(i, from) {
       if (!box) build();
+      // Un cierre a medio terminar no puede ocultar el visor que se acaba de reabrir
+      window.clearTimeout(closeTimer);
       opener = from;
       box.hidden = false;
       void box.offsetWidth;
@@ -489,7 +498,9 @@
     function close() {
       box.classList.remove('is-open');
       root.classList.remove('is-locked');
-      window.setTimeout(function () { box.hidden = true; }, reduceMotion.matches ? 0 : 320);
+      closeTimer = window.setTimeout(function () {
+        if (!box.classList.contains('is-open')) box.hidden = true;
+      }, reduceMotion.matches ? 0 : 320);
       if (opener) opener.focus({ preventScroll: true });
     }
 
@@ -500,6 +511,41 @@
         e.preventDefault();
         open(i, link);
       });
+    });
+  })();
+
+  /* ------------------------------------------------------------------------
+     «Pausar animaciones»: detiene todo lo que se mueve solo (fondo, rotor,
+     figuras) y lo recuerda. Es el control que pide WCAG 2.2.2 para el movimiento
+     que arranca sin que nadie lo pida; el tráiler tiene su propia pausa.
+     --------------------------------------------------------------------- */
+  (function motion() {
+    var KEY = 'gv-motion';
+    var buttons = $$('[data-motion-toggle]');
+
+    function apply(still, remember) {
+      root.classList.toggle('is-still', still);
+      var label = still ? 'Reanudar animaciones' : 'Pausar animaciones';
+      buttons.forEach(function (btn) {
+        var text = $('.motion-label', btn);
+        if (text) text.textContent = label;
+        else {
+          btn.setAttribute('aria-label', label);
+          btn.title = label;
+        }
+        btn.classList.toggle('is-on', still);
+      });
+      if (window.Fondo && window.Fondo.set) window.Fondo.set({ still: still });
+      if (remember) {
+        try { window.localStorage.setItem(KEY, still ? 'off' : 'on'); } catch (e) { /* sin almacenamiento */ }
+      }
+      doc.dispatchEvent(new CustomEvent('motion:change', { detail: { still: still } }));
+    }
+
+    // La clase ya viene puesta desde el <head> si la persona lo había pedido antes
+    apply(root.classList.contains('is-still'), false);
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () { apply(!root.classList.contains('is-still'), true); });
     });
   })();
 
