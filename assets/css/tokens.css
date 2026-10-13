@@ -112,7 +112,7 @@
   --section-y: clamp(4rem, 2.5rem + 5vw, 7rem);
   --gutter: clamp(1.25rem, 0.6rem + 3vw, 3rem);
   --container: 75rem;
-  --container-wide: 86rem;
+  --container-wide: 100rem;
   --measure: 62ch;
 
   /* --- Forma ------------------------------------------------------------ */
