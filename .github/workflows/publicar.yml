@@ -1,0 +1,25 @@
+# GitHub Pages sirve la rama gh-pages. Este flujo la mantiene idéntica a main:
+# basta con hacer push a main y el sitio se actualiza solo en uno o dos minutos.
+name: Publicar el sitio
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publicar
+  cancel-in-progress: true
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Copiar main a gh-pages
+        run: git push --force origin HEAD:gh-pages

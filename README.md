@@ -72,8 +72,12 @@ npx serve .
 
 ## Publicación
 
-GitHub Pages sirve la rama `main` desde la raíz. Cada `git push` a `main` actualiza el sitio
-en uno o dos minutos.
+GitHub Pages sirve la rama `gh-pages`. No hay que tocarla a mano: el flujo
+`.github/workflows/publicar.yml` la deja idéntica a `main` en cada `git push` a `main`, y el
+sitio se actualiza en uno o dos minutos.
+
+Si algún día se prefiere publicar directamente desde `main`, se cambia en
+*Settings → Pages → Branch* y se borran la rama `gh-pages` y ese flujo.
 
 ## Créditos
 
