@@ -901,6 +901,19 @@ html.no-js #fondo {
   border-top: 1px solid var(--line);
 }
 
+.footer-credit {
+  flex-basis: 100%;
+  order: 3;
+  font-size: var(--step--2);
+  letter-spacing: 0.02em;
+  color: var(--text-mute);
+}
+
+.footer-credit b {
+  font-weight: 600;
+  color: var(--text-soft);
+}
+
 .footer-meta {
   font-family: var(--font-mono);
   font-size: var(--step--2);

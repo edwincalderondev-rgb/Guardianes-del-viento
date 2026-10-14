@@ -53,8 +53,8 @@
 
 window.ALISIO_KB = {
   meta: {
-    version: '1.0',
-    updated: '2026-10-13',
+    version: '1.1',
+    updated: '2026-10-14',
 
     /* Los cuatro bloques del documento fuente. «sitio» no sale en el menú:
        agrupa lo que no es del informe sino de la página (tráiler, imágenes,
@@ -128,8 +128,8 @@ window.ALISIO_KB = {
     ],
     unknownNear: 'Lo más cercano que tengo es esto:',
     unknownFar: 'Puede plantearla con otras palabras o empezar por uno de estos temas:',
-    unknownNote: 'También puede revisar las preguntas y las referencias de la página.',
-    unknownSee: ['preguntas', 'referencias'],
+    unknownNote: 'También puede elegir uno de los cuatro bloques de preguntas en la fila de temas, o revisar las referencias de la página.',
+    unknownSee: ['cifras', 'referencias'],
     fallback: ['que-es', 'cifras', 'q13', 'q16']
   },
 
@@ -298,8 +298,8 @@ window.ALISIO_KB = {
       re: '\\b(no entiendes?|no me entiendes?|no me entendio|no entendio|no sirves?|no me sirve|mala respuesta|eso no era|no era eso|no respondiste|no respondio|no es lo que pregunte|respuesta equivocada|estas mal|no ayudas?|inutil|tonto|estupido)\\b',
       a: `
         <p>Tiene razón en señalarlo, y lamento no haber acertado. Respondo por coincidencia de palabras, así que a veces una buena pregunta se me escapa.</p>
-        <p>¿Me la plantea de otra forma? También puede ir directamente a las preguntas de la página.</p>`,
-      see: ['preguntas'],
+        <p>¿Me la plantea de otra forma? También puede elegir uno de los cuatro bloques de preguntas en la fila de temas, aquí abajo: ahí están las veinte, con su respuesta completa.</p>`,
+      see: ['cifras'],
       next: ['que-es', 'cifras']
     },
     {
@@ -1001,7 +1001,8 @@ window.ALISIO_KB = {
       cat: 'solucion',
       title: 'Actores necesarios para ejecutar',
       ask: '¿Qué actores se necesitan?',
-      p: ['actores necesarios', 'actores', 'aliados', 'alianzas', 'quienes participan', 'quien participa', 'quien mas participa',
+      p: ['actores necesarios', 'actores', 'papel de la defensoria', 'papel tiene la defensoria', 'que hace la defensoria',
+          'defensoria y organizaciones', 'organizaciones de derechos humanos', 'papel del sena', 'papel de minciencias', 'aliados', 'alianzas', 'quienes participan', 'quien participa', 'quien mas participa',
           'que aliados', 'con quien se alian', 'sena', 'minciencias', 'fiduciario', 'que universidad participa',
           'universidad o laboratorio', 'laboratorio', 'capital semilla', 'socios', 'que entidades', 'entidades', 'instituciones',
           'cooperacion internacional', 'quien apoya', 'quienes apoyan', 'stakeholders', 'partes interesadas'],
@@ -1173,10 +1174,8 @@ window.ALISIO_KB = {
       cat: 'riesgos',
       title: 'Teoría de cambio',
       ask: '¿Cuál es la teoría de cambio?',
-      p: ['teoria de cambio', 'teoria del cambio', 'cadena causal', 'cadena de resultados', 'no puede afirmarse',
-          'que no puede afirmarse', 'hipotesis', 'logica del piloto', 'cual es la logica', 'como produce impacto',
-          'como genera impacto', 'como se genera el impacto', 'entradas actividades productos', 'que no pueden prometer',
-          'que no prometen', 'que no garantizan'],
+      p: ['teoria de cambio', 'teoria del cambio', 'cadena causal', 'cadena de resultados', 'hipotesis',
+          'como produce impacto', 'como genera impacto', 'como se genera el impacto', 'entradas actividades productos'],
       k: 'teoria cambio causal cadena hipotesis logica entradas actividades productos',
       a: `
         <p>Su punto de partida es una hipótesis sencilla: si la información se genera con participación comunitaria, protocolos técnicos y validación independiente, aumentará la probabilidad de que comunidad, empresa y autoridad la reconozcan como utilizable. Esa aceptación permite actuar antes y decidir con menor incertidumbre.</p>
@@ -1189,7 +1188,43 @@ window.ALISIO_KB = {
         </ol>
         <p class="al-note"><strong>Lo que no puede afirmarse de antemano.</strong> Guardianes no puede atribuirse por sí solo la reducción de todos los conflictos o paralizaciones. Esos resultados también dependen de condiciones políticas, económicas, regulatorias y sociales. Por eso los indicadores se refieren a controversias de información y se comparan con una línea base, sin presentar correlación como causalidad automática.</p>`,
       see: ['cambio'],
-      next: ['q18', 'indicadores', 'q5']
+      next: ['logica-piloto', 'no-afirmable', 'q18']
+    },
+    {
+      id: 'logica-piloto',
+      cat: 'riesgos',
+      title: 'La lógica que debe probar el piloto',
+      ask: '¿Qué lógica debe probar el piloto?',
+      p: ['logica que debe probar el piloto', 'logica del piloto', 'que debe probar el piloto', 'que tiene que probar el piloto',
+          'que debe demostrar el piloto', 'que va a probar el piloto', 'que pretende probar', 'cual es la logica',
+          'como funciona la cadena', 'datos legitimos', 'alertas comprensibles', 'respuestas documentadas',
+          'por que funcionaria', 'por que va a funcionar', 'tiene que demostrar el piloto', 'demostrar el piloto',
+          'que demuestra el piloto', 'que prueba el piloto'],
+      k: 'logica probar piloto demostrar cadena legitimos comprensibles documentadas responsable plazo',
+      a: `
+        <p>Datos legítimos permiten emitir alertas comprensibles. Las alertas, cuando tienen un responsable y un plazo, aceleran respuestas documentadas. Las respuestas oportunas reducen la repetición de eventos y la incertidumbre que alimenta las controversias.</p>
+        <p>Si además la cooperativa cubre parte creciente de sus costos mediante contratos, la capacidad puede mantenerse y ampliarse.</p>
+        <p class="al-note">Es lo que el piloto debe <strong>probar</strong>, no algo ya demostrado.</p>`,
+      see: ['cambio', 'piloto'],
+      next: ['no-afirmable', 'teoria-cambio', 'q5']
+    },
+    {
+      id: 'no-afirmable',
+      cat: 'riesgos',
+      title: 'Lo que no puede afirmarse de antemano',
+      ask: '¿Qué no puede afirmarse de antemano?',
+      p: ['lo que no puede afirmarse', 'que no puede afirmarse', 'no puede afirmarse', 'que no se puede afirmar',
+          'no se puede afirmar', 'que no pueden prometer', 'que no prometen', 'que no garantizan', 'que no garantiza',
+          'garantiza reducir los conflictos', 'va a acabar con los conflictos', 'acaba con los conflictos',
+          'elimina los conflictos', 'reduce todos los conflictos', 'puede garantizar', 'limites del proyecto',
+          'que no puede atribuirse', 'atribuirse por si solo', 'garantiza que se acaben', 'se acaben los conflictos',
+          'acaben los conflictos', 'fin de los conflictos', 'no habra conflictos', 'garantiza que'],
+      k: 'afirmarse afirmar garantizar garantiza prometer limites atribuirse conflictos paralizaciones causalidad',
+      a: `
+        <p>Guardianes no puede atribuirse por sí solo la reducción de todos los conflictos o paralizaciones. Esos resultados también dependen de condiciones políticas, económicas, regulatorias y sociales.</p>
+        <p>Por eso los indicadores se refieren a controversias de información y se comparan con una línea base, sin presentar correlación como causalidad automática.</p>`,
+      see: ['cambio', 'impacto'],
+      next: ['q18', 'logica-piloto', 'indicadores']
     },
     {
       id: 'indicadores',
@@ -1438,14 +1473,28 @@ window.ALISIO_KB = {
           'quien lo hizo', 'quien escribio', 'quien lo escribio', 'quien creo', 'quien creo el proyecto', 'quien presenta',
           'quien esta detras', 'quienes estan detras', 'quien lidera', 'quien es el equipo', 'que universidad', 'de que universidad',
           'cual universidad', 'que maestria', 'cual maestria', 'maestria', 'es una tesis', 'tesis', 'trabajo de grado',
-          'programa academico', 'estudiante', 'fundadores', 'fundadora', 'director', 'directora', 'jurado', 'autor',
-          'quien hizo la pagina', 'quien diseno', 'quien desarrollo'],
+          'programa academico', 'estudiante', 'fundadores', 'fundadora', 'director', 'directora', 'jurado', 'autor'],
       k: 'autor universidad maestria tesis grado estudiante equipo fundadores lidera academico nombre',
       a: `
         <p>Ese dato no está en la información publicada del proyecto. El informe, el guion del tráiler y la base de preguntas con los que respondo no nombran a su autora ni indican la universidad o el programa académico, y prefiero no inventarlo.</p>
         <p>Tampoco se nombra a la institución que validaría los datos: el material habla siempre de «una universidad o laboratorio» independiente.</p>`,
       see: ['referencias'],
       next: ['referencias', 'que-es', 'actores']
+    },
+    {
+      id: 'sitio',
+      cat: 'sitio',
+      title: 'Diseño y desarrollo del sitio',
+      ask: '¿Quién hizo esta página?',
+      p: ['quien hizo la pagina', 'quien hizo el sitio', 'quien hizo la web', 'quien hizo esta pagina', 'quien diseno',
+          'quien diseno la pagina', 'quien desarrollo', 'quien desarrollo la pagina', 'quien programo', 'quien construyo la pagina',
+          'quien te hizo', 'quien te creo', 'quien te programo', 'diseno de la pagina', 'creador de la pagina', 'creador del sitio',
+          'the architect', 'dual engineer'],
+      k: 'pagina sitio web diseno desarrollo desarrollador disenador programo construyo creador architect',
+      a: `
+        <p>El sitio, su identidad visual y este asistente fueron diseñados y desarrollados por el <strong>Dual Engineer Edwin Calderón Aguilera — The Architect</strong> · Soluciones profesionales.</p>
+        <p>El contenido es del proyecto: sale del informe, del guion del tráiler y de la base de preguntas técnicas de Guardianes del Viento.</p>`,
+      next: ['que-es', 'trailer', 'autoria']
     }
   ]
 };
