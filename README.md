@@ -4,6 +4,9 @@ Sitio de presentación de la tesis de maestría **Guardianes del Viento**: una c
 wayuu sin ánimo de lucro que produce, valida y gobierna información ambiental y social
 alrededor de los parques eólicos de La Guajira.
 
+**Autores:** Paola Andrea Guardiola Núñez, Luis Arturo Flechas Robles y Carlos Humberto Loza
+Arenas.
+
 El **tráiler** es la pieza central y la página es su marco: alrededor del video están el
 informe para evaluar la inversión, las fotografías de campo y **Alisio**, el asistente de
 preguntas.
@@ -83,5 +86,7 @@ Si algún día se prefiere publicar directamente desde `main`, se cambia en
 
 - Las imágenes marcadas en la página como «Recreación visual» fueron generadas para este
   proyecto y no representan personas ni hechos reales.
-- Las fotografías de la sección «El territorio» son registros de campo.
+- Las fotografías de la sección «El territorio» son registros de campo tomados en La Guajira.
+- Diseño y desarrollo del sitio, identidad visual y asistente: Dual Engineer Edwin Calderón
+  Aguilera — The Architect · Soluciones profesionales.
 - Tipografías: Fraunces, Instrument Sans e IBM Plex Mono, bajo SIL Open Font License 1.1.

@@ -139,6 +139,37 @@ html.is-locked {
   border: 0;
 }
 
+/* Lista de nombres en línea con punto medio entre ellos. Cada <li> lleva su
+   punto a la izquierda, dentro de un margen negativo de la <ul>; el
+   contenedor recorta ese margen, así que el punto del nombre que abre un
+   renglón queda fuera de vista y nunca cuelga al principio de la línea. */
+.name-list {
+  overflow: hidden;
+  min-width: 0;
+}
+
+.name-list > ul {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 0 0 -1.15em;
+  padding: 0;
+  list-style: none;
+}
+
+.name-list li {
+  position: relative;
+  padding-left: 1.15em;
+  white-space: nowrap;
+}
+
+.name-list li::before {
+  content: "·";
+  position: absolute;
+  left: 0.42em;
+  font-weight: 400;
+  color: var(--text-mute);
+}
+
 .nowrap {
   white-space: nowrap;
 }
@@ -899,6 +930,30 @@ html.no-js #fondo {
   margin-top: clamp(2.5rem, 5vw, 4rem);
   padding-top: var(--space-5);
   border-top: 1px solid var(--line);
+}
+
+.footer-authors {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.9rem;
+  flex-basis: 100%;
+  order: 2;
+  font-size: var(--step--1);
+  line-height: 1.6;
+}
+
+.footer-authors-label {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.footer-authors .name-list {
+  font-weight: 500;
+  color: var(--text);
 }
 
 .footer-credit {

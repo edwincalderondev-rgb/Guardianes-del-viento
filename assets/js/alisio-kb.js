@@ -18,7 +18,10 @@
      párrafos y resaltar cifras con <strong>, nunca reescribirla.
    · El resto de entradas solo usa información del informe del proyecto, del
      guion del tráiler o de esa misma base. Si un dato no está allí, no se
-     escribe: no hay autora, universidad ni datos de contacto publicados.
+     escribe: no hay universidad, programa ni datos de contacto publicados.
+     Los autores (Paola Andrea Guardiola Núñez, Luis Arturo Flechas Robles y
+     Carlos Humberto Loza Arenas) y el origen de las fotos de campo (La
+     Guajira) los confirmó el responsable del sitio el 2026-10-14.
 
    ANATOMÍA DE UNA ENTRADA
      id     Identificador único.
@@ -53,7 +56,7 @@
 
 window.ALISIO_KB = {
   meta: {
-    version: '1.1',
+    version: '1.2',
     updated: '2026-10-14',
 
     /* Los cuatro bloques del documento fuente. «sitio» no sale en el menú:
@@ -1427,10 +1430,12 @@ window.ALISIO_KB = {
       p: ['recreacion visual', 'recreaciones', 'las imagenes son reales', 'son reales las imagenes', 'son reales las fotos',
           'las fotos son reales', 'fotos reales', 'imagenes generadas', 'generadas con ia', 'hechas con ia',
           'hechas con inteligencia artificial', 'las personas son reales', 'quien es la joven', 'quien es la muchacha',
-          'quien es la mujer', 'son actores', 'las fotos', 'fotos', 'la joven wayuu', 'protagonista'],
+          'quien es la mujer', 'son actores', 'las fotos', 'fotos', 'la joven wayuu', 'protagonista',
+          'fotos de campo', 'donde tomaron las fotos', 'donde se tomaron las fotos', 'son de la guajira', 'fotos de la guajira'],
       k: 'foto recreacion reales generadas protagonista visual',
       a: `
-        <p>Las imágenes del sitio marcadas como «recreación visual» fueron generadas específicamente para este proyecto: no representan personas ni hechos reales.</p>
+        <p>Hay dos tipos de imagen. Las de la sección «Territorio» son <strong>fotografías reales de campo, tomadas en La Guajira</strong>: el parque eólico, la costa y las rancherías.</p>
+        <p>Las marcadas como «recreación visual» fueron generadas específicamente para este proyecto: no representan personas ni hechos reales.</p>
         <p>El guion del tráiler lo advierte escena por escena y fija dos reglas de representación: tratar la identidad wayuu con respeto, sin usar símbolos ceremoniales fuera de contexto, y no sugerir que las imágenes documentan hechos reales.</p>`,
       see: ['trailer', 'territorio'],
       next: ['trailer', 'que-es']
@@ -1467,17 +1472,25 @@ window.ALISIO_KB = {
     {
       id: 'autoria',
       cat: 'sitio',
-      title: 'Autoría y universidad',
-      ask: '¿Quién es la autora?',
-      p: ['quien es la autora', 'quien es el autor', 'nombre de la autora', 'quien hizo', 'quien hizo esto', 'quien hizo el proyecto',
-          'quien lo hizo', 'quien escribio', 'quien lo escribio', 'quien creo', 'quien creo el proyecto', 'quien presenta',
-          'quien esta detras', 'quienes estan detras', 'quien lidera', 'quien es el equipo', 'que universidad', 'de que universidad',
-          'cual universidad', 'que maestria', 'cual maestria', 'maestria', 'es una tesis', 'tesis', 'trabajo de grado',
-          'programa academico', 'estudiante', 'fundadores', 'fundadora', 'director', 'directora', 'jurado', 'autor'],
-      k: 'autor universidad maestria tesis grado estudiante equipo fundadores lidera academico nombre',
+      title: 'Autores del proyecto',
+      ask: '¿Quiénes son los autores?',
+      p: ['quienes son los autores', 'quien es la autora', 'quien es el autor', 'los autores', 'nombre de los autores',
+          'nombre de la autora', 'quien hizo', 'quien hizo esto', 'quien hizo el proyecto', 'quienes hicieron el proyecto',
+          'quien lo hizo', 'quien escribio', 'quien lo escribio', 'quienes escribieron', 'quien creo', 'quien creo el proyecto',
+          'quien presenta', 'quienes presentan', 'quien esta detras', 'quienes estan detras', 'quien lidera', 'quien es el equipo',
+          'cual es el equipo', 'que universidad', 'de que universidad', 'cual universidad', 'que maestria', 'cual maestria',
+          'maestria', 'es una tesis', 'tesis', 'trabajo de grado', 'programa academico', 'estudiante', 'estudiantes',
+          'fundadores', 'fundadora', 'director', 'directora', 'jurado', 'autor', 'paola', 'guardiola', 'paola guardiola',
+          'luis arturo', 'flechas', 'luis flechas', 'carlos humberto', 'loza', 'carlos loza'],
+      k: 'autor universidad maestria tesis grado estudiante equipo fundadores lidera academico nombre paola guardiola flechas loza',
       a: `
-        <p>Ese dato no está en la información publicada del proyecto. El informe, el guion del tráiler y la base de preguntas con los que respondo no nombran a su autora ni indican la universidad o el programa académico, y prefiero no inventarlo.</p>
-        <p>Tampoco se nombra a la institución que validaría los datos: el material habla siempre de «una universidad o laboratorio» independiente.</p>`,
+        <p>Guardianes del Viento es una tesis de maestría de:</p>
+        <ul>
+          <li><strong>Paola Andrea Guardiola Núñez</strong></li>
+          <li><strong>Luis Arturo Flechas Robles</strong></li>
+          <li><strong>Carlos Humberto Loza Arenas</strong></li>
+        </ul>
+        <p>La universidad y el programa académico no están en la información publicada del proyecto, y prefiero no inventarlos. Tampoco se nombra a la institución que validaría los datos: el material habla siempre de «una universidad o laboratorio» independiente.</p>`,
       see: ['referencias'],
       next: ['referencias', 'que-es', 'actores']
     },
