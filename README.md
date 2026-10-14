@@ -36,18 +36,17 @@ assets/
   fonts/ Fraunces, Instrument Sans e IBM Plex Mono, alojadas en el sitio
   img/   escenas/ (recreaciones del tráiler) · territorio/ (fotos de campo) · alisio/ · og/
   audio/ narracion.m4a   locución del tráiler
-  video/ aquí va el video final (ver LEEME.md)
+  video/ guardianes-del-viento.mp4 (el tráiler) y sus portadas (ver LEEME.md)
 ```
 
-## Poner el video final
+## El video del tráiler
 
-Hoy la página muestra una **previsualización del storyboard**: las ocho escenas del guion
-sincronizadas con la voz real del tráiler. Cuando exista el video:
+Desde el 2026-10-14 la página reproduce el tráiler final
+(`assets/video/guardianes-del-viento.mp4`), con capítulos, subtítulos y modo cine. Su ruta
+está en `video.src`, dentro de `assets/js/trailer-data.js`; si ese campo se vacía, la página
+vuelve a la previsualización del storyboard (las ocho escenas del guion con la voz real).
 
-1. Copiarlo en `assets/video/`.
-2. Escribir su ruta en `video.src`, dentro de `assets/js/trailer-data.js`.
-
-Nada más. Los detalles están en `assets/video/LEEME.md`.
+Para cambiarlo por otra versión, y el límite de 100 MB de GitHub: `assets/video/LEEME.md`.
 
 ## Enseñarle algo a Alisio
 

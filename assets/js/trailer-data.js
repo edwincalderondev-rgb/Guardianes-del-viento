@@ -18,18 +18,20 @@
 window.TRAILER = {
   title: 'Guardianes del Viento · Tráiler',
 
+  // Video final (2026-10-14): lleva la misma locución, sin desfase ni deriva (medido
+  // por correlación con narracion.m4a), así que subtítulos, capítulos y onda sirven tal cual.
   video: {
-    src: '',
-    poster: '',
+    src: 'assets/video/guardianes-del-viento.mp4',
+    poster: 'assets/video/portada-1920.webp',
     // true si el video final conserva la misma locución: se reutilizan estos subtítulos
     captions: true,
   },
 
   preview: true,
   audio: 'assets/audio/narracion.m4a',
-  poster: 'assets/img/escenas/01-territorio-1100.webp',
+  poster: 'assets/video/portada-1100.webp',
 
-  duration: 119.907846,
+  duration: 119.953991,
 
   // Las ocho escenas del guion, con los cortes medidos en la locución real (no los
   // tiempos objetivo del storyboard: la voz se desvía de ellos hasta 8,5 s).

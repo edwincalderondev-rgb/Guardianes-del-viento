@@ -317,9 +317,9 @@
 
           <!-- Portada: lo que se ve antes de reproducir -->
           <div class="frame-poster" id="framePoster">
-            <img alt="Recreación visual: una joven wayuu observa un parque eólico al atardecer en La Guajira." width="1672" height="941"
-                 src="assets/img/escenas/01-territorio-1100.webp"
-                 srcset="assets/img/escenas/01-territorio-640.webp 640w, assets/img/escenas/01-territorio-1100.webp 1100w, assets/img/escenas/01-territorio-1672.webp 1672w"
+            <img alt="Recreación visual: una joven wayuu camina por el semidesierto de La Guajira entre aerogeneradores, al atardecer." width="1920" height="1080"
+                 src="assets/video/portada-1100.webp"
+                 srcset="assets/video/portada-640.webp 640w, assets/video/portada-1100.webp 1100w, assets/video/portada-1920.webp 1920w"
                  sizes="(min-width: 1100px) 58vw, 100vw" fetchpriority="high" decoding="async">
             <button class="poster-play" type="button" data-trailer-play aria-label="Reproducir el tráiler de Guardianes del Viento">
               <span class="poster-play-ring" aria-hidden="true"></span>
@@ -384,7 +384,7 @@
       <!-- Capítulos: las ocho escenas del guion -->
       <nav class="chapters" aria-label="Escenas del tráiler">
         <div class="chapters-head">
-          <span>Ocho escenas</span>
+          <span>Ocho escenas <i class="chapters-note">· Recreación visual</i></span>
           <button type="button" class="transcript-open" id="transcriptOpen" aria-haspopup="dialog">Leer la transcripción</button>
         </div>
         <ol class="chapters-list" id="chapters">
@@ -400,8 +400,8 @@
       </nav>
 
       <noscript>
-        <p class="noscript-note">Para ver la previsualización del tráiler active JavaScript. Aquí está la locución; su transcripción completa queda al final de la página.</p>
-        <audio controls preload="none" src="assets/audio/narracion.m4a"></audio>
+        <p class="noscript-note">Para usar el reproductor completo (capítulos, subtítulos y modo cine) active JavaScript. Aquí está el tráiler; su transcripción completa queda al final de la página.</p>
+        <video controls preload="none" playsinline width="1920" height="1080" poster="assets/video/portada-1100.webp" src="assets/video/guardianes-del-viento.mp4"></video>
       </noscript>
     </div>
     </div>

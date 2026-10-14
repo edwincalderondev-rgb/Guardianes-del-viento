@@ -1361,14 +1361,14 @@ window.ALISIO_KB = {
     {
       id: 'trailer',
       cat: 'sitio',
-      title: 'El tráiler: ocho escenas en 1:58',
+      title: 'El tráiler: ocho escenas en dos minutos',
       ask: '¿De qué trata el tráiler?',
       p: ['trailer', 'el video', 'video', 'ocho escenas', 'escenas', 'guion', 'storyboard', 'cuanto dura el video',
           'cuanto dura el trailer', 'duracion del video', 'de que trata el video', 'de que trata el trailer', 'que muestra el video',
-          'donde esta el video', 'ver el video', 'voz en off', '1 58', 'narracion'],
+          'donde esta el video', 'ver el video', 'voz en off', '1 58', '1 59', 'dos minutos', 'narracion'],
       k: 'video escenas guion storyboard duracion narracion audio',
       a: `
-        <p>El tráiler de Guardianes del Viento tiene una duración objetivo de <strong>1:58</strong> y avanza en ocho escenas:</p>
+        <p>El tráiler de Guardianes del Viento dura <strong>cerca de dos minutos</strong> (1:59) y avanza en ocho escenas. Puede verlo al inicio de la página, con capítulos, subtítulos y modo cine:</p>
         <ol>
           <li><strong>La promesa y la tensión.</strong> La transición eólica convive con desconfianza y versiones distintas.</li>
           <li><strong>El riesgo global aterriza.</strong> La desinformación y el riesgo ambiental convergen en La Guajira.</li>
@@ -1435,7 +1435,7 @@ window.ALISIO_KB = {
       k: 'foto recreacion reales generadas protagonista visual',
       a: `
         <p>Hay dos tipos de imagen. Las de la sección «Territorio» son <strong>fotografías reales de campo, tomadas en La Guajira</strong>: el parque eólico, la costa y las rancherías.</p>
-        <p>Las marcadas como «recreación visual» fueron generadas específicamente para este proyecto: no representan personas ni hechos reales.</p>
+        <p>Las marcadas como «recreación visual» —incluido el video del tráiler— fueron generadas específicamente para este proyecto: no representan personas ni hechos reales.</p>
         <p>El guion del tráiler lo advierte escena por escena y fija dos reglas de representación: tratar la identidad wayuu con respeto, sin usar símbolos ceremoniales fuera de contexto, y no sugerir que las imágenes documentan hechos reales.</p>`,
       see: ['trailer', 'territorio'],
       next: ['trailer', 'que-es']

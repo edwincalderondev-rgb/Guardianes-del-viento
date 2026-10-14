@@ -1,23 +1,27 @@
-# Video final del tráiler
+# Video del tráiler
 
-Cuando el video esté listo:
+`guardianes-del-viento.mp4` es el tráiler publicado (desde el 2026-10-14): 1:59, 1080p a
+30 fps, H.264 + AAC, unos 81 MB. Se copió del original sin recomprimir; solo se movió el
+índice del MP4 al principio (`-movflags +faststart`) para que el navegador empiece a
+reproducirlo mientras se descarga.
 
-1. Cópielo en esta carpeta (MP4 H.264, 16:9, 1080p). Por ejemplo `guardianes-del-viento.mp4`.
-2. Abra `assets/js/trailer-data.js` y escriba su ruta en `video.src`:
+Lleva la misma locución que `assets/audio/narracion.m4a`, sin desfase ni deriva (medido por
+correlación de las dos pistas), así que los subtítulos, los capítulos y la onda del
+reproductor (todo en `assets/js/trailer-data.js`) sirven tal cual.
 
-   ```js
-   video: {
-     src: 'assets/video/guardianes-del-viento.mp4',
-     poster: '',        // opcional: una imagen de portada
-     captions: true,    // false si el video final cambia la locución
-   },
-   ```
+Las portadas `portada-640/1100/1920.webp` son el segundo 1,6 del video: ya pasó el fundido
+de entrada y todavía no aparece el primer texto (entra hacia el segundo 2).
 
-3. Si los cortes del video no coinciden con los de la locución, ajuste los tiempos de
-   `scenes` en ese mismo archivo: de ahí salen los capítulos del reproductor.
+## Cambiar el video por una versión nueva
 
-No hay que tocar nada más. Mientras `video.src` esté vacío, la página muestra la
-previsualización del storyboard con la voz real del tráiler.
+```
+ffmpeg -i "<video nuevo>.mp4" -map 0 -c copy -movflags +faststart assets/video/guardianes-del-viento.mp4
+```
 
-GitHub rechaza archivos de más de 100 MB; un tráiler de dos minutos a 1080p pesa
-entre 15 y 40 MB, así que cabe sin problema.
+1. Si la locución cambió o se movió, hay que volver a medir los subtítulos y los cortes de
+   `scenes` en `trailer-data.js` (o poner `captions: false`).
+2. Si cambió la primera toma, regenerar las portadas (un cuadro sin texto ni fundido).
+3. **GitHub rechaza archivos de más de 100 MB.** Si el video nuevo pesa más, hay que
+   comprimirlo: a 5 Mbps un tráiler de 2 minutos queda en ~77 MB sin pérdida visible
+   (VMAF 97,9, medido el 2026-10-14). Y cada versión subida queda para siempre en la
+   historia del repositorio: solo se suben versiones finales.

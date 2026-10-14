@@ -1103,6 +1103,20 @@
   color: var(--text-mute);
 }
 
+/* El tráiler se hizo con imágenes generadas: se rotula como recreación (regla del guion) */
+.chapters-note {
+  font-style: normal;
+  opacity: 0.8;
+}
+
+/* En el celular no cabe junto a «Leer la transcripción» sin partir los dos en dos
+   renglones; el rótulo sigue en el texto alternativo de la portada y en Alisio. */
+@media (max-width: 600px) {
+  .chapters-note {
+    display: none;
+  }
+}
+
 .transcript-open {
   font: inherit;
   letter-spacing: inherit;
